@@ -168,6 +168,10 @@ def check_db_status():
         if not(db_found):
             logger.info('Database <%s> not found, trying to create it', options.influx_database)
             dbclient.create_database(options.influx_database)
+            dbclient.create_retention_policy('30_days', '30d', 1, default=True)
+            dbclient.create_retention_policy('6_months', '26wd', 1, default=False)
+            dbclient.create_retention_policy('infinite', 'INF', 1, default=False)
+            
         return True
     except Exception as e:
         logger.error('Error querying open-nti database: %s', e)
