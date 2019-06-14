@@ -17,12 +17,12 @@
 - name: Download my_package
   get_url: url="{{ item.url }}"
     dest="~/Downloads/{{ item.name }}.deb"
-  with_items: {{ packages }}
+  with_items: "{{ packages }}"
   
 - name: Install my_package
   apt: deb="~/Downloads/{{ item.name }}.deb"
     state=present
-  with_items: {{ packages }}    
+  with_items: "{{ packages }}"
   ansible_become: true
 
 - name: Update all packages to the latest version
@@ -30,7 +30,7 @@
     upgrade=yes
   ansible_become: true
 
-- name: install "picamera" package
+- name: install "influxdb" package
   pip:
     name: influxdb
   ansible_become: true
