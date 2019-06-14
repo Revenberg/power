@@ -12,4 +12,4 @@ sudo pip install markupsafe
 git clone https://github.com/Revenberg/power.git 
 
 cd ~/power
-ansible-playbook setup.yml 
+ansible-playbook setup.yml
