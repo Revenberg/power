@@ -1,0 +1,10 @@
+[Unit]
+ Description=My logger Service
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/usr/bin/python /home/pi/logger.py > /var/log/logger.log 2>&1
+
+ [Install]
+ WantedBy=multi-user.target

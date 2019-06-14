@@ -1,14 +1,26 @@
 ---
-- name: Copy file with owner and permissions
+- name: Copy logger.py with owner and permissions
   copy:
     src: logger.py
     dest: /home/pi/logger.py
-    mode: '0766'  
+    mode: '0766'
 
-- name: install "picamera" package
+- name: Copy logger.service with owner and permissions
+  copy:
+    src: logger.service
+    dest: /lib/systemd/system/logger.service
+    mode: '0644'
+
+- name: install pip packages
   pip:
     name: "{{ item }}"
   with_items:
   - "pyserial"
   - "crcmod"
   - "influxdb"
+
+- name: Make sure logger is running
+  systemd:
+    enabled: yes
+    state: started
+    name: logger
