@@ -3,6 +3,7 @@
   apt: >
     update_cache=yes
     cache_valid_time=360
+  ansible_become: true
 
 - name: Update all packages to the latest version
   apt: >
