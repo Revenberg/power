@@ -2,6 +2,6 @@
 - name: Ansible - start
   hosts: localhost 
   roles:
-  - {role: local, sudo: yes}
+  - {role: local, become_user: root, become: yes}
     
   
