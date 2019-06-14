@@ -7,10 +7,12 @@
 - name: Update all packages to the latest version
   apt: > 
     upgrade=yes
+  ansible_become: true
 
 - name: install "python-pip" package
   apt: 
     name: python-pip
+  ansible_become: true
 
 - name: Download my_package
   get_url: url="{{ item.url }}"
@@ -21,20 +23,22 @@
   apt: deb="~/Downloads/{{ item.name }}.deb"
     state=present
   with_items: {{ packages }}    
-  sudo: true
+  ansible_become: true
 
 - name: Update all packages to the latest version
   apt: > 
     upgrade=yes
+  ansible_become: true
 
-  - name: install "picamera" package
-    pip:
-      name: influxdb
+- name: install "picamera" package
+  pip:
+    name: influxdb
+  ansible_become: true
 
 - name: Make sure grafana-server is running
   systemd:
     enabled: yes
     state: started
     name: grafana-server
-
+  ansible_become: true
 
