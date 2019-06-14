@@ -1,39 +1,11 @@
 ---
-- name: Update apt-get cache
-  apt: >
-    update_cache=yes
-    cache_valid_time=360
-  become: yes
-
-- name: Update all packages to the latest version
-  apt: >
-    upgrade=yes
-  become: yes
-
-- name: install "python-pip" package
-  apt:
-    name: python-pip
-  become: yes
-
 - name: Download my_package
-  get_url: url="{{ item.url }}"
-    dest="~/Downloads/{{ item.name }}.deb"
-  with_items: "{{ packages }}"
+  get_url: url="https://github.com/fg2it/grafana-on-raspberry/releases/download/v5.1.4/grafana_5.1.4_armhf.deb"
+    dest="/home/pi/grafana_5.1.4_armhf.deb"
 
-- name: Install my_package
-  apt: deb="~/Downloads/{{ item.name }}.deb"
+- name: Install grafana_5.1.4_armhf.deb
+  apt: deb="/home/pi/grafana_5.1.4_armhf.deb"
     state=present
-  with_items: "{{ packages }}"
-  become: yes
-
-- name: Update all packages to the latest version
-  apt: >
-    upgrade=yes
-  become: yes
-
-- name: install "influxdb" package
-  pip:
-    name: influxdb
   become: yes
 
 - name: Make sure grafana-server is running
@@ -41,5 +13,3 @@
     enabled: yes
     state: started
     name: grafana-server
-  become: yes
-

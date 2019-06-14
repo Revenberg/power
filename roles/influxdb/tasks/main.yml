@@ -1,0 +1,45 @@
+---
+- name: Update apt-get cache
+  apt: >
+    update_cache=yes
+    cache_valid_time=360
+  become: yes
+
+- name: Update all packages to the latest version
+  apt: >
+    upgrade=yes
+  become: yes
+
+- name: install "python-pip" package
+  apt:
+    name: python-pip
+  become: yes
+
+- name: Download my_package
+  get_url: url="{{ item.url }}"
+    dest="/tmp/Downloads/{{ item.name }}.deb"
+  with_items: "{{ packages }}"
+
+- name: Install my_package
+  apt: deb="/tmp/Downloads/{{ item.name }}.deb"
+    state=present
+  with_items: "{{ packages }}"
+  become: yes
+
+- name: Update all packages to the latest version
+  apt: >
+    upgrade=yes
+  become: yes
+
+- name: install "influxdb" package
+  pip:
+    name: influxdb
+  become: yes
+
+- name: Make sure grafana-server is running
+  systemd:
+    enabled: yes
+    state: started
+    name: grafana-server
+  become: yes
+

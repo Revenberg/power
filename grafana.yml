@@ -1,7 +1,12 @@
 ---
 - hosts: localhost
   roles:
+  - role: influxdb
+    become_user: root
+    become: yes
   - role: grafana
-    vars:
-      - ansible_become: false
-      - ansible_user: root
+    become_user: root
+    become: yes
+  - role: logger
+    become_user: root
+    become: yes

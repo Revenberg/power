@@ -1,0 +1,14 @@
+---
+- name: Copy file with owner and permissions
+  copy:
+    src: logger.py
+    dest: /home/pi/logger.py
+    mode: '0766'  
+
+- name: install "picamera" package
+  pip:
+    name: "{{ item }}"
+  with_items:
+  - "pyserial"
+  - "crcmod"
+  - "influxdb"
