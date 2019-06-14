@@ -1,6 +1,6 @@
 ---
 - name: Ansible - start
-  hosts: local
+  hosts: localhost
   become_user: root
   become: yes
 
