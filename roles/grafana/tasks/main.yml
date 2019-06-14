@@ -5,12 +5,12 @@
     cache_valid_time=360
 
 - name: Update all packages to the latest version
-  apt: > 
+  apt: >
     upgrade=yes
   ansible_become: true
 
 - name: install "python-pip" package
-  apt: 
+  apt:
     name: python-pip
   ansible_become: true
 
@@ -18,7 +18,7 @@
   get_url: url="{{ item.url }}"
     dest="~/Downloads/{{ item.name }}.deb"
   with_items: "{{ packages }}"
-  
+
 - name: Install my_package
   apt: deb="~/Downloads/{{ item.name }}.deb"
     state=present
@@ -26,7 +26,7 @@
   ansible_become: true
 
 - name: Update all packages to the latest version
-  apt: > 
+  apt: >
     upgrade=yes
   ansible_become: true
 
