@@ -1,0 +1,40 @@
+---
+- name: Update apt-get cache
+  apt: >
+    update_cache=yes
+    cache_valid_time=360
+
+- name: Update all packages to the latest version
+  apt: > 
+    upgrade=yes
+
+- name: install "python-pip" package
+  apt: 
+    name: python-pip
+
+- name: Download my_package
+  get_url: url="{{ item.url }}"
+    dest="~/Downloads/{{ item.name }}.deb"
+  with_items: {{ packages }}
+  
+- name: Install my_package
+  apt: deb="~/Downloads/{{ item.name }}.deb"
+    state=present
+  with_items: {{ packages }}    
+  sudo: true
+
+- name: Update all packages to the latest version
+  apt: > 
+    upgrade=yes
+
+  - name: install "picamera" package
+    pip:
+      name: influxdb
+
+- name: Make sure grafana-server is running
+  systemd:
+    enabled: yes
+    state: started
+    name: grafana-server
+
+
