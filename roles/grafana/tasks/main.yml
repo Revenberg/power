@@ -3,17 +3,17 @@
   apt: >
     update_cache=yes
     cache_valid_time=360
-  ansible_become: true
+  become: yes
 
 - name: Update all packages to the latest version
   apt: >
     upgrade=yes
-  ansible_become: true
+  become: yes
 
 - name: install "python-pip" package
   apt:
     name: python-pip
-  ansible_become: true
+  become: yes
 
 - name: Download my_package
   get_url: url="{{ item.url }}"
@@ -24,22 +24,22 @@
   apt: deb="~/Downloads/{{ item.name }}.deb"
     state=present
   with_items: "{{ packages }}"
-  ansible_become: true
+  become: yes
 
 - name: Update all packages to the latest version
   apt: >
     upgrade=yes
-  ansible_become: true
+  become: yes
 
 - name: install "influxdb" package
   pip:
     name: influxdb
-  ansible_become: true
+  become: yes
 
 - name: Make sure grafana-server is running
   systemd:
     enabled: yes
     state: started
     name: grafana-server
-  ansible_become: true
+  become: yes
 
