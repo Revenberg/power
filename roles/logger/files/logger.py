@@ -8,6 +8,7 @@ import decimal
 import re
 import crcmod.predefined
 import serial
+import logging
 from influxdb import InfluxDBClient
 
 crc16 = crcmod.predefined.mkPredefinedCrcFun('crc16')
@@ -106,7 +107,7 @@ class P1Packet(object):
         keys['-P2'] = self.get_float(b'^1-0:42\.7\.0\(([0-9]+\.[0-9]+)\*kW\)\r\n')
         keys['+P3'] = self.get_float(b'^1-0:61\.7\.0\(([0-9]+\.[0-9]+)\*kW\)\r\n')
         keys['-P3'] = self.get_float(b'^1-0:62\.7\.0\(([0-9]+\.[0-9]+)\*kW\)\r\n')
-    
+
         keys['G'] = self.get_float(b'^(?:0-1:24\.2\.1(?:\(\d+[SW]\))?)?\(([0-9]{5}\.[0-9]{3})(?:\*m3)?\)\r\n', 0)
 
         keys['DN'] = self.get_float(b'^0-0:96\.14\.0\(([0-9])\\)\r\n')
@@ -156,7 +157,7 @@ class P1Packet(object):
     def __str__(self):
         return self._datagram.decode('ascii')
 
-def check_db_status():
+def check_db_status(options):
     # if the db is not found, then try to create it
     try:
         dbclient = InfluxDBClient(options.influx_hostname, options.influx_port, options.influx_username, options.influx_password)
@@ -171,14 +172,14 @@ def check_db_status():
             dbclient.create_retention_policy('30_days', '30d', 1, default=True)
             dbclient.create_retention_policy('6_months', '26wd', 1, default=False)
             dbclient.create_retention_policy('infinite', 'INF', 1, default=False)
-            
+
         return True
     except Exception as e:
         logger.error('Error querying open-nti database: %s', e)
-        return False 
+        return False
 
-def send_to_influxdb(options, fields):    
-    
+def send_to_influxdb(options, fields):
+
     req = {
         "measurement": options.influx_measurement,
         "tags": {},
@@ -217,9 +218,7 @@ def start_monitor(options):
 def main(argv=None):
 
     from argparse import ArgumentParser
-
-    check_db_status()
-    
+   
     parser = ArgumentParser(description="Send P1 telegrams to an InfluxDB API")
 
     parser.add_argument("-d", "--device", dest="device", help="serial port to read datagrams from", default='/dev/ttyUSB0')
@@ -227,10 +226,8 @@ def main(argv=None):
 
     influx_group = parser.add_argument_group()
     influx_group.add_argument("--influx-hostname", metavar='hostname', dest="influx_hostname", help="hostname to connect to InfluxDB, defaults to 'localhost'", default="localhost")
-    influx_group.add_argument("--influx-port", metavar='port', dest="influx_port", help="port to connect to InfluxDB,
-defaults to 8086", type=int, default=8086)
-    influx_group.add_argument("--influx-username", metavar='username', dest="influx_username", help="user to connect,
-defaults to 'root'", default="root")
+    influx_group.add_argument("--influx-port", metavar='port', dest="influx_port", help="port to connect to InfluxDB, defaults to 8086", type=int, default=8086)
+    influx_group.add_argument("--influx-username", metavar='username', dest="influx_username", help="user to connect, defaults to 'root'", default="root")
     influx_group.add_argument("--influx-password", metavar='password', dest="influx_password", help="password of the user, defaults to 'root'", default="root")
     influx_group.add_argument("--influx-database", metavar='dbname', dest="influx_database", help="database name to connect to, defaults to 'p1smartmeter'", default="p1smartmeter")
     influx_group.add_argument("--influx-retention-policy", metavar='policy', dest="influx_retention_policy", help="retention policy to use")
@@ -244,6 +241,7 @@ defaults to 'root'", default="root")
 
     args = parser.parse_args()
 
+    check_db_status(args)
     start_monitor(args)
 
 if __name__ == "__main__":
