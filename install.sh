@@ -9,10 +9,10 @@ sudo apt-get install python-pip git python-dev sshpass -y
 sudo pip install ansible 
 sudo pip install markupsafe 
 
-git clone https://github.com/Revenberg/ansible.git 
+git clone https://github.com/Revenberg/power.git 
 
-echo "[local]" > /home/pi/ansible/hosts
+echo "[local]" > ~/ansible/hosts
 echo "localhost   ansible_connection=local" >> ~/ansible/hosts
 
-cd ~/ansible
+cd ~/power
 ansible-playbook setup.yml 
