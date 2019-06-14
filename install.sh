@@ -12,7 +12,7 @@ sudo pip install markupsafe
 git clone https://github.com/Revenberg/ansible.git 
 
 echo "[local]" > /home/pi/ansible/hosts
-echo "localhost   ansible_connection=local >> ~/ansible/hosts
+echo "localhost   ansible_connection=local" >> ~/ansible/hosts
 
 cd ~/ansible
-ansible-playbook setup.yml >> /home/pi/ansible.log
+ansible-playbook setup.yml 
