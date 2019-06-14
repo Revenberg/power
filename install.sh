@@ -11,8 +11,8 @@ sudo pip install markupsafe
 
 git clone https://github.com/Revenberg/power.git 
 
-echo "[local]" > ~/ansible/hosts
-echo "localhost   ansible_connection=local" >> ~/ansible/hosts
+echo "[local]" > ~/power/hosts
+echo "localhost   ansible_connection=local" >> ~/power/hosts
 
 cd ~/power
 ansible-playbook setup.yml 
