@@ -111,7 +111,7 @@ class P1Packet(object):
         keys['G'] = self.get_float(b'^(?:0-1:24\.2\.1(?:\(\d+[SW]\))?)?\(([0-9]{5}\.[0-9]{3})(?:\*m3)?\)\r\n', 0)
 
         keys['DN'] = self.get_float(b'^0-0:96\.14\.0\(([0-9])\\)\r\n')
-
+        
         self._keys = keys
 
 
