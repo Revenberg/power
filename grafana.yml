@@ -10,7 +10,7 @@
   - role: ginlong
     become_user: root
     become: yes
-- role: grafana
+  - role: grafana
     become_user: root
     become: yes
   
