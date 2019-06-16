@@ -11,5 +11,6 @@ sudo pip install markupsafe
 
 git clone https://github.com/Revenberg/power.git 
 
-cd ~/power
+cd /home/pi/power
 ansible-playbook setup.yml
+cd ansible-playbook graphana.yml

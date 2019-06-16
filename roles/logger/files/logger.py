@@ -183,6 +183,7 @@ def send_to_influxdb(options, fields):
     req = {
         "measurement": options.influx_measurement,
         "tags": {},
+        "time": int(time.ctime((updateDate) / 1000)),
         "fields": {}
     }
 
