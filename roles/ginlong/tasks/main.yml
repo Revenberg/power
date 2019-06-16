@@ -16,7 +16,6 @@
     name: "{{ item }}"
   with_items:
   - "requests"
-  - "urllib2"
   - "json"
   - "influxdb"
 
