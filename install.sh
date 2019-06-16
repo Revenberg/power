@@ -12,4 +12,4 @@ sudo pip install markupsafe
 git clone https://github.com/Revenberg/power.git 
 
 ansible-playbook /home/pi/power/setup.yml
-ansible-playbook /home/pi/power/grafana.yml
+ansible-playbook /home/pi/power/grafana.yml --ask-vault-pass
