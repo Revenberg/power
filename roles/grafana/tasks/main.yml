@@ -1,13 +1,13 @@
 ---
 - name: Download grafana
   get_url: 
-    url="https://github.com/fg2it/grafana-on-raspberry/releases/download/v5.1.4/grafana_5.1.4_armhf.deb"
-    dest="/home/pi/grafana_5.1.4_armhf.deb"
-    timeout=60
-    
+    url: "https://github.com/fg2it/grafana-on-raspberry/releases/download/v5.1.4/grafana_5.1.4_armhf.deb"
+    dest: "/home/pi/grafana_5.1.4_armhf.deb"
+    timeout: 60
+
 - name: Install grafana_5.1.4_armhf.deb
   apt: deb="/home/pi/grafana_5.1.4_armhf.deb"
-    state=present
+    state: present
   become: yes
 
 - name: Make sure grafana-server is running
