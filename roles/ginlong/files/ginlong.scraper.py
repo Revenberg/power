@@ -81,11 +81,13 @@ class ginlong(object):
         keys['AC_Current'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ak'))
         keys['AC_Power'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ao'))
         keys['AC_Frequency'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ar'))
-        keys['DC_Power_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1s'))
-        keys['DC_Power_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1t'))
+        if ('1s' in resultJson['result']['deviceWapper']['dataJSON']):
+          keys['DC_Power_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1s'))
+        if ('1t' in resultJson['result']['deviceWapper']['dataJSON']):
+          keys['DC_Power_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1t'))
         keys['Inverter_Temperature'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1df'))
         keys['Daily_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bd'))
-        keys['Monthly_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1be')
+        keys['Monthly_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1be'))
         keys['Annual_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bf'))
         keys['Total_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bc'))
         keys['Generation_Last_Month'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ru'))
