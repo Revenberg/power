@@ -6,14 +6,13 @@ import time
 
 class ginlong(object):
     def __init__(self, username, password, domain, lan, deviceId, *args, **kwargs):
-        try:
-            # Create session for requests
-            self.session = requests.session()
+        # Create session for requests
+        self.session = requests.session()
 
         # default heaeders gives a 403, seems releted to the request user agent, so we put curl here
         self.headers = {'User-Agent': 'curl/7.58.0'}
         self.self.cookies = {'language': lan}
-    
+
         #login call
         self.params = {
             "userName": username,
@@ -37,7 +36,7 @@ class ginlong(object):
             print "Your deviceId is not set, auto detecting"
             url = 'http://'+domain+'/cpro/epc/plantview/view/doPlantList.json'
 
-            
+
             resultData = session.get(url, cookies=self.cookies, headers=self.headers)
             resultJson = resultData.json()
 
@@ -47,7 +46,7 @@ class ginlong(object):
             params = {
                 'plantId': int(plantId)
             }
-            
+
             resultData = session.get(url, params=params, cookies=self.cookies, headers=self.headers)
             resultJson = resultData.json()
 
@@ -62,10 +61,10 @@ class ginlong(object):
         params = {
             'deviceId': int(self.deviceId)
         }
-    
+
         resultData = session.get(url, params=params, cookies=self.cookies, headers=self.headers)
         resultJson = resultData.json()
-    
+
     #   Get values from json
         keys = {}
         self.updateDate = resultJson['result']['deviceWapper'].get('updateDate')
@@ -85,7 +84,7 @@ class ginlong(object):
         keys['Annual_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1bf')
         keys['Total_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1bc')
         keys['Generation_Last_Month'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ru')
-        
+
         self._keys = keys
 
 def check_db_status(options):
@@ -149,7 +148,7 @@ def start_monitor(options):
 def main(argv=None):
 
     from argparse import ArgumentParser
-   
+
     parser = ArgumentParser(description="Send ginlong request to an InfluxDB API")
 
     parser.add_argument("-u", "--username", dest="username", help="your portal username")
@@ -157,7 +156,7 @@ def main(argv=None):
     parser.add_argument("-d", "--domain", dest="domain", help="domain ginlong used multiple domains with same login but different versions, could change anytime. monitoring.csisolar.com, m.ginlong.com", default='m.ginlong.com')
     parser.add_argument("-l", "--lan", dest="lan", help="lanuage (2 = English)", default='2')
     parser.add_argument("-i", "--deviceId", dest="deviceId", help="your deviceid, if set to deviceid it will try to auto detect, if you have more then one device then specify.", default='deviceid')
-    
+
     influx_group = parser.add_argument_group()
     influx_group.add_argument("--influx-hostname", metavar='hostname', dest="influx_hostname", help="hostname to connect to InfluxDB, defaults to 'localhost'", default="localhost")
     influx_group.add_argument("--influx-port", metavar='port', dest="influx_port", help="port to connect to InfluxDB, defaults to 8086", type=int, default=8086)
@@ -180,4 +179,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
     import sys
-    sys.exit(main())            
+    sys.exit(main())
