@@ -3,18 +3,22 @@ import requests
 import urllib, urllib2
 import json
 import time
+import logging
+from influxdb import InfluxDBClient
 
 class ginlong(object):
     def __init__(self, username, password, domain, lan, deviceId, *args, **kwargs):
         # Create session for requests
         self.session = requests.session()
+        self.deviceId = deviceId
+        self.domain = domain
 
         # default heaeders gives a 403, seems releted to the request user agent, so we put curl here
         self.headers = {'User-Agent': 'curl/7.58.0'}
-        self.self.cookies = {'language': lan}
+        self.cookies = {'language': lan}
 
         #login call
-        self.params = {
+        params = {
             "userName": username,
             "password": password,
             "lan": lan,
@@ -22,9 +26,10 @@ class ginlong(object):
             "userType": "C"
         }
         url = 'https://'+domain+'/cpro/login/validateLogin.json'
-        resultData = session.post(url, data=params, headers=headers)
+        resultData = self.session.post(url, data=params, headers=self.headers)
 
         resultJson = resultData.json()
+        # onderstaande moet beter bij foutive wachtwoord
         if resultJson['result'].get('isAccept') == 1:
             print "Login Succesfull on",domain,"!"
         else:
@@ -37,7 +42,7 @@ class ginlong(object):
             url = 'http://'+domain+'/cpro/epc/plantview/view/doPlantList.json'
 
 
-            resultData = session.get(url, cookies=self.cookies, headers=self.headers)
+            resultData = self.session.get(url, cookies=self.cookies, headers=self.headers)
             resultJson = resultData.json()
 
             plantId = resultJson['result']['pagination']['data'][0]['plantId']
@@ -47,7 +52,7 @@ class ginlong(object):
                 'plantId': int(plantId)
             }
 
-            resultData = session.get(url, params=params, cookies=self.cookies, headers=self.headers)
+            resultData = self.session.get(url, params=params, cookies=self.cookies, headers=self.headers)
             resultJson = resultData.json()
 
             #.result.paginationAjax.data
@@ -57,35 +62,35 @@ class ginlong(object):
 
     def getData(self):
     #   get device details
-        url = 'http://'+domain+'/cpro/device/inverter/goDetailAjax.json'
+        url = 'http://'+self.domain+'/cpro/device/inverter/goDetailAjax.json'
         params = {
             'deviceId': int(self.deviceId)
         }
 
-        resultData = session.get(url, params=params, cookies=self.cookies, headers=self.headers)
+        resultData = self.session.get(url, params=params, cookies=self.cookies, headers=self.headers)
         resultJson = resultData.json()
 
     #   Get values from json
-        keys = {}
-        self.updateDate = resultJson['result']['deviceWapper'].get('updateDate')
-        keys['DC_Voltage_PV1'] = resultJson['result']['deviceWapper']['dataJSON'].get('1a')
-        keys['DC_Voltage_PV2'] = resultJson['result']['deviceWapper']['dataJSON'].get('1b')
-        keys['DC_Current1'] = resultJson['result']['deviceWapper']['dataJSON'].get('1j')
-        keys['DC_Current2'] = resultJson['result']['deviceWapper']['dataJSON'].get('1k')
-        keys['AC_Voltage'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ah')
-        keys['AC_Current'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ak')
-        keys['AC_Power'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ao')
-        keys['AC_Frequency'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ar')
-        keys['DC_Power_PV1'] = resultJson['result']['deviceWapper']['dataJSON'].get('1s')
-        keys['DC_Power_PV2'] = resultJson['result']['deviceWapper']['dataJSON'].get('1t')
-        keys['Inverter_Temperature'] = resultJson['result']['deviceWapper']['dataJSON'].get('1df')
-        keys['Daily_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1bd')
-        keys['Monthly_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1be')
-        keys['Annual_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1bf')
-        keys['Total_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1bc')
-        keys['Generation_Last_Month'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ru')
+        keys = {}                       
+#        self.updateDate = int(resultJson['result']['deviceWapper'].get('updateDate'))
+        keys['DC_Voltage_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1a'))
+        keys['DC_Voltage_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1b'))
+        keys['DC_Current1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1j'))
+        keys['DC_Current2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1k'))
+        keys['AC_Voltage'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ah'))
+        keys['AC_Current'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ak'))
+        keys['AC_Power'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ao'))
+        keys['AC_Frequency'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ar'))
+        keys['DC_Power_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1s'))
+        keys['DC_Power_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1t'))
+        keys['Inverter_Temperature'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1df'))
+        keys['Daily_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bd'))
+        keys['Monthly_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1be'))
+        keys['Annual_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bf'))
+        keys['Total_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bc'))
+        keys['Generation_Last_Month'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ru'))
 
-        self._keys = keys
+        return keys
 
 def check_db_status(options):
     # if the db is not found, then try to create it
@@ -97,7 +102,7 @@ def check_db_status(options):
             if db['name'] == options.influx_database:
                 db_found = True
         if not(db_found):
-            logger.info('Database <%s> not found, trying to create it', options.influx_database)
+            logging.info('Database <%s> not found, trying to create it', options.influx_database)
             dbclient.create_database(options.influx_database)
             dbclient.create_retention_policy('30_days', '30d', 1, default=True)
             dbclient.create_retention_policy('6_months', '26wd', 1, default=False)
@@ -105,7 +110,7 @@ def check_db_status(options):
 
         return True
     except Exception as e:
-        logger.error('Error querying open-nti database: %s', e)
+        logging.error('Error querying open-nti database: %s', e)
         return False
 
 def send_to_influxdb(options, fields):
@@ -113,7 +118,7 @@ def send_to_influxdb(options, fields):
     req = {
         "measurement": options.influx_measurement,
         "tags": {},
-        "time": int(time.ctime((self.updateDate) / 1000)),
+#        "time": int(time.ctime((self.updateDate) / 1000)),
         "fields": {}
     }
 
@@ -136,14 +141,9 @@ def start_monitor(options):
 
     meter = ginlong(options.username, options.password, options.domain, options.lan, options.deviceId)
 
-    try:
-
-        while True:
-            datagram = meter.read_one_packet()
-            send_to_influxdb(options, datagram._keys)
-
-    finally:
-        meter.disconnect()
+    while True:
+        send_to_influxdb(options, meter.getData())
+        # Wait for 30 seconds        
 
 def main(argv=None):
 
@@ -165,7 +165,7 @@ def main(argv=None):
     influx_group.add_argument("--influx-database", metavar='dbname', dest="influx_database", help="database name to connect to, defaults to 'ginlong'", default="ginlong")
     influx_group.add_argument("--influx-retention-policy", metavar='policy', dest="influx_retention_policy", help="retention policy to use")
 
-    influx_group.add_argument("--influx-measurement", metavar='measurement', dest="influx_measurement", help="measurement name to store points, defaults to smartmeter", default="smartmeter")
+    influx_group.add_argument("--influx-measurement", metavar='measurement', dest="influx_measurement", help="measurement name to store points, defaults to ginlong", default="ginlong")
     influx_group.add_argument('influx_tags', metavar='tag ...', type=str, nargs='?', help='any tag to the measurement')
 
     verbose_group = parser.add_mutually_exclusive_group()
