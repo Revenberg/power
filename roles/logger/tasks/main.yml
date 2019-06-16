@@ -13,11 +13,7 @@
 
 - name: install pip packages
   pip:
-    name: "{{ item }}"
-  with_items:
-  - "pyserial"
-  - "crcmod"
-  - "influxdb"
+    name: [ "pyserial", "crcmod", "influxdb" ]
 
 - name: Make sure logger is running
   systemd:
