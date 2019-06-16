@@ -73,22 +73,22 @@ class ginlong(object):
     #   Get values from json
         keys = {}                       
 #        self.updateDate = int(resultJson['result']['deviceWapper'].get('updateDate'))
-        keys['DC_Voltage_PV1'] = resultJson['result']['deviceWapper']['dataJSON'].get('1a')
-        keys['DC_Voltage_PV2'] = resultJson['result']['deviceWapper']['dataJSON'].get('1b')
-        keys['DC_Current1'] = resultJson['result']['deviceWapper']['dataJSON'].get('1j')
-        keys['DC_Current2'] = resultJson['result']['deviceWapper']['dataJSON'].get('1k')
-        keys['AC_Voltage'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ah')
-        keys['AC_Current'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ak')
-        keys['AC_Power'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ao')
-        keys['AC_Frequency'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ar')
-#        keys['DC_Power_PV1'] = resultJson['result']['deviceWapper']['dataJSON'].get('1s')
-#        keys['DC_Power_PV2'] = resultJson['result']['deviceWapper']['dataJSON'].get('1t')
-        keys['Inverter_Temperature'] = resultJson['result']['deviceWapper']['dataJSON'].get('1df')
-        keys['Daily_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1bd')
-        keys['Monthly_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1be')
-        keys['Annual_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1bf')
-        keys['Total_Generation'] = resultJson['result']['deviceWapper']['dataJSON'].get('1bc')
-        keys['Generation_Last_Month'] = resultJson['result']['deviceWapper']['dataJSON'].get('1ru')
+        keys['DC_Voltage_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1a'))
+        keys['DC_Voltage_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1b'))
+        keys['DC_Current1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1j'))
+        keys['DC_Current2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1k'))
+        keys['AC_Voltage'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ah'))
+        keys['AC_Current'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ak'))
+        keys['AC_Power'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ao'))
+        keys['AC_Frequency'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ar'))
+        keys['DC_Power_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1s'))
+        keys['DC_Power_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1t'))
+        keys['Inverter_Temperature'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1df'))
+        keys['Daily_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bd'))
+        keys['Monthly_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1be')
+        keys['Annual_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bf'))
+        keys['Total_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bc'))
+        keys['Generation_Last_Month'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ru'))
 
         return keys
 
@@ -145,7 +145,6 @@ def start_monitor(options):
         send_to_influxdb(options, meter.getData())
         # Wait for 30 seconds        
         time.sleep(30)
-        
 def main(argv=None):
 
     from argparse import ArgumentParser
