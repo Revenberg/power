@@ -9,6 +9,7 @@ sudo apt-get install python-pip git python-dev sshpass -y
 sudo pip install ansible 
 sudo pip install markupsafe 
 
+rm -rf /home/pi/power
 git clone https://github.com/Revenberg/power.git 
 
 ansible-playbook /home/pi/power/setup.yml

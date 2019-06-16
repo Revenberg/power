@@ -9,7 +9,8 @@
   apt: 
     deb: "/home/pi/grafana_5.1.4_armhf.deb"
     state: present
-  become: yes
+  become: 
+    yes
 
 - name: Make sure grafana-server is running
   systemd:
