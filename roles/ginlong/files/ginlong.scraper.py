@@ -68,7 +68,7 @@ class ginlong(object):
     
     #   Get values from json
         keys = {}
-        keys['updateDate'] = resultJson['result']['deviceWapper'].get('updateDate')
+        self.updateDate = resultJson['result']['deviceWapper'].get('updateDate')
         keys['DC_Voltage_PV1'] = resultJson['result']['deviceWapper']['dataJSON'].get('1a')
         keys['DC_Voltage_PV2'] = resultJson['result']['deviceWapper']['dataJSON'].get('1b')
         keys['DC_Current1'] = resultJson['result']['deviceWapper']['dataJSON'].get('1j')
@@ -114,7 +114,7 @@ def send_to_influxdb(options, fields):
     req = {
         "measurement": options.influx_measurement,
         "tags": {},
-        "time": int(time.ctime((updateDate) / 1000)),
+        "time": int(time.ctime((self.updateDate) / 1000)),
         "fields": {}
     }
 
