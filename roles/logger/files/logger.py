@@ -8,6 +8,7 @@ import decimal
 import re
 import crcmod.predefined
 import serial
+import time
 import logging
 from influxdb import InfluxDBClient
 

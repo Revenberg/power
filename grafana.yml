@@ -10,3 +10,6 @@
   - role: logger
     become_user: root
     become: yes
+  - role: ginlong
+    become_user: root
+    become: yes
