@@ -5,9 +5,9 @@
     dest: /home/pi/ginlong.scraper.py
     mode: '0766'
 
-- name: Copy ginlong.scraper.service with owner and permissions
-  copy:
-    src: ginlong.scraper.service
+- name: template ginlong.scraper.service with owner and permissions
+  template:
+    src: ginlong.scraper.service.j2
     dest: /lib/systemd/system/ginlong.scraper.service
     mode: '0644'
 

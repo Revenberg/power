@@ -4,7 +4,7 @@ After=multi-user.target
 
 [Service]
 Type=idle
-ExecStart=/usr/bin/python /home/pi/ginlong.scraper.py
+ExecStart=/usr/bin/python /home/pi/ginlong.scraper.py {{ username }} {{ password }}
 
 [Install]
 WantedBy=multi-user.target
