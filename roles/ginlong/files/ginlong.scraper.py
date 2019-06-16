@@ -144,7 +144,8 @@ def start_monitor(options):
     while True:
         send_to_influxdb(options, meter.getData())
         # Wait for 30 seconds        
-
+        time.sleep(30)
+        
 def main(argv=None):
 
     from argparse import ArgumentParser
