@@ -1,0 +1,28 @@
+---
+- name: Copy ginlong.scraper.py with owner and permissions
+  copy:
+    src: ginlong.scraper.py
+    dest: /home/pi/ginlong.scraper.py
+    mode: '0766'
+
+- name: Copy ginlong.scraper.service with owner and permissions
+  copy:
+    src: ginlong.scraper.service
+    dest: /lib/systemd/system/ginlong.scraper.service
+    mode: '0644'
+
+- name: install pip packages
+  pip:
+    name: "{{ item }}"
+  with_items:
+  - "requests"
+  - "urllib"
+  - "urllib2"
+  - "json"
+  - "influxdb"
+
+- name: Make sure ginlong.scraper is running
+  systemd:
+    enabled: yes
+    state: started
+    name: ginlong.scraper

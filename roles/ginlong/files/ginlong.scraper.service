@@ -1,0 +1,10 @@
+[Unit]
+Description=My ginlong.scraper Service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python /home/pi/ginlong.scraper.py
+
+[Install]
+WantedBy=multi-user.target
