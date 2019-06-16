@@ -3,7 +3,7 @@
   get_url: 
     url: "https://github.com/fg2it/grafana-on-raspberry/releases/download/v5.1.4/grafana_5.1.4_armhf.deb"
     dest: "/home/pi/grafana_5.1.4_armhf.deb"
-    timeout: 180
+    timeout: 600
 
 - name: Install grafana_5.1.4_armhf.deb
   apt: 
