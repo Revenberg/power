@@ -13,11 +13,7 @@
 
 - name: install pip packages
   pip:
-    name: "{{ item }}"
-  with_items:
-  - "requests"
-  - "json"
-  - "influxdb"
+    name: [ "requests", "influxdb" ]
 
 - name: Make sure ginlong.scraper is running
   systemd:
