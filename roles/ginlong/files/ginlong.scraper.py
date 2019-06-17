@@ -29,8 +29,7 @@ class ginlong(object):
         resultData = self.session.post(url, data=params, headers=self.headers)
 
         resultJson = resultData.json()
-        # onderstaande moet beter bij foutive wachtwoord
-        if resultJson['result'].get('isAccept') == 1:
+        if resultJson['state'] == 5:
             print "Login Succesfull on",domain,"!"
         else:
             print "Login Failed on",domain,"!!"
@@ -144,9 +143,13 @@ def start_monitor(options):
     meter = ginlong(options.username, options.password, options.domain, options.lan, options.deviceId)
 
     while True:
-        send_to_influxdb(options, meter.getData())
+        try:  
+          send_to_influxdb(options, meter.getData())
+        except:
+          pass
         # Wait for 30 seconds        
         time.sleep(30)
+        
 def main(argv=None):
 
     from argparse import ArgumentParser
