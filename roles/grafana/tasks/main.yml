@@ -19,12 +19,40 @@
 - name: Restart grafana before configuring datasources and dashboards
   meta: flush_handlers
 
+- include: install.yml
+  become: true
+
 - include: configure.yml
   become: true
-- include: api_keys.yml
-- include: datasources.yml
+
 - include: plugins.yml
+  when: grafana_plugins != []
+  
+- name: Wait for grafana to start
+  wait_for:
+    host: "{{ grafana_address }}"
+    port: "{{ grafana_port }}"      
+
+- include: api_keys.yml
+  when: grafana_api_keys | length > 0
+
+- include: datasources.yml
+  when: grafana_datasources != []
+
+- include: notifications.yml
+  when: grafana_alert_notifications | length > 0
+  
+- name: "Check if there are any dashboards in {{ grafana_dashboards_dir }}"
+  become: false
+  find:
+    paths: "{{ grafana_dashboards_dir }}"
+    patterns: '*.json'
+  delegate_to: localhost
+  run_once: true
+  register: found_dashboards
+
 - include: dashboards.yml
+  when: grafana_dashboards | length > 0 or found_dashboards.matched > 0
 
 - name: Make sure grafana-server is running
   systemd:
