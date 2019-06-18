@@ -3,7 +3,7 @@
       {
         "name": "DS_PV",
         "label": "PV",
-        "description": "Main db for inverter stats",
+        "description": "",
         "type": "datasource",
         "pluginId": "influxdb",
         "pluginName": "InfluxDB"
@@ -11,15 +11,15 @@
       {
         "name": "DS_HOME_ASSISTANT",
         "label": "Home Assistant",
-        "description": "Optional Smart meter from Hone Assistant",
+        "description": "",
         "type": "datasource",
         "pluginId": "influxdb",
         "pluginName": "InfluxDB"
       },
       {
-        "name": "sunandmoon",
+        "name": "DS_SUN_AND MOON",
         "label": "Sun and Moon",
-        "description": "Just see the sun",
+        "description": "",
         "type": "datasource",
         "pluginId": "fetzerch-sunandmoon-datasource",
         "pluginName": "Sun and Moon"
@@ -83,7 +83,7 @@
       ]
     },
     "editable": true,
-    "gnetId": 10206,
+    "gnetId": null,
     "graphTooltip": 1,
     "id": null,
     "links": [],
@@ -311,7 +311,7 @@
                 },
                 {
                   "params": [],
-                  "type": "last"
+                  "type": "mean"
                 },
                 {
                   "params": [],
@@ -3614,6 +3614,5 @@
       ]
     },
     "timezone": "",
-    "title": "Ginlong Solis Inverter PV panels",    
-    "description": "A dashboard for my Ginlong scraper script and Solis inverter thatshow all PV en energie stats."
+    "title": "Solar"
   }

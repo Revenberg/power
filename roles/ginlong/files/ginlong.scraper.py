@@ -33,7 +33,7 @@ class ginlong(object):
             print "Login Succesfull on",domain,"!"
         else:
             print "Login Failed on",domain,"!!"
-            Exit()
+            exit()
 
         if self.deviceId == "deviceid":
             print ''
@@ -70,26 +70,30 @@ class ginlong(object):
         resultJson = resultData.json()
 
     #   Get values from json
-        keys = {}                       
-#        self.updateDate = int(resultJson['result']['deviceWapper'].get('updateDate'))
-        keys['DC_Voltage_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1a'))
-        keys['DC_Voltage_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1b'))
-        keys['DC_Current1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1j'))
-        keys['DC_Current2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1k'))
-        keys['AC_Voltage'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ah'))
-        keys['AC_Current'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ak'))
-        keys['AC_Power'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ao'))
-        keys['AC_Frequency'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ar'))
-        if ('1s' in resultJson['result']['deviceWapper']['dataJSON']):
-          keys['DC_Power_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1s'))
-        if ('1t' in resultJson['result']['deviceWapper']['dataJSON']):
-          keys['DC_Power_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1t'))
-        keys['Inverter_Temperature'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1df'))
-        keys['Daily_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bd'))
-        keys['Monthly_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1be'))
-        keys['Annual_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bf'))
-        keys['Total_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bc'))
-        keys['Generation_Last_Month'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ru'))
+        keys = {}
+        
+        for info in resultJson['result']['deviceWapper']['realTimeDataPower']:
+           w = yaml.load(info['value'], Loader=yaml.FullLoader)
+           keys[(info['name'] + " [" + info['unit'] + "]").replace(" ", "_")] = w
+
+##        self.updateDate = int(resultJson['result']['deviceWapper'].get('updateDate'))
+#        keys['DC_Voltage_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1a'))
+#        keys['DC_Voltage_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1b'))
+#        keys['DC_Current1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1j'))
+#        keys['DC_Current2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1k'))
+#        keys['AC_Voltage'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ah'))
+#        keys['AC_Current'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ak'))
+#        keys['AC_Power'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ao'))
+#        keys['AC_Frequency'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ar'))
+#        if ('1s' in resultJson['result']['deviceWapper']['dataJSON']):
+#          keys['DC_Power_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1s'))
+#          keys['DC_Power_PV2'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1t'))
+#        keys['Inverter_Temperature'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1df'))
+#        keys['Daily_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bd'))
+#        keys['Monthly_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1be'))
+#        keys['Annual_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bf'))
+#        keys['Total_Generation'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1bc'))
+#        keys['Generation_Last_Month'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1ru'))
 
         return keys
 
