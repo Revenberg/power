@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  roles:
+  - role: grafana
+    become_user: root
+    become: yes
+  
