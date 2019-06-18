@@ -4,6 +4,7 @@ import urllib, urllib2
 import json
 import time
 import logging
+import yaml
 from influxdb import InfluxDBClient
 
 class ginlong(object):
