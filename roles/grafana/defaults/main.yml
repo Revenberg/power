@@ -218,8 +218,7 @@ grafana_datasources:
   - name: power
     type: influxdb
     access: proxy
-    database: power
-    user: grafana
+    database: power    
     url: http://localhost:8086  
   - name: sunandmoon
     type: fetzerch-sunandmoon-datasource
