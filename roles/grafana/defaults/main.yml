@@ -221,12 +221,12 @@ grafana_datasources:
     database: power
     user: grafana
     url: http://localhost:8086  
- - name: sunandmoon
-   type: fetzerch-sunandmoon-datasource
-   jsonData:
-     latitude: 53.179851
-     longitude: 6.1682691
-   editable: true
+  - name: sunandmoon
+    type: fetzerch-sunandmoon-datasource
+    jsonData:
+      latitude: 53.179851
+      longitude: 6.1682691
+    editable: true
 
 #  - name: "Prometheus"
 #    type: "prometheus"
