@@ -10,6 +10,14 @@
       changed_when: false
       check_mode: false
 
+    - name: Creates directory
+      file:
+        path: "{{ grafana_data_dir }}/dashboards"
+        state: directory     
+        owner: grafana
+        group: grafana
+      changed_when: false 
+
     # Use curl to solve issue #77
     - name: download grafana dashboard from grafana.net to local directory
       command: >
