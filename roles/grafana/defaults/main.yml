@@ -240,6 +240,16 @@ grafana_datasources:
 #      tlsAuth: false
 #      tlsAuthWithCACert: false
 #      tlsSkipVerify: true
+- name: raspberry-prometheus
+  type: prometheus
+  access: proxy
+  url: http://localhost:9090
+  jsonData:
+     graphiteVersion: "1.1"
+     tlsAuth: false
+     tlsAuthWithCACert: false
+  version: 1
+  editable: true
 
 # API keys to configure
 grafana_api_keys: 
