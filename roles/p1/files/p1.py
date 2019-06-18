@@ -207,15 +207,13 @@ def start_monitor(options):
 
     meter = SmartMeter(options.device, options.baudrate)
 
-    try:
-
-        while True:
+    while True:
+      try: 
             datagram = meter.read_one_packet()
             send_to_influxdb(options, datagram._keys)
-
-    finally:
-        meter.disconnect()
-
+      except:
+          pass
+#          finally:
 
 def main(argv=None):
 

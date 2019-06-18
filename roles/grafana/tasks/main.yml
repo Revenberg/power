@@ -5,7 +5,7 @@
     owner: pi
     mode: 760
   with_fileglob:
-    - *.sh
+    - /*
 
 - name: Download grafana
   get_url: 
@@ -24,6 +24,8 @@
   shell: |
     grafana-cli plugins install fetzerch-sunandmoon-datasource
 
+- include: api_keys.yml
+
 - name: generate api-Key
   command: api_key.sh
   args:
@@ -34,8 +36,8 @@
     msg: "{{ api_key }}"
 
 - name: create api_key
- uri:
-    url: http://localhost:3000/api/auth/keys
+  uri:
+      url: http://localhost:3000/api/auth/keys
       method: POST
       headers:
           Content-Type: "application/json"
@@ -44,8 +46,7 @@
       body:
         "{"role":"Admin","name":"ansible"}"        
       body_format: json               
-      status_code: 200
-      body_format: json
+      status_code: 200      
   register: restdata
 
 - debug:
@@ -53,13 +54,12 @@
 
 - name: import db
  uri:
-    url: http://localhost:3000/api/dashboards/db
+      url: http://localhost:3000/api/dashboards/db
       method: POST
       headers:
           Content-Type: "application/json"
           Authorization: "{{ api_key }}"
-      body:
-           "{{ dashboard }}"            
+      body: "{{ lookup('file','verbruik.json') }}"            
       status_code: 200
       body_format: json
 
