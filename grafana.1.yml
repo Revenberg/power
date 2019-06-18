@@ -1,6 +1,9 @@
 ---
 - hosts: localhost
   roles:
+  - role: node-exporter
+    become_user: root
+    become: yes  
   - role: prometheus
     become_user: root
     become: yes
