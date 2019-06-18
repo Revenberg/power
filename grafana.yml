@@ -10,6 +10,9 @@
   - role: ginlong
     become_user: root
     become: yes
+  - role: prometheus
+    become_user: root
+    become: yes
   - role: grafana
     become_user: root
     become: yes
