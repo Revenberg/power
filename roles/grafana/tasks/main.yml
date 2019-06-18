@@ -18,7 +18,9 @@
 
 - name: Restart grafana before configuring datasources and dashboards
   meta: flush_handlers
-  
+
+- include: configure.yml
+  become: true
 - include: api_keys.yml
 - include: datasources.yml
 - include: plugins.yml
