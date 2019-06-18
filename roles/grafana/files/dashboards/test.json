@@ -17,9 +17,9 @@
         "pluginName": "InfluxDB"
       },
       {
-        "name": "DS_SUN_AND MOON",
+        "name": "sunandmoon",
         "label": "Sun and Moon",
-        "description": "rJust see the sun",
+        "description": "Just see the sun",
         "type": "datasource",
         "pluginId": "fetzerch-sunandmoon-datasource",
         "pluginName": "Sun and Moon"
@@ -3614,8 +3614,6 @@
       ]
     },
     "timezone": "",
-    "title": "Ginlong Solis Inverter PV panels",
-    "uid": "qpp2ODfiz",
-    "version": 33,
+    "title": "Ginlong Solis Inverter PV panels",    
     "description": "A dashboard for my Ginlong scraper script and Solis inverter thatshow all PV en energie stats."
   }
