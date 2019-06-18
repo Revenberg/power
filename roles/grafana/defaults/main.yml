@@ -214,7 +214,14 @@ grafana_alert_notifications:
        addresses: "{{ email }}"
 
 # Datasources to configure
-grafana_datasources: []
+grafana_datasources: 
+  - name: influxdb
+    type: influxdb
+    access: proxy
+    database: power
+    user: grafana
+    url: http://localhost:8086
+    
 #  - name: "Prometheus"
 #    type: "prometheus"
 #    access: "proxy"
