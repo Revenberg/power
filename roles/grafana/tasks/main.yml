@@ -25,6 +25,9 @@
     grafana-cli plugins install fetzerch-sunandmoon-datasource
 
 - include: api_keys.yml
+- include: datasource.yml
+- include: plugins.yml
+- include: dashboards.yml
 
 - name: generate api-Key
   command: api_key.sh

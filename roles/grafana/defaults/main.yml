@@ -186,7 +186,8 @@ grafana_image_storage: {}
 
 #######
 # Plugins from https://grafana.com/plugins
-grafana_plugins: []
+grafana_plugins: 
+  - fetzerch-sunandmoon-datasource
 #  - raintank-worldping-app
 
 # Dashboards from https://grafana.com/dashboards
@@ -227,7 +228,7 @@ grafana_datasources: []
 #      tlsSkipVerify: true
 
 # API keys to configure
-grafana_api_keys: []
+grafana_api_keys: 
   - name: "admin"
     role: "Admin"
   - name: "viewer"
