@@ -211,7 +211,7 @@ grafana_alert_notifications:
      type: "email"
      isDefault: true
      settings:
-       addresses: "test@test.info"
+       addresses: "{{ email }}"
 
 # Datasources to configure
 grafana_datasources: []
