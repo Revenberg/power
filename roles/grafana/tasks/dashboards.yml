@@ -113,6 +113,10 @@
 #   with_fileglob:
 #     - "/tmp/dashboards/*"
 
+- name: grafana_use_provisioning
+  debug:
+    msg: "{{ grafana_use_provisioning }}"
+
 - when: grafana_use_provisioning
   block:
     - name: Create/Update dashboards file (provisioning)
@@ -134,6 +138,10 @@
         mode: 0640
       notify: restart grafana
 
+    - name: grafana_provisioning_synced
+      debug:
+        msg: "{{ grafana_provisioning_synced }}"
+
     - name: Register previously copied dashboards
       find:
         paths: "{{ grafana_data_dir }}/dashboards"
@@ -142,6 +150,10 @@
           - "*.json"
       register: _dashboards_present
       when: grafana_provisioning_synced
+
+    - name: _dashboards_present
+      debug:
+        msg: "{{ _dashboards_present }}"
 
     - name: Import grafana dashboards
       become: true

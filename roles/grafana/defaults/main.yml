@@ -221,7 +221,7 @@ grafana_datasources:
     database: power
     user: grafana
     url: http://localhost:8086
-    
+
 #  - name: "Prometheus"
 #    type: "prometheus"
 #    access: "proxy"
