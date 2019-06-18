@@ -1,12 +1,4 @@
 ---
-- copy:
-    src: "{{ item }}"
-    dest: /home/pi
-    owner: pi
-    mode: 760
-  with_fileglob:
-    - /*
-
 - name: Download grafana
   get_url: 
     url: "https://github.com/fg2it/grafana-on-raspberry/releases/download/v5.1.4/grafana_5.1.4_armhf.deb"
@@ -25,51 +17,12 @@
     grafana-cli plugins install fetzerch-sunandmoon-datasource
 
 - include: api_keys.yml
-- include: datasource.yml
+- include: datasources.yml
 - include: plugins.yml
 - include: dashboards.yml
-
-- name: generate api-Key
-  command: api_key.sh
-  args:
-    chdir: /home/pi/
-  register: api_key
-
-- debug:
-    msg: "{{ api_key }}"
-
-- name: create api_key
-  uri:
-      url: http://localhost:3000/api/auth/keys
-      method: POST
-      headers:
-          Content-Type: "application/json"
-          user: "admin"
-          password: "admin"          
-      body:
-        "{"role":"Admin","name":"ansible"}"        
-      body_format: json               
-      status_code: 200      
-  register: restdata
-
-- debug:
-    msg: "{{ restdata }}"
-
-- name: import db
- uri:
-      url: http://localhost:3000/api/dashboards/db
-      method: POST
-      headers:
-          Content-Type: "application/json"
-          Authorization: "{{ api_key }}"
-      body: "{{ lookup('file','verbruik.json') }}"            
-      status_code: 200
-      body_format: json
 
 - name: Make sure grafana-server is running
   systemd:
     enabled: yes
     state: started
     name: grafana-server
-
-#curl -X PUT -H "Content-Type: application/json" -d '{  "oldPassword": "admin",  "newPassword": "{{ grafana-password }}",  "confirmNew": "{{ grafana-password }}" }' http://admin:admin@<your_grafana_host>:3000/api/user/password    

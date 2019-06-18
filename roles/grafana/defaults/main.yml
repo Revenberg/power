@@ -229,7 +229,7 @@ grafana_datasources: []
 
 # API keys to configure
 grafana_api_keys: 
-  - name: "admin"
+  - name: "adm"
     role: "Admin"
   - name: "viewer"
     role: "Viewer"
