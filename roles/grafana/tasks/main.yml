@@ -16,6 +16,9 @@
   shell: |
     grafana-cli plugins install fetzerch-sunandmoon-datasource
 
+- name: Restart grafana before configuring datasources and dashboards
+  meta: flush_handlers
+  
 - include: api_keys.yml
 - include: datasources.yml
 - include: plugins.yml
