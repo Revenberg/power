@@ -215,7 +215,7 @@ grafana_alert_notifications:
 
 # Datasources to configure
 grafana_datasources: 
-  - name: influxdb
+  - name: power
     type: influxdb
     access: proxy
     database: power
