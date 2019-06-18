@@ -211,7 +211,7 @@ grafana_alert_notifications:
      type: "email"
      isDefault: true
      settings:
-       addresses: "sander@revenberg.info"
+       addresses: "test@test.info"
 
 # Datasources to configure
 grafana_datasources: []
