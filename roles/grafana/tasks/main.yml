@@ -41,11 +41,12 @@
   find:
     paths: "{{ grafana_dashboards_dir }}"
     patterns: '*.json'
-  delegate_to: localhost
+#  delegate_to: localhost
   run_once: true
   register: found_dashboards
 
 - debug:
     msg: "{{ found_dashboards }}"
+
 - include: dashboards.yml
   when: grafana_dashboards | length > 0 or found_dashboards.matched > 0
