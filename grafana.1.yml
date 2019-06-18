@@ -1,10 +1,7 @@
 ---
 - hosts: localhost
   roles:
-  - role: node-exporter
-    become_user: root
-    become: yes  
-  - role: prometheus
+  - role: ginlong
     become_user: root
     become: yes
   - role: grafana
