@@ -20,3 +20,10 @@
     enabled: yes
     state: started
     name: ginlong.scraper
+
+- name: restart service ginlong.scraper"
+  cron:
+    name: "restart service ginlong.scraper"
+    minute: "0,15,30,45"
+    job: "service ginlong.scraper restart"
+    user: root
