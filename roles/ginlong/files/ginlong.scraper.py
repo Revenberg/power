@@ -76,7 +76,7 @@ class ginlong(object):
         for info in resultJson['result']['deviceWapper']['realTimeDataPower']:
            w = yaml.load(info['value'], Loader=yaml.FullLoader)
            unit =  info['unit']
-           if unit.search("k"):
+           if k in unit:
                unit = unit.replace("k", "")
                w = w * 1000
            keys[(info['name'] + " [" + info['unit'] + "]").replace(" ", "_")] = w
