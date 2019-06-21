@@ -79,7 +79,7 @@ class ginlong(object):
            if k in unit:
                unit = unit.replace("k", "")
                w = w * 1000
-           keys[(info['name'] + " [" + info['unit'] + "]").replace(" ", "_")] = w
+           keys[(info['name'] + " [" + unit + "]").replace(" ", "_")] = w
 
 ##        self.updateDate = int(resultJson['result']['deviceWapper'].get('updateDate'))
 #        keys['DC_Voltage_PV1'] = float(resultJson['result']['deviceWapper']['dataJSON'].get('1a'))
