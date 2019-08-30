@@ -1,0 +1,17 @@
+---
+# This task just includes everything else we need
+- include_role:
+    # a task to install nodejs from Nodesource's distros
+    name: nodejs
+- include_role:
+    # a task to install nginx
+    name: web
+# everything below here is in this gist
+- include: prerequisites.yml
+  become: yes
+- include: node-red.yml
+  become: yes
+- include: nginx.yml
+  become: yes
+- include: systemd.yml
+  become: yes

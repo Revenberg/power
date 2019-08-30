@@ -1,0 +1,26 @@
+---
+# This role uses Yarn and expcets it to be installed.  You can replace with Ansible's "npm" module if you don't use Yarn.
+- name: Install Node-RED
+  command: /usr/bin/yarn global add node-red creates=/usr/local/share/.config/yarn/global/node_modules/node-red
+
+# if this file is in /roles/node-red/tasks/, then it looks in /roles/node-red/files/ for these files.
+- name: Copy Node-RED configuration
+  copy:
+    src: "{{ item }}"
+    dest: /home/{{ user_login }}/.node-red/
+    # user_login is specified in /group_vars/all.yml and the name of my user (boneskull)
+    owner: "{{ user_login }}"
+  with_items:
+    - yarn.lock
+    - package.json
+    - settings.js
+    - flows.json
+
+# Install nodes from package.json and yarn.lock
+- name: Install 3rd-party Node-RED nodes
+  command: /usr/bin/yarn install
+  args:
+    # this is not precise
+    creates: /home/{{ user_login }}/.node-red/node_modules/node-red*
+    chdir: /home/{{ user_login }}/.node-red/
+  become_user: "{{ user_login }}"

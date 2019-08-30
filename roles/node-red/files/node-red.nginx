@@ -1,0 +1,22 @@
+# nginx config for NR.
+# in /roles/node-red/templates/
+
+server {
+    listen 0.0.0.0:80;
+    # these names are computed by ansible and act on the current host being provisioned
+    server_name {{ inventory_hostname }} {{ inventory_hostname_short }};
+    access_log /var/log/nginx/{{ inventory_hostname_short }}.log;
+
+    # pass the request to the node.js server with the correct headers
+    # and much more can be added, see nginx config options
+    location / {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://127.0.0.1:1880;
+    }
+}

@@ -1,0 +1,7 @@
+---
+# this is a prereq for the node-red-contrib-homekit module
+- name: Install libavahi-compat-libdnssd-dev
+  apt:
+    name: libavahi-compat-libdnssd-dev
+    state: present
+  when: 'ansible_os_family == "Debian"'

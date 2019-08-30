@@ -1,0 +1,15 @@
+---
+# We expect nginx to already be installed.  
+# NR runs as a user, and binds to port 1880.  This creates a reverse proxy from 1180 to 80.  
+- name: Create nginx proxy
+  template:
+    # in /roles/node-red/templates/
+    src: node-red.nginx
+    dest: /etc/nginx/sites-available/node-red
+
+- name: Enable node-red nginx config
+  file:
+    src: /etc/nginx/sites-available/node-red
+    dest: /etc/nginx/sites-enabled/node-red
+    state: link
+
