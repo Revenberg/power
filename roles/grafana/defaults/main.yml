@@ -41,8 +41,8 @@ grafana_server:
 # Variables correspond to ones in grafana.ini configuration file
 # Security
 grafana_security:
-  admin_user: admin1
-  admin_password: admin1
+  admin_user: admin
+  admin_password: admin
 #  secret_key: ""
 #  login_remember_days: 7
 #  cookie_username: grafana_user
