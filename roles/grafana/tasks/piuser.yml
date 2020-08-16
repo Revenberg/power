@@ -2,7 +2,7 @@
 - set_fact:
     pi_password: "{{lookup('file', '{{ pswrdfile }}') }}"
 
-- name: Change Password
+- name: Add user
   uri:
     url: "{{ grafana_api_url }}/api/admin/users"
     user: "{{ grafana_security.admin_user }}"

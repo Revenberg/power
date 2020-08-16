@@ -10,17 +10,17 @@
   uri:
     url: "{{ grafana_api_url }}/api/auth/keys"
     user: "{{ grafana_security.admin_user }}"
-    password: "{{ pi_password }}"
+    password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     return_content: true
-#  no_log: true
+  no_log: true
   register: existing_api_keys
 
 - name: Create grafana api keys
   uri:
     url: "{{ grafana_api_url }}/api/auth/keys"
     user: "{{ grafana_security.admin_user }}"
-    password: "{{ pi_passwrd }}"
+    password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     method: POST
     body_format: json
