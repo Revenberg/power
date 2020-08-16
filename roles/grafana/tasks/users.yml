@@ -23,6 +23,12 @@
 - debug:
     msg: "{{ pi_user }}"
 
+- debug:
+    msg: "{{ pi_user.json }}"
+
+- debug:
+    msg: "{{ pi_user.json.id }}"
+
 - name: Add ansible user
   uri:
     url: "{{ grafana_api_url }}/api/admin/users"
@@ -33,8 +39,8 @@
     method: POST
     body_format: json
     body:
-      name: "pi"
-      email: "no@body.com"
+      name: "ansible"
+      email: "ansible_user@body.com"
       login: "{{ grafana_security.ansible_user }}"
       password: "{{ grafana_security.ansible_password }}"
 #  no_log: true
