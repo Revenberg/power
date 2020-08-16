@@ -19,11 +19,11 @@
     method: POST
     body_format: json
     body: |
-    {  
+      {  
        "oldPassword": "{{ grafana_security.admin_password }}",   
        "newPassword": "{{ pi_password }}",   
        "confirmNew": "{{ pi_password }}" 
-    }
+      }
 #  no_log: true
   ignore_errors: yes
 
