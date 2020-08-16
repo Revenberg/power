@@ -10,6 +10,13 @@
     owner: pi
     group: pi
 
+- name: Ensure solar directory exists
+  file:
+    path: "/var/log/solar"
+    state: directory
+    owner: pi
+    group: pi
+
 - name: Copy files
   copy:
     src: "{{ item }}"
