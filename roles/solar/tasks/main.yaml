@@ -1,0 +1,20 @@
+---
+- name: Ensure solar directory exists
+  file:
+    path: "/var/solar/"
+    state: directory
+    owner: pi
+    group: pi
+
+- name: Copy files
+  copy:
+    src: "{{ item }}"
+    dest: "/var/solar/{{ item }}"
+    owner: pi
+    group: pi
+    mode: 0775
+  with_items:
+    - config.ini
+    - ginlong-listen.py
+    - ginlong-listen.service
+

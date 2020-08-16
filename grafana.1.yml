@@ -1,10 +1,10 @@
 ---
 - hosts: localhost
   roles:
-  - role: ginlong
+  - role: grafana
     become_user: root
     become: yes
-  - role: grafana
+  - role: solar
     become_user: root
     become: yes
   
