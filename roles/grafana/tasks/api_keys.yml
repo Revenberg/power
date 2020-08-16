@@ -9,9 +9,6 @@
 - set_fact:
     pi_password: "{{lookup('file', '{{ pswrdfile }}') }}"
 
-- debug:
-    msg: "{{ pi_password }}"
-
 - name: Change Password
   uri:
     url: "{{ grafana_api_url }}/api/user/password"
@@ -21,10 +18,12 @@
     return_content: true
     method: POST
     body_format: json
-    body: "{
-  \"oldPassword\": \"{{ grafana_security.admin_password }}\",
-  \"newPassword\": \"{{ pi_password }}\"
-}"
+    body: |
+{
+  "oldPassword": "{{ grafana_security.admin_password }}",
+  "newPassword\": \"{{ pi_password }}"
+  "confirmNew\": \"{{ pi_password }}"
+}
 #  no_log: true
   ignore_errors: yes
 
@@ -32,7 +31,7 @@
   uri:
     url: "{{ grafana_api_url }}/api/auth/keys"
     user: "{{ grafana_security.admin_user }}"
-    password: "{{ pi_password }}"
+    password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     return_content: true
 #  no_log: true
