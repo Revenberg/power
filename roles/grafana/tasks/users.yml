@@ -29,6 +29,20 @@
 - debug:
     msg: "{{ pi_user.json.id }}"
 
+- name: Add pi user
+  uri:
+    url: "{{ grafana_api_url }}/api/admin/users/{{ pi_user.json.id }}/permissions"
+    user: "{{ grafana_security.admin_user }}"
+    password: "{{ grafana_security.admin_password }}"
+    force_basic_auth: true
+    return_content: true
+    method: POST
+    body_format: json
+    body:
+      isGrafanaAdmin: true
+#  no_log: true
+  ignore_errors: yes
+
 - name: Add ansible user
   uri:
     url: "{{ grafana_api_url }}/api/admin/users"
