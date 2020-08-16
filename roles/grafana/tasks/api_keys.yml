@@ -31,7 +31,7 @@
   uri:
     url: "{{ grafana_api_url }}/api/auth/keys"
     user: "{{ grafana_security.admin_user }}"
-    password: "{{ grafana_security.admin_password }}"
+    password: "{{ pi_password }}"
     force_basic_auth: true
     return_content: true
 #  no_log: true
