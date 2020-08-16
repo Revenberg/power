@@ -28,7 +28,7 @@
     port: "{{ grafana_port }}"
 
 - name: add pi user to grafana
-- include: piuser.yml
+  include: piuser.yml
 
 - include: api_keys.yml
   when: grafana_api_keys | length > 0
