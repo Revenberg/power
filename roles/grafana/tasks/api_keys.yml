@@ -10,7 +10,7 @@
     pi_password: "{{lookup('file', '{{ pswrdfile }}') }}"
 
 - debug:
-    msg: "{{ pi_passwrd }}"
+    msg: "{{ pi_password }}"
 
 - set_fact:
     pi_passwrd: "{{ pi_password | password_hash('sha512' ) }}"
