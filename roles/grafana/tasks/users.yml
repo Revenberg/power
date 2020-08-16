@@ -36,6 +36,7 @@
       isGrafanaAdmin: true
 #  no_log: true
   ignore_errors: yes
+  when: pi_user.json.id is defined
 
 - name: Add ansible user
   uri:
@@ -68,3 +69,4 @@
       isGrafanaAdmin: true
 #  no_log: true
   ignore_errors: yes
+  when: ansible_user.json.id is defined
