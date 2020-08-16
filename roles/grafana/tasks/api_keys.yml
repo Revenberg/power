@@ -21,10 +21,13 @@
 - name: Change Password
   uri:
     url: "{{ grafana_api_url }}/api/user/password"
-    user: "{{ grafana_security.admin_user }}"
-    oldPassword: "{{ grafana_security.admin_password }}"
-    newPassword: "{{ pi_passwrd }}"
-    confirmNew: "{{ pi_passwrd }}"
+    method: POST
+    body_format: json
+    body: "{
+  \"oldPassword\": \"{{ grafana_security.admin_password }}\",
+  \"newPassword\": \"{{ pi_passwrd }}\",
+  \"confirmNew\": \"{{ pi_passwrd }}\"
+}"
 #    force_basic_auth: true
 #    return_content: true
 #  no_log: true
