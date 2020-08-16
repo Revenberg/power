@@ -27,5 +27,16 @@
   with_items:
     - config.ini
     - ginlong-listen.py
-    - ginlong-listen.service
+    
+- name: ginlong-listen.service with owner and permissions
+  copy:
+    src: ginlong-listen.service
+    dest: /lib/systemd/system/ginlong-listen.service
+    mode: '0644'
 
+- name: Make sure ginlong.listen is running
+  systemd:
+    enabled: yes
+    state: started
+    daemon_reload: true
+    name: ginlong.listen

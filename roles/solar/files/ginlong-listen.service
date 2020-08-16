@@ -1,13 +1,13 @@
 [Unit]
-Description=listen to incoming ginlong-data
+Description=listen to incoming solar data
 After=multi-user.target
 
 [Service]
 Type=simple
 User=pi
 Group=users
-WorkingDirectory=/home/pi/ginlong-influx
-ExecStart=/usr/bin/python3 -O /home/pi/ginlong-influx/ginlong-listen.py
+WorkingDirectory=/var/solar
+ExecStart=/usr/bin/python3 -O /var/solar/ginlong-listen.py
 Restart=always
 TimeoutStartSec=10
 RestartSec=10
