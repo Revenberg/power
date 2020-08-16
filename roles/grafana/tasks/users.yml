@@ -12,7 +12,7 @@
     method: POST
     body_format: json
     body:
-      email: "ansible_user@body.com"
+      email: "ansible_user@localhost"
       login: "{{ grafana_security.ansible_user }}"
       password: "{{ grafana_security.ansible_password }}"
 #  no_log: true
@@ -44,7 +44,7 @@
     method: POST
     body_format: json
     body:
-      email: "no@body.com"
+      email: "nobody@localhost"
       login: "pi"
       password: "{{ pi_password }}"
 #  no_log: true
