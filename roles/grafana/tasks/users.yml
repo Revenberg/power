@@ -12,16 +12,16 @@
     method: POST
     body_format: json
     body:
-      email: "ansible_user@localhost"
+      email: "admin_user@localhost"
       login: "{{ grafana_security.ansible_user }}"
       password: "{{ grafana_security.ansible_password }}"
 #  no_log: true
   ignore_errors: yes  
-  register: ansible_user
+  register: admin_user
 
-- name: ansible user ansible
+- name: ansible user ansible role
   uri:
-    url: "{{ grafana_api_url }}/api/org/users/{{ ansible_user.json.id }}"
+    url: "{{ grafana_api_url }}/api/org/users/{{ admin_user.json.id }}"
     user: "{{ grafana_security.admin_user }}"
     password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
@@ -32,13 +32,13 @@
       role: "Admin"
 #  no_log: true
   ignore_errors: yes
-  when: ansible_user.json.id is defined
+  when: admin_user.json.id is defined
 
 - name: Add pi user
   uri:
     url: "{{ grafana_api_url }}/api/admin/users"
-    user: "{{ grafana_security.ansible_user }}"
-    password: "{{ grafana_security.ansible_password }}"
+    user: "{{ grafana_security.admin_user }}"
+    password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     return_content: true
     method: POST
@@ -54,8 +54,8 @@
 - name: pi user permissions
   uri:
     url: "{{ grafana_api_url }}/api/org/users/{{ pi_user.json.id }}"
-    user: "{{ grafana_security.ansible_user }}"
-    password: "{{ grafana_security.ansible_password }}"
+    user: "{{ grafana_security.admin_user }}"
+    password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     return_content: true
     method: PATCH

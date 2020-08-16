@@ -82,8 +82,8 @@
 - name: Import grafana dashboards through API
   uri:
     url: "{{ grafana_api_url }}/api/dashboards/db"
-    user: "{{ grafana_security.ansible_user }}"
-    password: "{{ grafana_security.ansible_password }}"
+    user: "{{ grafana_security.admin_user }}"
+    password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     method: POST
     body_format: json
@@ -103,8 +103,8 @@
 # - name: import grafana dashboards
 #   grafana_dashboard:
 #     grafana_url: "{{ grafana_api_url }}"
-#     grafana_user: "{{ grafana_security.ansible_user }}"
-#     grafana_password: "{{ grafana_security.ansible_password }}"
+#     grafana_user: "{{ grafana_security.admin_user }}"
+#     grafana_password: "{{ grafana_security.admin_password }}"
 #     path: "/tmp/dashboards/{{ item }}"
 #     message: Updated by ansible
 #     state: present

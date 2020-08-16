@@ -2,8 +2,8 @@
 - name: Ensure datasources exist (via API)
   grafana_datasource:
     grafana_url: "{{ grafana_api_url }}"
-    grafana_user: "{{ grafana_security.ansible_user }}"
-    grafana_password: "{{ grafana_security.ansible_password }}"
+    grafana_user: "{{ grafana_security.admin_user }}"
+    grafana_password: "{{ grafana_security.admin_password }}"
     name: "{{ item.name }}"
     url: "{{ item.url }}"
     ds_type: "{{ item.type }}"
