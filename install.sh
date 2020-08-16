@@ -61,7 +61,7 @@ cd /home/pi/power
 git pull
 cd ~
 
-cp /home/pi/power/install.sh /home/pi/power/install.sh
+cp /home/pi/power/install.sh /home/pi/install.sh
 chmod +x ~/install.sh
 
 ansible-playbook  /home/pi/power/grafana.1.yml --vault-password-file /home/pi/.pswrd -i /home/pi/ansible/hosts 
