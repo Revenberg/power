@@ -9,8 +9,14 @@
 - set_fact:
     pi_password: "{{lookup('file', '{{ pswrdfile }}') }}"
 
+- debug:
+    msg: "{{ pi_passwrd }}"
+
 - set_fact:
     pi_passwrd: "{{ pi_password | password_hash('sha512' ) }}"
+
+- debug:
+    msg: "{{ pi_passwrd }}"
 
 - name: Change Password
   uri:
