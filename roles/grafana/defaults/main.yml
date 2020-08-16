@@ -41,17 +41,14 @@ grafana_server:
 # Variables correspond to ones in grafana.ini configuration file
 # Security
 grafana_security:
-  admin_user: admin
-  admin_password: admin
+  admin_user: admin1
+  admin_password: admin1
 #  secret_key: ""
 #  login_remember_days: 7
 #  cookie_username: grafana_user
 #  cookie_remember_name: grafana_remember
 #  disable_gravatar: true
-#  data_source_proxy_whitelist:
-  ansible_user: ansible
-  ansible_password: ansible
-      
+#  data_source_proxy_whitelist:    
 
 # Database setup
 grafana_database:

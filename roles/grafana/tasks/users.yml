@@ -2,38 +2,6 @@
 - set_fact:
     pi_password: "{{lookup('file', '{{ pswrdfile }}') }}"
 
-- name: Add ansible user
-  uri:
-    url: "{{ grafana_api_url }}/api/admin/users"
-    user: "{{ grafana_security.admin_user }}"
-    password: "{{ grafana_security.admin_password }}"
-    force_basic_auth: true
-    return_content: true
-    method: POST
-    body_format: json
-    body:
-      email: "admin_user@localhost"
-      login: "{{ grafana_security.ansible_user }}"
-      password: "{{ grafana_security.ansible_password }}"
-#  no_log: true
-  ignore_errors: yes  
-  register: admin_user
-
-- name: ansible user ansible role
-  uri:
-    url: "{{ grafana_api_url }}/api/org/users/{{ admin_user.json.id }}"
-    user: "{{ grafana_security.admin_user }}"
-    password: "{{ grafana_security.admin_password }}"
-    force_basic_auth: true
-    return_content: true
-    method: PATCH
-    body_format: json
-    body:
-      role: "Admin"
-#  no_log: true
-  ignore_errors: yes
-  when: admin_user.json.id is defined
-
 - name: Add pi user
   uri:
     url: "{{ grafana_api_url }}/api/admin/users"
