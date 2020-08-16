@@ -38,8 +38,8 @@
 - name: Add pi user
   uri:
     url: "{{ grafana_api_url }}/api/admin/users"
-    user: "{{ grafana_security.admin_user }}"
-    password: "{{ grafana_security.admin_password }}"
+    user: "{{ grafana_security.ansible_user }}"
+    password: "{{ grafana_security.ansible_password }}"
     force_basic_auth: true
     return_content: true
     method: POST
