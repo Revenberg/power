@@ -4,6 +4,11 @@
   - role: grafana
     become_user: root
     become: yes
+  
+  - role: influxdb
+    become_user: root
+    become: yes
+
   - role: solar
     become_user: root
     become: yes
