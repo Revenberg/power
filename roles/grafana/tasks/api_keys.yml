@@ -20,7 +20,7 @@
     newPassword: "{{ pi_passwrd }}"
     force_basic_auth: true
     return_content: true
-  no_log: true
+#  no_log: true
   ignore_errors: yes
 
 - name: Check api key list
@@ -30,7 +30,7 @@
     password: "{{ pi_passwrd }}"
     force_basic_auth: true
     return_content: true
-  no_log: true
+#  no_log: true
   register: existing_api_keys
 
 - name: Create grafana api keys
