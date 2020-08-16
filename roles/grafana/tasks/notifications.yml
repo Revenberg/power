@@ -6,7 +6,7 @@
     password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     return_content: true
-  no_log: true
+#  no_log: true
   register: alert_notifications
 
 - name: Create grafana alert notification channels
