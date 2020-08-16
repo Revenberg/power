@@ -34,9 +34,9 @@
     dest: /lib/systemd/system/ginlong-listen.service
     mode: '0644'
 
-- name: Make sure ginlong.listen is running
-  systemd:
-    enabled: yes
-    state: started
-    daemon_reload: true
-    name: ginlong.listen
+#- name: Make sure ginlong.listen is running
+#  systemd:
+#    enabled: yes
+#    state: started
+#    daemon_reload: true
+#    name: ginlong.listen
