@@ -20,20 +20,18 @@
   ignore_errors: yes
   register: pi_user
 
-- debug:
-    msg: "{{ pi_user.json.id }}"
-
 - name: pi user permissions
   uri:
-    url: "{{ grafana_api_url }}/api/admin/users/{{ pi_user.json.id }}/permissions"
+    url: "{{ grafana_api_url }}/api/org/users/{{ pi_user.json.id }}"
     user: "{{ grafana_security.admin_user }}"
     password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     return_content: true
-    method: PUT
+    method: PATCH
     body_format: json
     body:
-      isGrafanaAdmin: true
+      role: "Admin"
+
 #  no_log: true
   ignore_errors: yes
   when: pi_user.json.id is defined
@@ -58,15 +56,15 @@
 
 - name: pi user permissions
   uri:
-    url: "{{ grafana_api_url }}/api/admin/users/{{ ansible_user.json.id }}/permissions"
+    url: "{{ grafana_api_url }}/api/org/users/{{ ansible_user.json.id }}"
     user: "{{ grafana_security.admin_user }}"
     password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     return_content: true
-    method: PUT
+    method: PATCH
     body_format: json
     body:
-      isGrafanaAdmin: true
+      role: "Admin"
 #  no_log: true
   ignore_errors: yes
   when: ansible_user.json.id is defined
