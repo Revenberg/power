@@ -1,4 +1,4 @@
---
+---
 - set_fact:
     pi_password: "{{lookup('file', '{{ pswrdfile }}') }}"
 
