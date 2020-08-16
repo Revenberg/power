@@ -18,8 +18,9 @@
     user: "{{ grafana_security.admin_user }}"
     oldPassword: "{{ grafana_security.admin_password }}"
     newPassword: "{{ pi_passwrd }}"
-    force_basic_auth: true
-    return_content: true
+    confirmNew: "{{ pi_passwrd }}"
+#    force_basic_auth: true
+#    return_content: true
 #  no_log: true
   ignore_errors: yes
 
