@@ -19,6 +19,10 @@
       isGrafanaAdmin: true
 #  no_log: true
   ignore_errors: yes
+  register: pi_user
+
+- debug:
+    msg: "{{ pi_user }}"
 
 - name: Add ansible user
   uri:
@@ -37,3 +41,4 @@
       isGrafanaAdmin: true
 #  no_log: true
   ignore_errors: yes  
+  register: ansible_user
