@@ -1,4 +1,8 @@
 ---
+- name: install pip packages
+  pip:
+    name: [ "requests", "influxdb" ]
+
 - name: Ensure solar directory exists
   file:
     path: "/var/solar/"
