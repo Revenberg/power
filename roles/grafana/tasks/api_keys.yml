@@ -6,26 +6,6 @@
     state: directory
   delegate_to: localhost
 
-- set_fact:
-    pi_password: "{{lookup('file', '{{ pswrdfile }}') }}"
-
-- name: Change Password
-  uri:
-    url: "{{ grafana_api_url }}/api/admin/users"
-    user: "{{ grafana_security.admin_user }}"
-    password: "{{ grafana_security.admin_password }}"
-    force_basic_auth: true
-    return_content: true
-    method: POST
-    body_format: json
-    body: 
-      name: "pi"
-      email: "no@body.com"
-      login: "pi"
-      password: "{{ pi_password }}"      
-#  no_log: true
-  ignore_errors: yes
-
 - name: Check api key list
   uri:
     url: "{{ grafana_api_url }}/api/auth/keys"
