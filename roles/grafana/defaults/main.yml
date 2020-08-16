@@ -49,6 +49,9 @@ grafana_security:
 #  cookie_remember_name: grafana_remember
 #  disable_gravatar: true
 #  data_source_proxy_whitelist:
+  ansible_user: ansible
+  ansible_password: ansible
+      
 
 # Database setup
 grafana_database:
