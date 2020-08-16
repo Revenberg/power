@@ -20,17 +20,17 @@
 
 - name: Fail when grafana admin user isn't set
   fail:
-    msg: "Please specify grafana admin user (grafana_security.admin_user)"
+    msg: "Please specify grafana admin user (grafana_security.ansible_user)"
   when:
-    - grafana_security.admin_user == '' or
-      grafana_security.admin_user is not defined
+    - grafana_security.ansible_user == '' or
+      grafana_security.ansible_user is not defined
 
 - name: Fail when grafana admin password isn't set
   fail:
-    msg: "Please specify grafana admin password (grafana_security.admin_password)"
+    msg: "Please specify grafana admin password (grafana_security.ansible_password)"
   when:
-    - grafana_security.admin_password == '' or
-      grafana_security.admin_password is not defined
+    - grafana_security.ansible_password == '' or
+      grafana_security.ansible_password is not defined
 
 - name: Fail on incorrect variable types in datasource definitions
   fail:

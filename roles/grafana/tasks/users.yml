@@ -2,40 +2,6 @@
 - set_fact:
     pi_password: "{{lookup('file', '{{ pswrdfile }}') }}"
 
-- name: Add pi user
-  uri:
-    url: "{{ grafana_api_url }}/api/admin/users"
-    user: "{{ grafana_security.admin_user }}"
-    password: "{{ grafana_security.admin_password }}"
-    force_basic_auth: true
-    return_content: true
-    method: POST
-    body_format: json
-    body:
-      name: "pi"
-      email: "no@body.com"
-      login: "pi"
-      password: "{{ pi_password }}"
-#  no_log: true
-  ignore_errors: yes
-  register: pi_user
-
-- name: pi user permissions
-  uri:
-    url: "{{ grafana_api_url }}/api/org/users/{{ pi_user.json.id }}"
-    user: "{{ grafana_security.admin_user }}"
-    password: "{{ grafana_security.admin_password }}"
-    force_basic_auth: true
-    return_content: true
-    method: PATCH
-    body_format: json
-    body:
-      role: "Admin"
-
-#  no_log: true
-  ignore_errors: yes
-  when: pi_user.json.id is defined
-
 - name: Add ansible user
   uri:
     url: "{{ grafana_api_url }}/api/admin/users"
@@ -54,7 +20,7 @@
   ignore_errors: yes  
   register: ansible_user
 
-- name: pi user permissions
+- name: ansible user ansible
   uri:
     url: "{{ grafana_api_url }}/api/org/users/{{ ansible_user.json.id }}"
     user: "{{ grafana_security.admin_user }}"
@@ -68,3 +34,37 @@
 #  no_log: true
   ignore_errors: yes
   when: ansible_user.json.id is defined
+
+- name: Add pi user
+  uri:
+    url: "{{ grafana_api_url }}/api/admin/users"
+    user: "{{ grafana_security.ansible_user }}"
+    password: "{{ grafana_security.ansible_password }}"
+    force_basic_auth: true
+    return_content: true
+    method: POST
+    body_format: json
+    body:
+      name: "pi"
+      email: "no@body.com"
+      login: "pi"
+      password: "{{ pi_password }}"
+#  no_log: true
+  ignore_errors: yes
+  register: pi_user
+
+- name: pi user permissions
+  uri:
+    url: "{{ grafana_api_url }}/api/org/users/{{ pi_user.json.id }}"
+    user: "{{ grafana_security.ansible_user }}"
+    password: "{{ grafana_security.ansible_password }}"
+    force_basic_auth: true
+    return_content: true
+    method: PATCH
+    body_format: json
+    body:
+      role: "Admin"
+
+#  no_log: true
+  ignore_errors: yes
+  when: pi_user.json.id is defined
