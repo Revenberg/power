@@ -11,10 +11,11 @@
     return_content: true
     method: POST
     body_format: json
-    body: 
+    body:
       name: "pi"
       email: "no@body.com"
       login: "pi"
-      password: "{{ pi_password }}"      
+      password: "{{ pi_password }}"
+      isGrafanaAdmin: true
 #  no_log: true
   ignore_errors: yes
