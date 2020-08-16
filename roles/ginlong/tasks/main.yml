@@ -14,7 +14,8 @@
 - name: install pip packages
   pip:
     name: [ "requests", "influxdb", "influxdb" ]
-
+  become: true
+  
 - name: Make sure ginlong.scraper is running
   systemd:
     enabled: yes
