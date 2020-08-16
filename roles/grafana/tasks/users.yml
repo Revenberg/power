@@ -21,22 +21,16 @@
   register: pi_user
 
 - debug:
-    msg: "{{ pi_user }}"
-
-- debug:
-    msg: "{{ pi_user.json }}"
-
-- debug:
     msg: "{{ pi_user.json.id }}"
 
-- name: Add pi user
+- name: pi user permissions
   uri:
     url: "{{ grafana_api_url }}/api/admin/users/{{ pi_user.json.id }}/permissions"
     user: "{{ grafana_security.admin_user }}"
     password: "{{ grafana_security.admin_password }}"
     force_basic_auth: true
     return_content: true
-    method: POST
+    method: PUT
     body_format: json
     body:
       isGrafanaAdmin: true
@@ -60,3 +54,17 @@
 #  no_log: true
   ignore_errors: yes  
   register: ansible_user
+
+- name: pi user permissions
+  uri:
+    url: "{{ grafana_api_url }}/api/admin/users/{{ ansible_user.json.id }}/permissions"
+    user: "{{ grafana_security.admin_user }}"
+    password: "{{ grafana_security.admin_password }}"
+    force_basic_auth: true
+    return_content: true
+    method: PUT
+    body_format: json
+    body:
+      isGrafanaAdmin: true
+#  no_log: true
+  ignore_errors: yes
