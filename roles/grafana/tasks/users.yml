@@ -16,7 +16,6 @@
       email: "no@body.com"
       login: "pi"
       password: "{{ pi_password }}"
-      isGrafanaAdmin: true
 #  no_log: true
   ignore_errors: yes
   register: pi_user
@@ -38,7 +37,6 @@
       email: "no@body.com"
       login: "{{ grafana_security.ansible_user }}"
       password: "{{ grafana_security.ansible_password }}"
-      isGrafanaAdmin: true
 #  no_log: true
   ignore_errors: yes  
   register: ansible_user
