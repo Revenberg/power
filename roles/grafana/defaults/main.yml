@@ -220,11 +220,19 @@ grafana_datasources:
     access: proxy
     database: power    
     url: http://localhost:8086  
+    editable: true  
   - name: solar
     type: influxdb
     access: proxy
     database: solar    
     url: http://localhost:8086          
+    editable: true  
+  - name: DS_PV
+    type: influxdb
+    access: proxy
+    database: solar    
+    url: http://localhost:8086          
+    editable: true      
   - name: sunandmoon
     type: fetzerch-sunandmoon-datasource
     jsonData:
