@@ -130,17 +130,12 @@ while True:
             values['inverter_month'] = float(int(hexdata[174:176], 16))          # total kWh for month
             values['inverter_last_month'] = float(int(hexdata[182:184], 16))     # total kWh for last month
 
-            print(values)
-
-#            json_body = {'points': [{'tags': {'serial': serial.decode()},
             json_body = {'points': [{'tags': {'serial':  serial },
                                      'fields': {k: v for k, v in values.items()}
                                      }],
                          'measurement': influx_measurement
                          }
-            print(json_body)
 
-            print("Call InfluxDBClient")
             client = InfluxDBClient(host=influx_server,
                                     port=influx_port)
             success = client.write(json_body,
