@@ -15,23 +15,9 @@
         "type": "datasource",
         "pluginId": "influxdb",
         "pluginName": "InfluxDB"
-      },
-      {
-        "name": "DS_SUN_AND MOON",
-        "label": "Sun and Moon",
-        "description": "",
-        "type": "datasource",
-        "pluginId": "fetzerch-sunandmoon-datasource",
-        "pluginName": "Sun and Moon"
-      }
+      }      
     ],
     "__requires": [
-      {
-        "type": "datasource",
-        "id": "fetzerch-sunandmoon-datasource",
-        "name": "Sun and Moon",
-        "version": "0.1.2"
-      },
       {
         "type": "grafana",
         "id": "grafana",
@@ -3167,7 +3153,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "${DS_SUN_AND MOON}",
+        "datasource": "Sun and Moon",
         "fill": 1,
         "gridPos": {
           "h": 9,
