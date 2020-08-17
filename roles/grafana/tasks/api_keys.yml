@@ -35,6 +35,7 @@
   copy:
     dest: "{{ grafana_api_keys_dir }}/{{ inventory_hostname }}/{{ item['item']['name'] }}.key"
     content: "{{ item['json']['key'] }}"
+    mode: 0640
     backup: false
   when: item['json'] is defined
   with_items: "{{ new_api_keys['results'] }}"

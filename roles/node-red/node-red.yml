@@ -10,6 +10,7 @@
     dest: /home/{{ user_login }}/.node-red/
     # user_login is specified in /group_vars/all.yml and the name of my user (boneskull)
     owner: "{{ user_login }}"
+    mode: 0640
   with_items:
     - yarn.lock
     - package.json
