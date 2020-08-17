@@ -154,7 +154,6 @@
         - "{{ grafana_dashboards_dir }}/*.json"
       register: _dashboards_copied
       notify: "provisioned dashboards changed"
-      
 
     - name: Get dashboard lists
       set_fact:
