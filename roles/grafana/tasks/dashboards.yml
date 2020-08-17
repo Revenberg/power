@@ -154,12 +154,14 @@
         - "{{ grafana_dashboards_dir }}/*.json"
       register: _dashboards_copied
       notify: "provisioned dashboards changed"
+      
 
     - name: Get dashboard lists
       set_fact:
         _dashboards_present_list: "{{ _dashboards_present | json_query('files[*].path') | default([]) }}"
         _dashboards_copied_list: "{{ _dashboards_copied | json_query('results[*].dest') | default([]) }}"
       when: grafana_provisioning_synced
+      notify: restart grafana
 
     - name: Remove dashboards not present on deployer machine (synchronize)
       become: true
@@ -168,3 +170,4 @@
         state: absent
       with_items: "{{ _dashboards_present_list | difference( _dashboards_copied_list ) }}"
       when: grafana_provisioning_synced
+      

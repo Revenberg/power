@@ -40,4 +40,3 @@
   when: grafana_alert_notifications | length > 0
 
 - include: dashboards.yml
-
