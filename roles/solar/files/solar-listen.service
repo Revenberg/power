@@ -3,16 +3,8 @@ Description=listen to incoming solar data
 After=multi-user.target
 
 [Service]
-Type=simple
-User=pi
-Group=users
-WorkingDirectory=/var/solar
-ExecStart=/usr/bin/python -O /var/solar/solar-listen.py
-Restart=always
-TimeoutStartSec=10
-RestartSec=10
-StandardOutput=syslog
-StandardError=syslog
+Type=idle
+ExecStart=/usr/bin/python /var/solar/solar-listen.py
 
 [Install]
 WantedBy=multi-user.target

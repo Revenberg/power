@@ -39,4 +39,4 @@
     enabled: yes
     state: started
     daemon_reload: true
-    name: solar.listen
+    name: solar-listen
