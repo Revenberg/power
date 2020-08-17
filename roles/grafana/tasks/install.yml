@@ -26,6 +26,7 @@
     dest: "/etc/yum.repos.d/{{ grafana_yum_repo_template | basename | regex_replace('\\.j2$', '') }}"
     force: true
     backup: true
+    mode: 0640
   when: ansible_pkg_mgr in ['yum', 'dnf']
 
 - block:
