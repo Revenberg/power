@@ -239,7 +239,7 @@ grafana_datasources:
       latitude: 53.179851
       longitude: 6.1682691
     editable: true
-  - name: Sun and Moon
+  - name: "Sun and Moon"
     type: fetzerch-sunandmoon-datasource
     jsonData:
       latitude: 53.179851
