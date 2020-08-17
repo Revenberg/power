@@ -19,7 +19,7 @@ config.read("config.ini")
 listen_address = config.get('DEFAULT', 'listen_address')
 listen_port = int(config.get('DEFAULT', 'listen_port'))
 
-log_path = config.get('Logging', 'log_path', fallback='/var/log/ginlong/')
+log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = config.getboolean('Logging', 'do_raw_log')
 
 influx_server = config.get('InfluxDB', 'influx_server')

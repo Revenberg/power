@@ -26,17 +26,17 @@
     mode: 0775
   with_items:
     - config.ini
-    - ginlong-listen.py
+    - solar-listen.py
     
-- name: ginlong-listen.service with owner and permissions
+- name: solar-listen.service with owner and permissions
   copy:
-    src: ginlong-listen.service
-    dest: /lib/systemd/system/ginlong-listen.service
+    src: solar-listen.service
+    dest: /lib/systemd/system/solar-listen.service
     mode: '0644'
 
-#- name: Make sure ginlong.listen is running
-#  systemd:
-#    enabled: yes
-#    state: started
-#    daemon_reload: true
-#    name: ginlong.listen
+- name: Make sure solar.listen is running
+  systemd:
+    enabled: yes
+    state: started
+    daemon_reload: true
+    name: solar.listen
