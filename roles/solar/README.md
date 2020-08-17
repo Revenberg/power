@@ -2,7 +2,7 @@
 # update these URLs by looking at the website: https://packages.debian.org/sid/grafana
 # https://grafana.com/grafana/plugins/fetzerch-sunandmoon-datasource/installation
 # https://grafana.com/grafana/plugins/fetzerch-sunandmoon-datasource/installation
-# influx -execute 'SELECT * FROM "PV" LIMIT 3' -database="telemetry" -precision=rfc3339
+# influx -execute 'SELECT * FROM "PV" ' -database="solar" -precision=rfc3339
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
