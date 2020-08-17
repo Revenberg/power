@@ -54,12 +54,9 @@ try:
         dbclient.create_retention_policy('30_days', '30d', 1, default=True)
         dbclient.create_retention_policy('6_months', '26wd', 1, default=False)
         dbclient.create_retention_policy('infinite', 'INF', 1, default=False)
-
-    return True
+    
 except Exception as e:
     logging.error('Error querying open database: %s', e)
-    return False
-
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
