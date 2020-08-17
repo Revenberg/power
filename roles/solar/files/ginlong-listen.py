@@ -8,7 +8,6 @@ import sys
 import configparser
 from influxdb import InfluxDBClient
 
-
 config = configparser.RawConfigParser(allow_no_value=True)
 config.read("config.ini")
 
@@ -41,12 +40,31 @@ if __debug__:
 else:
     print("running without debug")
 
+# if the db is not found, then try to create it
+try:
+    dbclient = InfluxDBClient(host=influx_server, port=influx_port)
+    dblist = dbclient.get_list_database()
+    db_found = False
+    for db in dblist:
+        if db['name'] == influx_database:
+            db_found = True
+    if not(db_found):
+        logging.info('Database <%s> not found, trying to create it', influx_database)
+        dbclient.create_database(influx_database)
+        dbclient.create_retention_policy('30_days', '30d', 1, default=True)
+        dbclient.create_retention_policy('6_months', '26wd', 1, default=False)
+        dbclient.create_retention_policy('infinite', 'INF', 1, default=False)
+
+    return True
+except Exception as e:
+    logging.error('Error querying open database: %s', e)
+    return False
+
+
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind((listen_address, listen_port))
 sock.listen(1)
-#sock.listen()
-#sock.setblocking(False)
 
 conn, addr = sock.accept()
 
@@ -54,7 +72,6 @@ while True:
     # Wait for a connection
     if __debug__:
         print('waiting for a connection')
-#    conn, addr = sock.accept()
     try:
         print('connection from', addr)
 
