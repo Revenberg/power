@@ -220,7 +220,7 @@ grafana_datasources:
     access: proxy
     database: power    
     url: http://localhost:8086  
-  - name: power
+  - name: DS_PV
     type: influxdb
     access: proxy
     database: solar    
@@ -231,6 +231,13 @@ grafana_datasources:
       latitude: 53.179851
       longitude: 6.1682691
     editable: true
+  - name: DS_SUN_AND MOON
+    type: fetzerch-sunandmoon-datasource
+    jsonData:
+      latitude: 53.179851
+      longitude: 6.1682691
+    editable: true    
+
 
 #  - name: "Prometheus"
 #    type: "prometheus"
