@@ -63,11 +63,11 @@ try:
         values['status'] = w.get_status()         # short version of status (eg. 'Rain')
         values['detailed_status']  = w.get_detailed_status()  # detailed version of status (eg. 'light rain')
 
-        values['wind']  = w.get_wind()
-        values['speed']  = wind ["speed"]
-        values['deg']  = wind ["deg"]
+        wind  = w.get_wind()
+        values['wind_speed']  = wind ["speed"]
+        values['wind_direction_deg']  = wind ["deg"]
         values['humidity']  = w.get_humidity()
-        values['temperature']  = w.get_temperature('celsius')
+        temperature  = w.get_temperature('celsius')
         values['temp']  = temperature["temp"]
         values['pressure'] = w.get_pressure()['press']
 
@@ -98,10 +98,10 @@ try:
         client.close()
 
         time.sleep( 300 )
-    except Exception as e:
-        print(e)
-        print("Unexpected error:", sys.exc_info()[0])
+except Exception as e:
+    print(e)
+    print("Unexpected error:", sys.exc_info()[0])
 #        raise
-    finally:
-        if __debug__:
-            print("Finally")
+finally:
+    if __debug__:
+        print("Finally")

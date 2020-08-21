@@ -44,9 +44,9 @@
     dest: /lib/systemd/system/weather-logger.service
     mode: '0644'
 
-#- name: Make sure weather.listen is running
-#  systemd:
-#    enabled: yes
-#    state: started
-#    daemon_reload: true
-#    name: weather-logger    
+- name: Make sure weather.listen is running
+  systemd:
+    enabled: yes
+    state: started
+    daemon_reload: true
+    name: weather-logger    
