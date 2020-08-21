@@ -1,0 +1,52 @@
+---
+- name: include apikey
+  include_vars: "weathermap.yaml"
+
+- name: install pip packages
+  pip:
+    name: [ "requests", "influxdb", "pyowm" ]
+
+- name: Ensure weather directory exists
+  file:
+    path: "/var/weather/"
+    state: directory
+    owner: pi
+    group: pi
+
+- name: Ensure weather directory exists
+  file:
+    path: "/var/log/weather"
+    state: directory
+    owner: pi
+    group: pi
+
+- name: Copy files
+  copy:
+    src: "{{ item }}"
+    dest: "/var/weather/{{ item }}"
+    owner: pi
+    group: pi
+    mode: 0775
+  with_items:
+    - weather-logger.py
+
+- name: template config.ini with owner and permissions
+  template:
+    src: config.ini.j2
+    dest: "/var/weather/config.ini"
+    owner: pi
+    group: pi    
+    mode: '0644'
+
+- name: weather-logger.service with owner and permissions
+  copy:
+    src: weather-logger.service
+    dest: /lib/systemd/system/weather-logger.service
+    mode: '0644'
+
+#- name: Make sure weather.listen is running
+#  systemd:
+#    enabled: yes
+#    state: started
+#    daemon_reload: true
+#    name: weather-logger    

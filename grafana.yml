@@ -16,6 +16,9 @@
   - role: node-exporter
     become_user: root
     become: yes
+  - role: openweathermap
+    become_user: root
+    become: yes    
   - role: prometheus
     become_user: root
     become: yes    
