@@ -71,11 +71,12 @@ try:
         values['temp']  = temperature["temp"]
         values['pressure'] = w.get_pressure()['press']
         values['clouds'] = w.get_clouds() #Cloud coverage
-        output["sunrise"] = w.get_sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
-        output["sunset"] = w.get_sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
-        output["weather_code"] =  w.get_weather_code()
-        output["weather_icon"] = w.get_weather_icon_name()) 
-        output["location"] = observation.get_location().get_name()
+        values["sunrise"] = w.get_sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
+        values["sunset"] = w.get_sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
+        values["weather_code"] =  w.get_weather_code()
+        values["weather_icon"] = w.get_weather_icon_name()
+        location = observation.get_location().get_name()
+        values["location"] = location
 
         rain = w.get_rain()
         #If there is no data recorded from rain then return 0, otherwise #return the actual data
@@ -95,7 +96,8 @@ try:
         if __debug__:
             print(values)
 
-        json_body = {'points': [{'fields': {k: v for k, v in values.items()}
+        json_body = {'points': [{'tags': {'location':  location },
+                                {'fields': {k: v for k, v in values.items()}
                                         }],
                             'measurement': influx_measurement
                             }
