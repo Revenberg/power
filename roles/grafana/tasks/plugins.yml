@@ -7,13 +7,10 @@
 - name: Import grafana plugins
   become: true
   unarchive:
-    src: "{{ item }}"
-    dest: "{{ grafana_data_dir }}/plugins{{ item | basename }}"
+    src: "{{ plugin_dashboards_dir }}/image-panel-master.zip"
+    dest: "{{ grafana_data_dir }}/plugins/image-panel-master"
     mode: 0640
-  with_fileglob:
-    - "{{ plugin_dashboards_dir }}/*.zip"
-  register: _plugins_copied
-
+  
 - name: Check which plugins are installed
   find:
     file_type: directory
