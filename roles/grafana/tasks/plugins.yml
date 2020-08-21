@@ -1,20 +1,24 @@
 ---
-- debug:
-    msg: "{{ item }}"
-  with_fileglob:
-    - "{{ plugin_dashboards_dir }}/*.zip"
 
 - name: Import grafana plugins
   unarchive:
     src: "{{ plugin_dashboards_dir }}/image-panel-master.zip"
     dest: "{{ grafana_data_dir }}/plugins/"
     mode: 0640
-  
-  
+  register: not_installed_plugins
 
-
-
-
+- name: Manually install plugins
+  become: true
+  command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install {{ item }}"
+  args:
+    creates: "{{ grafana_data_dir }}/plugins/{{ item }}"
+  with_items: "{{ not_installed_plugins.files) }}"
+  register: _plugin_install
+  until: _plugin_install is succeeded
+  retries: 5
+  delay: 2
+  notify:
+    - restart grafana
 
 
 - name: Check which plugins are installed
