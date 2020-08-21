@@ -229,10 +229,10 @@ def main(argv=None):
     influx_group.add_argument("--influx-port", metavar='port', dest="influx_port", help="port to connect to InfluxDB, defaults to 8086", type=int, default=8086)
     influx_group.add_argument("--influx-username", metavar='username', dest="influx_username", help="user to connect, defaults to 'root'", default="root")
     influx_group.add_argument("--influx-password", metavar='password', dest="influx_password", help="password of the user, defaults to 'root'", default="root")
-    influx_group.add_argument("--influx-database", metavar='dbname', dest="influx_database", help="database name to connect to, defaults to 'power'", default="power")
+    influx_group.add_argument("--influx-database", metavar='dbname', dest="influx_database", help="database name to connect to, defaults to 'p1'", default="p1")
     influx_group.add_argument("--influx-retention-policy", metavar='policy', dest="influx_retention_policy", help="retention policy to use")
 
-    influx_group.add_argument("--influx-measurement", metavar='measurement', dest="influx_measurement", help="measurement name to store points, defaults to smartmeter", default="smartmeter")
+    influx_group.add_argument("--influx-measurement", metavar='measurement', dest="influx_measurement", help="measurement name to store points, defaults to p1", default="p1")
     influx_group.add_argument('influx_tags', metavar='tag ...', type=str, nargs='?', help='any tag to the measurement')
 
     verbose_group = parser.add_mutually_exclusive_group()
