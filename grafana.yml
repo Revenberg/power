@@ -1,13 +1,16 @@
 ---
 - hosts: localhost
   roles:
+  - role: nginx
+    become_user: root
+    become: yes
   - role: influxdb
     become_user: root
     become: yes
   - role: p1
     become_user: root
     become: yes
-  - role: ginlong
+  - role: solar
     become_user: root
     become: yes
   - role: node-exporter
@@ -15,7 +18,7 @@
     become: yes
   - role: prometheus
     become_user: root
-    become: yes
+    become: yes    
   - role: grafana
     become_user: root
     become: yes
