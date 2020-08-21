@@ -5,7 +5,7 @@ After=multi-user.target
 [Service]
 Type=idle
 WorkingDirectory=/var/weather
-ExecStart=/usr/bin/python /var/weather/weather-logger.py
+ExecStart=/usr/bin/python -O /var/weather/weather-logger.py
 
 [Install]
 WantedBy=multi-user.target
