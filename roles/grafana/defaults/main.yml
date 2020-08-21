@@ -189,6 +189,7 @@ grafana_image_storage: {}
 # Plugins from https://grafana.com/plugins
 grafana_plugins: 
   - fetzerch-sunandmoon-datasource
+  - dalvany-image-panel
 #  - raintank-worldping-app
 
 # Dashboards from https://grafana.com/dashboards

@@ -1,26 +1,26 @@
 ---
-- debug:
-    msg: "{{ item }}"
-  with_fileglob:
-    - "{{ plugin_dashboards_dir }}/*.zip"
+#- debug:
+#    msg: "{{ item }}"
+#  with_fileglob:
+#    - "{{ plugin_dashboards_dir }}/*.zip"
 
-- name: Import grafana plugins 1
-  unarchive:
-    src: "{{ item }}"
-    dest: "{{ grafana_data_dir }}/plugins/"
-    mode: 0640
-  with_fileglob:
-    - "{{ plugin_dashboards_dir }}/*.zip"
-  register: not_installed_plugins
+#- name: Import grafana plugins 1
+#  unarchive:
+#    src: "{{ item }}"
+#    dest: "{{ grafana_data_dir }}/plugins/"
+#    mode: 0640
+#  with_fileglob:
+#    - "{{ plugin_dashboards_dir }}/*.zip"
+#  register: not_installed_plugins
 
-- debug:
-    msg: "{{ not_installed_plugins }}"
+#- debug:
+#    msg: "{{ not_installed_plugins }}"
 
-- name: Manually install plugins
-  command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install {{ item | basename }}"
-  with_items: "{{ not_installed_plugins }}"
-  notify:
-    - restart grafana
+#- name: Manually install plugins
+#  command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install {{ item | basename }}"
+#  with_items: "{{ not_installed_plugins }}"
+#  notify:
+#    - restart grafana
 
 
 
