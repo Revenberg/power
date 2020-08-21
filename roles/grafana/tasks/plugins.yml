@@ -7,14 +7,9 @@
 - name: Import grafana plugins
   unarchive:
     src: "{{ plugin_dashboards_dir }}/image-panel-master.zip"
-    dest: "{{ grafana_data_dir }}/plugins/image-panel-master"
+    dest: "{{ grafana_data_dir }}/plugins/"
     mode: 0640
   
-- name: Import grafana plugins1
-  copy:
-    src: "{{ plugin_dashboards_dir }}/image-panel-master.zip"
-    dest: "{{ grafana_data_dir }}/plugins/image-panel-master.zip"
-    mode: 0640
   
 
 
