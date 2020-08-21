@@ -124,9 +124,9 @@ while True:
 ##            values['kwhtotal'] = float(int(hexdata[142:150], 16))/10
 
 
-            values['inverter_yesterday'] = float(int(hexdata[134:136], 16))/100  # yesterday kwh
-            values['inverter_daily'] = float(int(hexdata[138:140], 16))/100      # daily kWh
-            values['inverter_total'] = float(int(hexdata[142:148], 16))/10       # total kWh
+            values['inverter_yesterday'] = float(int(hexdata[134:138], 16))/100  # yesterday kwh
+            values['inverter_daily'] = float(int(hexdata[138:142], 16))/100      # daily kWh
+            values['inverter_total'] = float(int(hexdata[142:150], 16))/10       # total kWh
             values['inverter_month'] = float(int(hexdata[174:176], 16))          # total kWh for month
             values['inverter_last_month'] = float(int(hexdata[182:184], 16))     # total kWh for last month
 
