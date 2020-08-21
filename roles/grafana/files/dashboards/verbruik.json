@@ -56,7 +56,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "power",
+        "datasource": "smartmeter",
         "decimals": 2,
         "fill": 0,
         "gridPos": {

@@ -9,7 +9,11 @@ import crcmod.predefined
 import serial
 import time
 import json
+import configparser
 from influxdb import InfluxDBClient
+
+config = configparser.RawConfigParser(allow_no_value=True)
+config.read("config.ini")
 
 crc16 = crcmod.predefined.mkPredefinedCrcFun('crc16')
 
