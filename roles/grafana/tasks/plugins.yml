@@ -1,4 +1,9 @@
 ---
+- name: image-panel-master.zip into /var/lib/foo
+  unarchive:
+    src: image-panel-master.zip
+    dest: /var/lib/grafana/plugins
+
 - name: Check which plugins are installed
   find:
     file_type: directory
