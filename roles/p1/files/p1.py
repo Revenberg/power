@@ -211,6 +211,7 @@ def start_monitor(options):
       try: 
             datagram = meter.read_one_packet()
             send_to_influxdb(options, datagram._keys)
+            time.sleep(55)
       except:
           pass
 #          finally:
