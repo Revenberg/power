@@ -9,7 +9,6 @@ import re
 import crcmod.predefined
 import serial
 import time
-import logging
 from influxdb import InfluxDBClient
 
 crc16 = crcmod.predefined.mkPredefinedCrcFun('crc16')
@@ -168,7 +167,7 @@ def check_db_status(options):
             if db['name'] == options.influx_database:
                 db_found = True
         if not(db_found):
-            logging.info('Database <%s> not found, trying to create it', options.influx_database)
+            print('Database " + options.influx_database + " not found, trying to create it')
             dbclient.create_database(options.influx_database)
             dbclient.create_retention_policy('30_days', '30d', 1, default=True)
             dbclient.create_retention_policy('6_months', '26wd', 1, default=False)
@@ -176,7 +175,8 @@ def check_db_status(options):
 
         return True
     except Exception as e:
-        logging.error('Error querying open-nti database: %s', e)
+        print('Error querying open database')
+        print (e)
         return False
 
 def send_to_influxdb(options, fields):
@@ -211,7 +211,7 @@ def start_monitor(options):
       try: 
             datagram = meter.read_one_packet()
             send_to_influxdb(options, datagram._keys)
-            time.sleep(55)
+            time.sleep(60)
       except:
           pass
 #          finally:
