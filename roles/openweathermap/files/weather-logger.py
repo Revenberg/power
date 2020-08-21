@@ -96,7 +96,7 @@ try:
         if __debug__:
             print(values)
 
-        json_body = {'points': [{'tags': {'location':  location },
+        json_body = {'points': [
                                 {'fields': {k: v for k, v in values.items()}
                                         }],
                             'measurement': influx_measurement
