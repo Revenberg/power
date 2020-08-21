@@ -1,8 +1,13 @@
 ---
-- name: image-panel-master.zip into /var/lib/grafana/plugins
+- name: Import grafana plugin
+  become: true
   unarchive:
-    src: files/plugins/image-panel-master.zip
-    dest: /var/lib/grafana/plugins
+    src: "{{ item }}"
+    dest: "{{ grafana_data_dir }}/plugins{{ item | basename }}"
+    mode: 0640
+  with_fileglob:
+    - "{{ grafana_dashboards_dir }}/*.zip"
+  register: _plugins_copied
 
 - name: Check which plugins are installed
   find:
