@@ -18,11 +18,16 @@
     owner: pi
     group: pi
 
-- name: Copy p1.py with owner and permissions
+- name: Copy files
   copy:
-    src: p1.py
-    dest: /var/p1/p1.py
-    mode: '0766'
+    src: "{{ item }}"
+    dest: "/var/p1/{{ item }}"
+    owner: pi
+    group: pi
+    mode: 0775
+  with_items:
+    - config.ini
+    - p1-logger.py
 
 - name: Copy p1.service with owner and permissions
   copy:

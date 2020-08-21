@@ -3,12 +3,12 @@ smartmeter -- Send P1 telegram to an InfluxDB API.
 
 Credits for the meter reading part (+ parsing and CRC) go to https://github.com/nrocco/smeterd
 '''
-
 import decimal
 import re
 import crcmod.predefined
 import serial
 import time
+import json
 from influxdb import InfluxDBClient
 
 crc16 = crcmod.predefined.mkPredefinedCrcFun('crc16')
@@ -112,6 +112,11 @@ class P1Packet(object):
 
         keys['DN'] = self.get_float(b'^0-0:96\.14\.0\(([0-9])\\)\r\n')
         
+        if do_raw_log:
+            logfile = open(os.path.join(log_path, 'raw.log'), 'a')
+            logfile.write(timestamp + ' ' + json.dumps(keys) + '\n')
+            logfile.close()
+
         self._keys = keys
 
 
@@ -239,6 +244,9 @@ def main(argv=None):
     verbose_group = parser.add_mutually_exclusive_group()
     verbose_group.add_argument("-v", "--verbose", action="store_true", dest="verbose", help="Be verbose")
     verbose_group.add_argument("-q", "--quiet", action="store_true", dest="quiet", help="Be very quiet")
+
+    log_path = config.get('Logging', 'log_path', fallback='/var/log/p1/')
+    do_raw_log = config.getboolean('Logging', 'do_raw_log')
 
     args = parser.parse_args()
 
