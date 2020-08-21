@@ -17,8 +17,8 @@
     msg: "{{ not_installed_plugins }}"
 
 - name: Manually install plugins
-  command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install dalvany-image-panel"
-  with_items: "{{ not_installed_plugins | basename }}"
+  command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install {{ item | basename }}"
+  with_items: "{{ not_installed_plugins }}"
   notify:
     - restart grafana
 
