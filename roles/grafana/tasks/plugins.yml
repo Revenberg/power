@@ -1,5 +1,10 @@
 ---
-- name: Import grafana plugin
+- debug:
+    msg: "{{ item }}"
+  with_fileglob:
+    - "{{ grafana_dashboards_dir }}/*.zip"
+
+- name: Import grafana plugins
   become: true
   unarchive:
     src: "{{ item }}"
