@@ -3,6 +3,9 @@ smartmeter -- Send P1 telegram to an InfluxDB API.
 
 Credits for the meter reading part (+ parsing and CRC) go to https://github.com/nrocco/smeterd
 '''
+import os
+import binascii
+import sys
 import decimal
 import re
 import crcmod.predefined
@@ -176,7 +179,7 @@ def check_db_status(options):
             if db['name'] == options.influx_database:
                 db_found = True
         if not(db_found):
-            print('Database " + options.influx_database + " not found, trying to create it')
+            print('Database ' + options.influx_database + ' not found, trying to create it')
             dbclient.create_database(options.influx_database)
             dbclient.create_retention_policy('30_days', '30d', 1, default=True)
             dbclient.create_retention_policy('6_months', '26wd', 1, default=False)
@@ -184,7 +187,7 @@ def check_db_status(options):
 
         return True
     except Exception as e:
-        print('Error querying open database')
+        print('Error querying opening database')
         print (e)
         return False
 
