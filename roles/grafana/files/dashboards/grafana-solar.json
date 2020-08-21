@@ -57,7 +57,7 @@
         "#e5ac0e",
         "#e5ac0e"
       ],
-      "datasource": "solar",
+      "datasource": "power",
       "decimals": 1,
       "fieldConfig": {
         "defaults": {
@@ -177,7 +177,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
-      "datasource": "solar",
+      "datasource": "power",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -294,7 +294,7 @@
     {
       "cacheTimeout": null,
       "columns": [],
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -470,7 +470,7 @@
         "#FF9830",
         "#F2495C"
       ],
-      "datasource": "solar",
+      "datasource": "power",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -590,7 +590,7 @@
         "#e5ac0e",
         "#e5ac0e"
       ],
-      "datasource": "solar",
+      "datasource": "power",
       "decimals": null,
       "fieldConfig": {
         "defaults": {
@@ -712,7 +712,7 @@
         "#508642",
         "#629e51"
       ],
-      "datasource": "solar",
+      "datasource": "power",
       "decimals": 2,
       "fieldConfig": {
         "defaults": {
@@ -973,7 +973,7 @@
         "#e5ac0e",
         "#e5ac0e"
       ],
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1272,7 +1272,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1743,7 +1743,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1881,7 +1881,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2110,7 +2110,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2329,7 +2329,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2546,7 +2546,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2927,7 +2927,7 @@
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -3079,7 +3079,7 @@
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "solar",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}

@@ -56,7 +56,7 @@
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "smartmeter",
+        "datasource": "power",
         "decimals": 2,
         "fill": 0,
         "gridPos": {
@@ -109,7 +109,7 @@
                 "type": "fill"
               }
             ],
-            "measurement": "smartmeter",
+            "measurement": "p1",
             "orderByTime": "ASC",
             "policy": "default",
             "refId": "A",
