@@ -19,8 +19,8 @@
 
 
 
-    s
 
+    
 
 - name: Check which plugins are installed
   find:
