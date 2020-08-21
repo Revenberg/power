@@ -70,6 +70,11 @@ try:
         temperature  = w.get_temperature('celsius')
         values['temp']  = temperature["temp"]
         values['pressure'] = w.get_pressure()['press']
+        values['clouds'] = w.get_clouds() #Cloud coverage
+        output["sunrise"] = w.get_sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
+        output["sunset"] = w.get_sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
+        output["weather_code"] =  w.get_weather_code()
+        output["weather_icon"] = w.get_weather_icon_name()) 
 
         rain = w.get_rain()
         #If there is no data recorded from rain then return 0, otherwise #return the actual data
@@ -78,8 +83,16 @@ try:
         else:
             values['lastrain'] = rain["3h"]
 
+        snow = w.get_snow()
+        #If there is no data recorded from rain then return 0, otherwise #return the actual data
+        if len(snow) == 0:
+            values['lastsnow'] = 0
+        else:
+            values['lastsnow'] = rain["3h"]
+        
         # Print the data
-        print(values)
+        if __debug__:
+            print(values)
 
         json_body = {'points': [{'fields': {k: v for k, v in values.items()}
                                         }],
