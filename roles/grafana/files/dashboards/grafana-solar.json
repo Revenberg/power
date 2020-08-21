@@ -293,6 +293,80 @@
       "valueName": "current"
     },
     {
+      "datasource": "power",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id": 151,
+      "options": {
+        "alt_field": "",
+        "baseUrl": "https://openweathermap.org/img/wn/",
+        "height": 75,
+        "icon_field": "",
+        "singleFill": true,
+        "suffix": "@2x.png",
+        "tooltip": false,
+        "tooltip_date_elapsed": false,
+        "tooltip_field": "",
+        "tooltip_include_date": false,
+        "tooltip_include_field": true,
+        "width": 75
+      },
+      "pluginVersion": "7.1.4",
+      "targets": [
+        {
+          "groupBy": [],
+          "limit": "1",
+          "measurement": "weather",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "weather_icon"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "dalvany-image-panel"
+    },
+    {
       "cacheTimeout": null,
       "columns": [],
       "datasource": "power",
@@ -304,7 +378,7 @@
       },
       "fontSize": "120%",
       "gridPos": {
-        "h": 6,
+        "h": 12,
         "w": 4,
         "x": 16,
         "y": 0
@@ -705,6 +779,96 @@
     },
     {
       "cacheTimeout": null,
+      "datasource": "power",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 12,
+        "y": 3
+      },
+      "id": 149,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^weather\\.detailed_status$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.1.4",
+      "scopedVars": {
+        "city": {
+          "selected": false,
+          "text": "Beijing",
+          "value": "Beijing"
+        }
+      },
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "weather",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "detailed_status"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": " ",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
       "colorBackground": false,
       "colorPostfix": true,
       "colorPrefix": false,
@@ -1036,112 +1200,6 @@
     {
       "cacheTimeout": null,
       "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "power",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 16,
-        "y": 6
-      },
-      "id": 120,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "scopedVars": {
-        "city": {
-          "selected": false,
-          "text": "Beijing",
-          "value": "Beijing"
-        }
-      },
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "groupBy": [],
-          "measurement": "weather",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "table",
-          "select": [
-            [
-              {
-                "params": [
-                  "detailed_status"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": "",
-      "title": "Weer conditie",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "first"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
       "colorPostfix": false,
       "colorPrefix": false,
       "colorValue": true,
@@ -1260,160 +1318,6 @@
         }
       ],
       "valueName": "current"
-    },
-    {
-      "aliasColors": {
-        "PV.mean": "dark-yellow",
-        "W.mean": "#cca300"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "power",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 16,
-        "y": 11
-      },
-      "hiddenSeries": false,
-      "id": 147,
-      "interval": "5m",
-      "legend": {
-        "avg": false,
-        "current": true,
-        "max": true,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "7.1.4",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "PV",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT sum(\"ac_output_amps_1\"), sum(\"ac_output_amps_2\"), sum(\"ac_output_amps_3\") FROM \"PV\" WHERE $timeFilter GROUP BY time(5m) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ac_output_amps_1"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "ac_output_amps_2"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "ac_output_amps_3"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "PV Generated Power",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "watt",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
     },
     {
       "aliasColors": {
@@ -1863,11 +1767,10 @@
     },
     {
       "aliasColors": {
-        "Day": "orange",
-        "PV.last": "orange",
-        "PV.mean": "semi-dark-orange"
+        "PV.mean": "dark-yellow",
+        "W.mean": "#cca300"
       },
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "power",
@@ -1883,28 +1786,28 @@
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 20
+        "y": 12
       },
       "hiddenSeries": false,
-      "hideTimeOverride": true,
-      "id": 132,
+      "id": 147,
+      "interval": "5m",
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": true,
-        "min": true,
+        "min": false,
         "show": true,
         "total": false,
         "values": true
       },
-      "lines": false,
-      "linewidth": 1,
+      "lines": true,
+      "linewidth": 2,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
+      "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.1.4",
-      "pointradius": 2,
+      "pointradius": 5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
@@ -1913,22 +1816,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "aggregation": "Last",
-          "alias": "Day",
-          "decimals": 2,
-          "displayAliasType": "Warning / Critical",
-          "displayType": "Regular",
-          "displayValueWithAlias": "Never",
           "groupBy": [
             {
               "params": [
-                "24h"
+                "5m"
               ],
               "type": "time"
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
@@ -1936,32 +1833,56 @@
           "measurement": "PV",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT sum(\"ac_output_amps_1\"), sum(\"ac_output_amps_2\"), sum(\"ac_output_amps_3\") FROM \"PV\" WHERE $timeFilter GROUP BY time(5m) fill(none)",
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "inverter_daily"
+                  "ac_output_amps_1"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "sum"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "ac_output_amps_2"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "ac_output_amps_3"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
               }
             ]
           ],
-          "tags": [],
-          "units": "none",
-          "valueHandler": "Number Threshold"
+          "tags": []
         }
       ],
       "thresholds": [],
-      "timeFrom": "30d",
+      "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Generated per day",
+      "title": "PV Generated Power",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1977,11 +1898,11 @@
       },
       "yaxes": [
         {
-          "format": "kwatth",
+          "format": "watt",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
@@ -1990,7 +1911,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -2339,14 +2260,11 @@
     },
     {
       "aliasColors": {
-        "AC Current": "red",
-        "AC Voltage": "blue",
-        "DC1": "green",
-        "DC2": "red",
-        "PV.mean": "red",
-        "W.mean": "#cca300"
+        "Day": "orange",
+        "PV.last": "orange",
+        "PV.mean": "semi-dark-orange"
       },
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "power",
@@ -2356,61 +2274,58 @@
         },
         "overrides": []
       },
-      "fill": 0,
+      "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 29
+        "y": 21
       },
       "hiddenSeries": false,
-      "id": 140,
-      "interval": "5m",
+      "hideTimeOverride": true,
+      "id": 132,
       "legend": {
         "alignAsTable": true,
         "avg": true,
         "current": true,
-        "hideEmpty": false,
-        "hideZero": false,
         "max": true,
-        "min": false,
+        "min": true,
         "show": true,
         "total": false,
         "values": true
       },
-      "lines": true,
-      "linewidth": 2,
+      "lines": false,
+      "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.1.4",
-      "pointradius": 5,
+      "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "AC Current",
-          "yaxis": 2
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "AC 1",
+          "aggregation": "Last",
+          "alias": "Day",
+          "decimals": 2,
+          "displayAliasType": "Warning / Critical",
+          "displayType": "Regular",
+          "displayValueWithAlias": "Never",
           "groupBy": [
             {
               "params": [
-                "5m"
+                "24h"
               ],
               "type": "time"
             },
             {
               "params": [
-                "none"
+                "null"
               ],
               "type": "fill"
             }
@@ -2424,98 +2339,26 @@
             [
               {
                 "params": [
-                  "ac_output_volts_1"
+                  "inverter_daily"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "last"
               }
             ]
           ],
-          "tags": []
-        },
-        {
-          "alias": "AC 2",
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "PV",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ac_output_volts_2"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "AC 3",
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "PV",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ac_output_volts_3"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
+          "tags": [],
+          "units": "none",
+          "valueHandler": "Number Threshold"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
+      "timeFrom": "30d",
       "timeRegions": [],
       "timeShift": null,
-      "title": "AC Voltage",
+      "title": "Generated per day",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2531,26 +2374,24 @@
       },
       "yaxes": [
         {
-          "decimals": 1,
-          "format": "volt",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "decimals": 1,
-          "format": "amp",
+          "format": "kwatth",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": "0",
           "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         }
       ],
       "yaxis": {
-        "align": true,
+        "align": false,
         "alignLevel": null
       }
     },
@@ -2971,7 +2812,6 @@
     {
       "aliasColors": {
         "AC Current": "red",
-        "AC Frequency": "purple",
         "AC Voltage": "blue",
         "DC1": "green",
         "DC2": "red",
@@ -2979,7 +2819,6 @@
         "W.mean": "#cca300"
       },
       "bars": false,
-      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
       "datasource": "power",
@@ -2995,18 +2834,19 @@
         "h": 9,
         "w": 8,
         "x": 16,
-        "y": 38
+        "y": 30
       },
       "hiddenSeries": false,
-      "id": 142,
+      "id": 140,
       "interval": "5m",
       "legend": {
+        "alignAsTable": true,
         "avg": true,
         "current": true,
         "hideEmpty": false,
         "hideZero": false,
         "max": true,
-        "min": true,
+        "min": false,
         "show": true,
         "total": false,
         "values": true
@@ -3014,20 +2854,25 @@
       "lines": true,
       "linewidth": 2,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.1.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "AC Current",
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "AC Frequency",
+          "alias": "AC 1",
           "groupBy": [
             {
               "params": [
@@ -3051,7 +2896,81 @@
             [
               {
                 "params": [
-                  "ac_frequency"
+                  "ac_output_volts_1"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "AC 2",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "PV",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ac_output_volts_2"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "AC 3",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "PV",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ac_output_volts_3"
                 ],
                 "type": "field"
               },
@@ -3068,7 +2987,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "AC Frequency",
+      "title": "AC Voltage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -3084,12 +3003,12 @@
       },
       "yaxes": [
         {
-          "decimals": 2,
-          "format": "short",
-          "label": "hz",
+          "decimals": 1,
+          "format": "volt",
+          "label": null,
           "logBase": 1,
-          "max": "50.4",
-          "min": "49.6",
+          "max": null,
+          "min": null,
           "show": true
         },
         {
@@ -3099,7 +3018,7 @@
           "logBase": 1,
           "max": null,
           "min": "0",
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -3422,6 +3341,241 @@
       }
     },
     {
+      "aliasColors": {
+        "AC Current": "red",
+        "AC Frequency": "purple",
+        "AC Voltage": "blue",
+        "DC1": "green",
+        "DC2": "red",
+        "PV.mean": "red",
+        "W.mean": "#cca300"
+      },
+      "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "power",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 39
+      },
+      "hiddenSeries": false,
+      "id": 142,
+      "interval": "5m",
+      "legend": {
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "7.1.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "AC Frequency",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "PV",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ac_frequency"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "AC Frequency",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 2,
+          "format": "short",
+          "label": "hz",
+          "logBase": 1,
+          "max": "50.4",
+          "min": "49.6",
+          "show": true
+        },
+        {
+          "decimals": 1,
+          "format": "amp",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "W.mean": "#cca300",
+        "W/m2.mean": "#ba43a9"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Sun and Moon",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 48
+      },
+      "hiddenSeries": false,
+      "id": 143,
+      "interval": "60s",
+      "legend": {
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "7.1.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refId": "A",
+          "target": "sun_azimuth"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Solar radiation",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Wm2",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -3439,7 +3593,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 47
+        "y": 48
       },
       "hiddenSeries": false,
       "id": 145,
@@ -3553,102 +3707,6 @@
         "align": false,
         "alignLevel": null
       }
-    },
-    {
-      "aliasColors": {
-        "W.mean": "#cca300",
-        "W/m2.mean": "#ba43a9"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Sun and Moon",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 0,
-        "y": 48
-      },
-      "hiddenSeries": false,
-      "id": 143,
-      "interval": "60s",
-      "legend": {
-        "avg": false,
-        "current": true,
-        "max": true,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "null",
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "7.1.4",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "refId": "A",
-          "target": "sun_azimuth"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Solar radiation",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "Wm2",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
     }
   ],
   "refresh": false,
@@ -3659,7 +3717,7 @@
     "list": []
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -3690,5 +3748,5 @@
   "timezone": "",
   "title": "Solar2",
   "uid": "qpp2ODfiz",
-  "version": 6
+  "version": 7
 }
