@@ -3,7 +3,7 @@
     msg: "{{ item }}"
   with_fileglob:
     - "{{ plugin_dashboards_dir }}/*.zip"
-    
+
 - name: Import grafana plugins
   unarchive:
     src: "{{ plugin_dashboards_dir }}/image-panel-master.zip"
@@ -12,8 +12,7 @@
   register: not_installed_plugins
 
 - name: Manually install plugins
-  command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install {{ item }}"
-  with_items: "{{ not_installed_plugins.files) }}"
+  command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install image-panel-master"
   notify:
     - restart grafana
 
