@@ -2,7 +2,7 @@
 - debug:
     msg: "{{ item }}"
   with_fileglob:
-    - "{{ grafana_dashboards_dir }}/*.zip"
+    - "{{ plugin_dashboards_dir }}/*.zip"
 
 - name: Import grafana plugins
   become: true
@@ -11,7 +11,7 @@
     dest: "{{ grafana_data_dir }}/plugins{{ item | basename }}"
     mode: 0640
   with_fileglob:
-    - "{{ grafana_dashboards_dir }}/*.zip"
+    - "{{ plugin_dashboards_dir }}/*.zip"
   register: _plugins_copied
 
 - name: Check which plugins are installed
