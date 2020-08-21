@@ -1,6 +1,6 @@
 ---
 - name: include apikey
-  include_vars: "weathermap.yaml"
+  include_vars: "openweathermap.yaml"
 
 - name: install pip packages
   pip:
