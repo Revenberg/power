@@ -1,8 +1,27 @@
 ---
+- name: install pip packages
+  pip:
+    name: [ "pyserial", "crcmod", "influxdb" ]
+
+
+- name: Ensure p1 directory exists
+  file:
+    path: "/var/p1/"
+    state: directory
+    owner: pi
+    group: pi
+
+- name: Ensure p1 directory exists
+  file:
+    path: "/var/log/p1"
+    state: directory
+    owner: pi
+    group: pi
+
 - name: Copy p1.py with owner and permissions
   copy:
     src: p1.py
-    dest: /home/pi/p1.py
+    dest: /var/p1/p1.py
     mode: '0766'
 
 - name: Copy p1.service with owner and permissions
@@ -10,10 +29,6 @@
     src: p1.service
     dest: /lib/systemd/system/p1.service
     mode: '0644'
-
-- name: install pip packages
-  pip:
-    name: [ "pyserial", "crcmod", "influxdb" ]
 
 - name: Make sure p1 is running
   systemd:

@@ -4,7 +4,8 @@ After=multi-user.target
 
 [Service]
 Type=idle
-ExecStart=/usr/bin/python /home/pi/p1.py
+WorkingDirectory=/var/p1
+ExecStart=/usr/bin/python /var/p1/p1.py
 
 [Install]
 WantedBy=multi-user.target
