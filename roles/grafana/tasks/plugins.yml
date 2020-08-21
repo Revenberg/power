@@ -1,4 +1,14 @@
 ---
+- debug:
+    msg: "{{ item }}"
+  with_fileglob:
+    - "{{ plugin_dashboards_dir }}/*.zip"
+
+- name: Import grafana plugins
+  unarchive:
+    src: "{{ plugin_dashboards_dir }}/image-panel-master.zip"
+    dest: "{{ grafana_data_dir }}/plugins/image-panel-master"
+    mode: 0640
   
 - name: Import grafana plugins1
   copy:

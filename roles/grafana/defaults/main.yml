@@ -204,7 +204,7 @@ grafana_dashboards: []
 #    datasource: 'Prometheus'
 
 grafana_dashboards_dir: "dashboards"
-plugin_dashboards_dir: "plugin"
+plugin_dashboards_dir: "plugins"
 
 # Alert notification channels to configure
 grafana_alert_notifications: 
