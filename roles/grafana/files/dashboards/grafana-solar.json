@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 6,
+  "id": 101,
   "links": [],
   "panels": [
     {
@@ -33,7 +33,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 30,
+      "id": 102,
       "links": [],
       "mode": "html",
       "options": {
@@ -45,102 +45,6 @@
       "timeShift": null,
       "title": "",
       "type": "text"
-    },
-    {
-      "aliasColors": {
-        "W.mean": "#cca300",
-        "W/m2.mean": "#ba43a9"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Sun and Moon",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 4,
-        "y": 0
-      },
-      "hiddenSeries": false,
-      "id": 3,
-      "interval": "60s",
-      "legend": {
-        "avg": false,
-        "current": true,
-        "max": true,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "null",
-      "paceLength": 10,
-      "percentage": false,
-      "pluginVersion": "7.1.4",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "refId": "A",
-          "target": "sun_azimuth"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Solar radiation",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "Wm2",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
     },
     {
       "cacheTimeout": null,
@@ -173,7 +77,7 @@
         "x": 4,
         "y": 0
       },
-      "id": 3,
+      "id": 103,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -300,7 +204,7 @@
         "y": 0
       },
       "hideTimeOverride": false,
-      "id": 31,
+      "id": 104,
       "interval": "5m",
       "links": [],
       "mappingType": 1,
@@ -419,7 +323,7 @@
         "x": 12,
         "y": 0
       },
-      "id": 44,
+      "id": 105,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -529,7 +433,7 @@
         "y": 0
       },
       "hideTimeOverride": true,
-      "id": 43,
+      "id": 111,
       "interval": "",
       "links": [],
       "pageSize": null,
@@ -712,7 +616,7 @@
         "x": 20,
         "y": 0
       },
-      "id": 33,
+      "id": 112,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -800,11 +704,53 @@
       "valueName": "current"
     },
     {
+      "alert": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                60
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "message": "High inverter temperature",
+        "name": "Temparature Inverter alert",
+        "noDataState": "keep_state",
+        "notifications": []
+      },
       "aliasColors": {
-        "W.mean": "#cca300",
-        "kW.mean": "#3f6833"
+        "AC Current": "red",
+        "AC Frequency": "purple",
+        "AC Voltage": "blue",
+        "DC1": "green",
+        "DC2": "red",
+        "Inverter": "orange",
+        "PV.mean": "red",
+        "W.mean": "#cca300"
       },
       "bars": false,
+      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
       "datasource": "power",
@@ -814,7 +760,7 @@
         },
         "overrides": []
       },
-      "fill": 1,
+      "fill": 0,
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
@@ -823,14 +769,15 @@
         "y": 3
       },
       "hiddenSeries": false,
-      "hideTimeOverride": true,
-      "id": 5,
+      "id": 113,
       "interval": "5m",
       "legend": {
-        "avg": false,
+        "avg": true,
         "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
         "max": true,
-        "min": false,
+        "min": true,
         "show": true,
         "total": false,
         "values": true
@@ -845,28 +792,33 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "Inverter",
+          "yaxis": 1
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "-P1",
+          "alias": "Inverter",
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5m"
               ],
               "type": "time"
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
           ],
-          "measurement": "p1",
+          "measurement": "PV",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -875,81 +827,7 @@
             [
               {
                 "params": [
-                  "-P1"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "-P2",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "p1",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "+P2"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "-P3",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "p1",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "-P3"
+                  "temperature"
                 ],
                 "type": "field"
               },
@@ -962,11 +840,19 @@
           "tags": []
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 60
+        }
+      ],
       "timeFrom": null,
       "timeRegions": [],
-      "timeShift": "10s",
-      "title": "Power Return to Net",
+      "timeShift": null,
+      "title": "Temparature Inverter",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -982,24 +868,26 @@
       },
       "yaxes": [
         {
-          "format": "watt",
-          "label": null,
+          "decimals": 2,
+          "format": "celsius",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "format": "short",
+          "decimals": 1,
+          "format": "amp",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
+        "align": true,
         "alignLevel": null
       }
     },
@@ -1036,7 +924,7 @@
         "x": 20,
         "y": 3
       },
-      "id": 27,
+      "id": 114,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1152,7 +1040,7 @@
         "x": 16,
         "y": 6
       },
-      "id": 23763571993,
+      "id": 120,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -1216,7 +1104,7 @@
         }
       ],
       "thresholds": "",
-      "title": "Weather condition",
+      "title": "Weer conditie",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -1262,7 +1150,7 @@
         "y": 6
       },
       "hideTimeOverride": false,
-      "id": 25,
+      "id": 121,
       "interval": "5m",
       "links": [],
       "mappingType": 1,
@@ -1352,16 +1240,12 @@
     },
     {
       "aliasColors": {
-        "W.mean": "#cca300",
-        "kW.mean": "#447ebc",
-        "kWh.mean {entity_id: power_production_low}": "dark-green",
-        "kWh.mean {entity_id: power_production_normal}": "light-green",
-        "kWh.non_negative_derivative {entity_id: power_consumption_low}": "dark-red",
-        "kWh.non_negative_derivative {entity_id: power_consumption_normal}": "red",
-        "power_consumption_low": "light-red",
-        "power_consumption_normal": "dark-red"
+        "DC1": "green",
+        "DC2": "red",
+        "PV.mean": "red",
+        "W.mean": "#cca300"
       },
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "power",
@@ -1371,7 +1255,7 @@
         },
         "overrides": []
       },
-      "fill": 1,
+      "fill": 0,
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
@@ -1380,11 +1264,11 @@
         "y": 12
       },
       "hiddenSeries": false,
-      "id": 18,
-      "interval": "60s",
+      "id": 122,
+      "interval": "5m",
       "legend": {
         "alignAsTable": true,
-        "avg": false,
+        "avg": true,
         "current": true,
         "max": true,
         "min": false,
@@ -1392,7 +1276,7 @@
         "total": false,
         "values": true
       },
-      "lines": false,
+      "lines": true,
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
@@ -1402,28 +1286,39 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "DC1",
+          "dashes": true,
+          "spaceLength": 4
+        },
+        {
+          "alias": "DC2",
+          "dashes": true,
+          "spaceLength": 3
+        }
+      ],
       "spaceLength": 10,
-      "stack": true,
+      "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "+P1",
+          "alias": "DC1",
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5m"
               ],
               "type": "time"
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
           ],
-          "measurement": "p1",
+          "measurement": "PV",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1432,35 +1327,41 @@
             [
               {
                 "params": [
-                  "+P1"
+                  "dc_amps_chain_1"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
                 "type": "mean"
+              },
+              {
+                "params": [
+                  " / 1000"
+                ],
+                "type": "math"
               }
             ]
           ],
           "tags": []
         },
         {
-          "alias": "+P2",
+          "alias": "DC2",
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5m"
               ],
               "type": "time"
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
           ],
-          "measurement": "p1",
+          "measurement": "PV",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -1469,7 +1370,7 @@
             [
               {
                 "params": [
-                  "+P2"
+                  "dc_amps_chain_2"
                 ],
                 "type": "field"
               },
@@ -1482,22 +1383,22 @@
           "tags": []
         },
         {
-          "alias": "+P3",
+          "alias": "DC3",
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "5m"
               ],
               "type": "time"
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
           ],
-          "measurement": "p1",
+          "measurement": "PV",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
@@ -1506,13 +1407,19 @@
             [
               {
                 "params": [
-                  "+P3"
+                  "dc_amps_chain_3"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
                 "type": "mean"
+              },
+              {
+                "params": [
+                  " / 1000"
+                ],
+                "type": "math"
               }
             ]
           ],
@@ -1520,10 +1427,10 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": "30d",
+      "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Power Usage from Net",
+      "title": "DC Current",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1539,7 +1446,7 @@
       },
       "yaxes": [
         {
-          "format": "kwatth",
+          "format": "amp",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1586,7 +1493,7 @@
         "y": 12
       },
       "hiddenSeries": false,
-      "id": 21,
+      "id": 123,
       "interval": "5m",
       "legend": {
         "alignAsTable": true,
@@ -1838,7 +1745,7 @@
         "y": 12
       },
       "hiddenSeries": false,
-      "id": 2,
+      "id": 124,
       "interval": "5m",
       "legend": {
         "avg": false,
@@ -1967,12 +1874,7 @@
       }
     },
     {
-      "aliasColors": {
-        "DC1": "green",
-        "DC2": "red",
-        "PV.mean": "red",
-        "W.mean": "#cca300"
-      },
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -1983,7 +1885,7 @@
         },
         "overrides": []
       },
-      "fill": 0,
+      "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
@@ -1992,61 +1894,45 @@
         "y": 21
       },
       "hiddenSeries": false,
-      "id": 20,
-      "interval": "5m",
+      "id": 130,
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
+        "avg": false,
+        "current": false,
+        "max": false,
         "min": false,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "null",
-      "paceLength": 10,
+      "linewidth": 1,
+      "nullPointMode": "connected",
       "percentage": false,
       "pluginVersion": "7.1.4",
-      "pointradius": 5,
+      "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "DC1",
-          "dashes": true,
-          "spaceLength": 4
-        },
-        {
-          "alias": "DC2",
-          "dashes": true,
-          "spaceLength": 3
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "DC1",
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$__interval"
               ],
               "type": "time"
             },
             {
               "params": [
-                "none"
+                "null"
               ],
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "weather",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2055,99 +1941,13 @@
             [
               {
                 "params": [
-                  "dc_amps_chain_1"
+                  "humidity"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
                 "type": "mean"
-              },
-              {
-                "params": [
-                  " / 1000"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "DC2",
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "PV",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "dc_amps_chain_2"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "DC3",
-          "groupBy": [
-            {
-              "params": [
-                "5m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "PV",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "dc_amps_chain_3"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  " / 1000"
-                ],
-                "type": "math"
               }
             ]
           ],
@@ -2158,7 +1958,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "DC Current",
+      "title": "Zon sterkte",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2174,7 +1974,7 @@
       },
       "yaxes": [
         {
-          "format": "amp",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2187,7 +1987,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -2223,7 +2023,7 @@
         "y": 21
       },
       "hiddenSeries": false,
-      "id": 45,
+      "id": 131,
       "interval": "5m",
       "legend": {
         "alignAsTable": true,
@@ -2438,7 +2238,7 @@
       },
       "hiddenSeries": false,
       "hideTimeOverride": true,
-      "id": 36,
+      "id": 132,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -2551,12 +2351,19 @@
     },
     {
       "aliasColors": {
-        "Sun altitude": "yellow"
+        "W.mean": "#cca300",
+        "kW.mean": "#447ebc",
+        "kWh.mean {entity_id: power_production_low}": "dark-green",
+        "kWh.mean {entity_id: power_production_normal}": "light-green",
+        "kWh.non_negative_derivative {entity_id: power_consumption_low}": "dark-red",
+        "kWh.non_negative_derivative {entity_id: power_consumption_normal}": "red",
+        "power_consumption_low": "light-red",
+        "power_consumption_normal": "dark-red"
       },
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Sun and Moon",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2572,32 +2379,35 @@
         "y": 30
       },
       "hiddenSeries": false,
-      "id": 15,
+      "id": 133,
+      "interval": "60s",
       "legend": {
+        "alignAsTable": true,
         "avg": false,
         "current": true,
-        "max": false,
+        "max": true,
         "min": false,
         "show": true,
         "total": false,
         "values": true
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
       "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.1.4",
-      "pointradius": 1,
+      "pointradius": 5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
+          "alias": "+P1",
           "groupBy": [
             {
               "params": [
@@ -2612,6 +2422,7 @@
               "type": "fill"
             }
           ],
+          "measurement": "p1",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2620,7 +2431,7 @@
             [
               {
                 "params": [
-                  "value"
+                  "+P1"
                 ],
                 "type": "field"
               },
@@ -2630,15 +2441,88 @@
               }
             ]
           ],
-          "tags": [],
-          "target": "sun_altitude"
+          "tags": []
+        },
+        {
+          "alias": "+P2",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "p1",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "+P2"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "+P3",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "p1",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "+P3"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
+      "timeFrom": "30d",
       "timeRegions": [],
       "timeShift": null,
-      "title": "Sun Altitude",
+      "title": "Power Usage from Net",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2654,7 +2538,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "kwatth",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2667,7 +2551,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -2676,53 +2560,11 @@
       }
     },
     {
-      "alert": {
-        "conditions": [
-          {
-            "evaluator": {
-              "params": [
-                60
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "and"
-            },
-            "query": {
-              "params": [
-                "A",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          }
-        ],
-        "executionErrorState": "alerting",
-        "for": "5m",
-        "frequency": "1m",
-        "handler": 1,
-        "message": "High inverter temperature",
-        "name": "Temparature Inverter alert",
-        "noDataState": "keep_state",
-        "notifications": []
-      },
       "aliasColors": {
-        "AC Current": "red",
-        "AC Frequency": "purple",
-        "AC Voltage": "blue",
-        "DC1": "green",
-        "DC2": "red",
-        "Inverter": "orange",
-        "PV.mean": "red",
-        "W.mean": "#cca300"
+        "W.mean": "#cca300",
+        "kW.mean": "#3f6833"
       },
       "bars": false,
-      "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
       "datasource": "power",
@@ -2732,7 +2574,7 @@
         },
         "overrides": []
       },
-      "fill": 0,
+      "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
@@ -2741,15 +2583,14 @@
         "y": 30
       },
       "hiddenSeries": false,
-      "id": 24,
+      "hideTimeOverride": true,
+      "id": 134,
       "interval": "5m",
       "legend": {
-        "avg": true,
+        "avg": false,
         "current": true,
-        "hideEmpty": false,
-        "hideZero": false,
         "max": true,
-        "min": true,
+        "min": false,
         "show": true,
         "total": false,
         "values": true
@@ -2764,33 +2605,28 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Inverter",
-          "yaxis": 1
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Inverter",
+          "alias": "-P1",
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$__interval"
               ],
               "type": "time"
             },
             {
               "params": [
-                "none"
+                "null"
               ],
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "p1",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2799,7 +2635,81 @@
             [
               {
                 "params": [
-                  "temperature"
+                  "-P1"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "-P2",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "p1",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "+P2"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "-P3",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "p1",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "-P3"
                 ],
                 "type": "field"
               },
@@ -2812,19 +2722,11 @@
           "tags": []
         }
       ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "value": 60
-        }
-      ],
+      "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
-      "title": "Temparature Inverter",
+      "timeShift": "10s",
+      "title": "Power Return to Net",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2840,26 +2742,24 @@
       },
       "yaxes": [
         {
-          "decimals": 2,
-          "format": "celsius",
-          "label": "",
+          "format": "watt",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "decimals": 1,
-          "format": "amp",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": true,
+        "align": false,
         "alignLevel": null
       }
     },
@@ -2891,7 +2791,7 @@
         "y": 30
       },
       "hiddenSeries": false,
-      "id": 22,
+      "id": 140,
       "interval": "5m",
       "legend": {
         "alignAsTable": true,
@@ -3081,11 +2981,13 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "Sun altitude": "yellow"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "power",
+      "datasource": "Sun and Moon",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -3095,28 +2997,30 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 7,
+        "h": 9,
         "w": 8,
         "x": 0,
         "y": 39
       },
       "hiddenSeries": false,
-      "id": 47,
+      "id": 141,
       "legend": {
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.1.4",
-      "pointradius": 2,
+      "pointradius": 1,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
@@ -3139,7 +3043,6 @@
               "type": "fill"
             }
           ],
-          "measurement": "weather",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -3148,7 +3051,7 @@
             [
               {
                 "params": [
-                  "humidity"
+                  "value"
                 ],
                 "type": "field"
               },
@@ -3158,14 +3061,15 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [],
+          "target": "sun_altitude"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Zon sterkte",
+      "title": "Sun Altitude",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -3232,7 +3136,7 @@
         "y": 39
       },
       "hiddenSeries": false,
-      "id": 23,
+      "id": 142,
       "interval": "5m",
       "legend": {
         "avg": true,
@@ -3340,9 +3244,105 @@
         "align": true,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {
+        "W.mean": "#cca300",
+        "W/m2.mean": "#ba43a9"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Sun and Moon",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 48
+      },
+      "hiddenSeries": false,
+      "id": 143,
+      "interval": "60s",
+      "legend": {
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "7.1.4",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refId": "A",
+          "target": "sun_azimuth"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Solar radiation",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Wm2",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
-  "refresh": "10s",
+  "refresh": false,
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
@@ -3350,7 +3350,7 @@
     "list": []
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -3381,5 +3381,5 @@
   "timezone": "",
   "title": "Solar2",
   "uid": "qpp2ODfiz",
-  "version": 3
+  "version": 5
 }
