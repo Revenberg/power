@@ -23,8 +23,6 @@ influx_measurement = config.get('InfluxDB', 'measurement')
 
 if __debug__:
     print("running with debug")
-    print(listen_address)
-    print(listen_port)
     print(influx_server)
     print(influx_port)
     print(influx_database)
@@ -83,21 +81,21 @@ try:
         # Print the data
         print(values)
 
-        json_body = {'points': [{'tags': 'fields': {k: v for k, v in values.items()}
+        json_body = {'points': [{'fields': {k: v for k, v in values.items()}
                                         }],
                             'measurement': influx_measurement
                             }
 
-                client = InfluxDBClient(host=influx_server,
-                                        port=influx_port)
-                success = client.write(json_body,
-                                    # params isneeded, otherwise error 'database is required' happens
-                                    params={'db': influx_database})
+        client = InfluxDBClient(host=influx_server,
+                                port=influx_port)
+        success = client.write(json_body,
+                            # params isneeded, otherwise error 'database is required' happens
+                            params={'db': influx_database})
 
-                if not success:
-                    print('error writing to database')
+        if not success:
+            print('error writing to database')
 
-                client.close()
+        client.close()
 
         time.sleep( 300 )
     except Exception as e:
