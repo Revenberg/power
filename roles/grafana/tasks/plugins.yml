@@ -6,13 +6,13 @@
 
 - name: Import grafana plugins
   unarchive:
-    src: "{{ plugin_dashboards_dir }}/image-panel.zip"
+    src: "{{ plugin_dashboards_dir }}/dalvany-image-panel.zip"
     dest: "{{ grafana_data_dir }}/plugins/"
     mode: 0640
   register: not_installed_plugins
 
 - name: Manually install plugins
-  command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install image-panel"
+  command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install dalvany-image-panel"
   notify:
     - restart grafana
 
@@ -20,7 +20,7 @@
 
 
 
-    
+
 
 - name: Check which plugins are installed
   find:
