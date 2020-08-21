@@ -215,10 +215,10 @@ grafana_alert_notifications:
 
 # Datasources to configure
 grafana_datasources: 
-  - name: power
+  - name: smartmeter
     type: influxdb
     access: proxy
-    database: power    
+    database: smartmeter    
     url: http://localhost:8086  
     editable: true  
   - name: solar

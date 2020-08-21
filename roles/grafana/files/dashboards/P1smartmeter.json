@@ -71,7 +71,7 @@
               }
             ],
             "hide": false,
-            "measurement": "smartmeter",
+            "measurement": "p1",
             "orderByTime": "ASC",
             "policy": "default",
             "refId": "A",
@@ -115,7 +115,7 @@
               }
             ],
             "hide": false,
-            "measurement": "smartmeter",
+            "measurement": "p1",
             "orderByTime": "ASC",
             "policy": "default",
             "refId": "B",
@@ -159,7 +159,7 @@
               }
             ],
             "hide": false,
-            "measurement": "smartmeter",
+            "measurement": "p1",
             "orderByTime": "ASC",
             "policy": "default",
             "refId": "C",
@@ -203,7 +203,7 @@
               }
             ],
             "hide": false,
-            "measurement": "smartmeter",
+            "measurement": "p1",
             "orderByTime": "ASC",
             "policy": "default",
             "refId": "D",
@@ -241,7 +241,7 @@
               }
             ],
             "hide": false,
-            "measurement": "smartmeter",
+            "measurement": "p1",
             "orderByTime": "ASC",
             "policy": "default",
             "refId": "E",
@@ -279,7 +279,7 @@
               }
             ],
             "hide": false,
-            "measurement": "smartmeter",
+            "measurement": "p1",
             "orderByTime": "ASC",
             "policy": "default",
             "refId": "F",

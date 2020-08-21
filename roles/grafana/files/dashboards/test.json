@@ -435,7 +435,7 @@
                 "type": "fill"
               }
             ],
-            "measurement": "smartmeter",
+            "measurement": "p1",
             "orderByTime": "ASC",
             "policy": "default",
             "refId": "A",
