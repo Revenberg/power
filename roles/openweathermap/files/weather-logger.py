@@ -75,6 +75,7 @@ try:
         output["sunset"] = w.get_sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
         output["weather_code"] =  w.get_weather_code()
         output["weather_icon"] = w.get_weather_icon_name()) 
+        output["location"] = observation.get_location().get_name()
 
         rain = w.get_rain()
         #If there is no data recorded from rain then return 0, otherwise #return the actual data
