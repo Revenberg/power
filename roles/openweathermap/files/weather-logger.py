@@ -1,4 +1,4 @@
-import pyowm 
+import pyowm
 import os
 import socket
 import binascii
@@ -32,7 +32,7 @@ if __debug__:
     print(log_path)
     print(do_raw_log)
 else:
-    print("running without debug")    
+    print("running without debug")
 
 # if the db is not found, then try to create it
 try:
@@ -53,36 +53,36 @@ except Exception as e:
     print('Error querying open database: ' + e)
 
 try:
-    while True:    
+    while True:
         owm = pyowm.OWM(apikey, language=language)
         # Here put your city and Country ISO 3166 country codes
-        observation = owm.weather_at_place(country) 
+        observation = owm.weather_at_place(country)
 
         w = observation.get_weather()
-        # Weather details from INTERNET 
+        # Weather details from INTERNET
 
         values = dict()
         values['status'] = w.get_status()         # short version of status (eg. 'Rain')
         values['detailed_status']  = w.get_detailed_status()  # detailed version of status (eg. 'light rain')
 
-        values['wind']  = w.get_wind() 
-        values['speed']  = wind ["speed"] 
-        values['deg']  = wind ["deg"] 
-        values['humidity']  = w.get_humidity() 
-        values['temperature']  = w.get_temperature('celsius') 
-        values['temp']  = temperature["temp"] 
+        values['wind']  = w.get_wind()
+        values['speed']  = wind ["speed"]
+        values['deg']  = wind ["deg"]
+        values['humidity']  = w.get_humidity()
+        values['temperature']  = w.get_temperature('celsius')
+        values['temp']  = temperature["temp"]
         values['pressure'] = w.get_pressure()['press']
 
-        rain = w.get_rain() 
+        rain = w.get_rain()
         #If there is no data recorded from rain then return 0, otherwise #return the actual data
-        if len(rain) == 0: 
-            values['lastrain'] = 0 
-        else: 
+        if len(rain) == 0:
+            values['lastrain'] = 0
+        else:
             values['lastrain'] = rain["3h"]
 
-        # Print the data 
+        # Print the data
         print(values)
-        
+
         json_body = {'points': [{'tags': 'fields': {k: v for k, v in values.items()}
                                         }],
                             'measurement': influx_measurement
