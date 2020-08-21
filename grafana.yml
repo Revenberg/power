@@ -1,28 +1,15 @@
 ---
-- hosts: localhost
+- hosts: rpi
+  become_user: root
+  become: yes
+
   roles:
   - role: nginx
-    become_user: root
-    become: yes
   - role: influxdb
-    become_user: root
-    become: yes
   - role: p1
-    become_user: root
-    become: yes
   - role: solar
-    become_user: root
-    become: yes
   - role: node-exporter
-    become_user: root
-    become: yes
   - role: openweathermap
-    become_user: root
-    become: yes    
   - role: prometheus
-    become_user: root
-    become: yes    
   - role: grafana
-    become_user: root
-    become: yes
   
