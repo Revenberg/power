@@ -17,24 +17,8 @@
     "gnetId": 9710,
     "graphTooltip": 2,
     "id": 9,
-    "iteration": 1598014803623,
     "links": [],
     "panels": [
-      {
-        "collapsed": false,
-        "datasource": null,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 0
-        },
-        "id": 16,
-        "panels": [],
-        "repeat": "city",
-        "title": "",
-        "type": "row"
-      },
       {
         "cacheTimeout": null,
         "colorBackground": false,
@@ -64,7 +48,7 @@
           "h": 6,
           "w": 4,
           "x": 0,
-          "y": 1
+          "y": 0
         },
         "id": 2,
         "interval": null,
@@ -203,7 +187,7 @@
           "h": 6,
           "w": 4,
           "x": 4,
-          "y": 1
+          "y": 0
         },
         "id": 3,
         "interval": null,
@@ -363,7 +347,7 @@
           "h": 3,
           "w": 4,
           "x": 8,
-          "y": 1
+          "y": 0
         },
         "id": 11,
         "interval": null,
@@ -435,7 +419,7 @@
       {
         "cacheTimeout": null,
         "colorBackground": false,
-        "colorValue": true,
+        "colorValue": false,
         "colors": [
           "#ef843c",
           "#629e51",
@@ -449,7 +433,7 @@
           },
           "overrides": []
         },
-        "format": "pressurehpa",
+        "format": "percent",
         "gauge": {
           "maxValue": 100,
           "minValue": 0,
@@ -461,9 +445,9 @@
           "h": 3,
           "w": 4,
           "x": 12,
-          "y": 1
+          "y": 0
         },
-        "id": 5,
+        "id": 6,
         "interval": null,
         "links": [],
         "mappingType": 1,
@@ -530,7 +514,7 @@
               [
                 {
                   "params": [
-                    "pressure"
+                    "humidity"
                   ],
                   "type": "field"
                 },
@@ -543,8 +527,8 @@
             "tags": []
           }
         ],
-        "thresholds": "999.75, 1013.08",
-        "title": "Atmosfeer druk",
+        "thresholds": "",
+        "title": "Zonnekracht",
         "type": "singlestat",
         "valueFontSize": "80%",
         "valueMaps": [
@@ -590,10 +574,10 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 6,
+          "h": 3,
           "w": 4,
           "x": 16,
-          "y": 1
+          "y": 0
         },
         "id": 9,
         "interval": null,
@@ -642,7 +626,8 @@
             "tags": []
           }
         ],
-        "title": "Weer conditie",
+        "title": " ",
+        "transparent": true,
         "type": "stat"
       },
       {
@@ -673,7 +658,7 @@
           "h": 3,
           "w": 4,
           "x": 20,
-          "y": 1
+          "y": 0
         },
         "id": 13,
         "interval": null,
@@ -803,7 +788,7 @@
           "h": 3,
           "w": 4,
           "x": 8,
-          "y": 4
+          "y": 3
         },
         "id": 7,
         "interval": null,
@@ -901,7 +886,7 @@
       {
         "cacheTimeout": null,
         "colorBackground": false,
-        "colorValue": false,
+        "colorValue": true,
         "colors": [
           "#ef843c",
           "#629e51",
@@ -915,7 +900,7 @@
           },
           "overrides": []
         },
-        "format": "percent",
+        "format": "pressurehpa",
         "gauge": {
           "maxValue": 100,
           "minValue": 0,
@@ -927,9 +912,9 @@
           "h": 3,
           "w": 4,
           "x": 12,
-          "y": 4
+          "y": 3
         },
-        "id": 6,
+        "id": 5,
         "interval": null,
         "links": [],
         "mappingType": 1,
@@ -996,7 +981,7 @@
               [
                 {
                   "params": [
-                    "humidity"
+                    "pressure"
                   ],
                   "type": "field"
                 },
@@ -1009,8 +994,8 @@
             "tags": []
           }
         ],
-        "thresholds": "",
-        "title": "Zonnekracht",
+        "thresholds": "999.75, 1013.08",
+        "title": "Atmosfeer druk",
         "type": "singlestat",
         "valueFontSize": "80%",
         "valueMaps": [
@@ -1021,6 +1006,80 @@
           }
         ],
         "valueName": "current"
+      },
+      {
+        "datasource": "power",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": null
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 16,
+          "y": 3
+        },
+        "id": 210,
+        "options": {
+          "alt_field": "",
+          "baseUrl": "https://openweathermap.org/img/wn/",
+          "height": 75,
+          "icon_field": "",
+          "singleFill": true,
+          "suffix": "@2x.png",
+          "tooltip": false,
+          "tooltip_date_elapsed": false,
+          "tooltip_field": "",
+          "tooltip_include_date": false,
+          "tooltip_include_field": true,
+          "width": 75
+        },
+        "pluginVersion": "7.1.4",
+        "targets": [
+          {
+            "groupBy": [],
+            "limit": "1",
+            "measurement": "weather",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "weather_icon"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "transparent": true,
+        "type": "dalvany-image-panel"
       },
       {
         "cacheTimeout": null,
@@ -1050,7 +1109,7 @@
           "h": 3,
           "w": 4,
           "x": 20,
-          "y": 4
+          "y": 3
         },
         "id": 14,
         "interval": null,
@@ -1150,6 +1209,21 @@
           }
         ],
         "valueName": "current"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 6
+        },
+        "id": 16,
+        "panels": [],
+        "repeat": "city",
+        "title": "",
+        "type": "row"
       },
       {
         "collapsed": false,
@@ -1856,6 +1930,119 @@
         }
       },
       {
+        "aliasColors": {
+          "Moon altitude": "#447EBC",
+          "Sun altitude": "#CCA300"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "sunandmoon",
+        "editable": true,
+        "error": false,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "grid": {},
+        "gridPos": {
+          "h": 8,
+          "w": 8,
+          "x": 16,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 216,
+        "isNew": true,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "connected",
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.1.4",
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "Moon illumination",
+            "yaxis": 2
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "refId": "A",
+            "target": "sun_altitude"
+          },
+          {
+            "refId": "B",
+            "target": "moon_altitude"
+          },
+          {
+            "refId": "C",
+            "target": "moon_illumination"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Zon en maan positie",
+        "tooltip": {
+          "msResolution": true,
+          "shared": true,
+          "sort": 0,
+          "value_type": "cumulative"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "",
+            "logBase": 1,
+            "max": null,
+            "min": 0,
+            "show": true
+          },
+          {
+            "format": "percentunit",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": 0,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
         "columns": [],
         "datasource": "power",
         "fieldConfig": {
@@ -1869,7 +2056,7 @@
           "h": 9,
           "w": 8,
           "x": 16,
-          "y": 17
+          "y": 25
         },
         "id": 208,
         "links": [],
@@ -2083,6 +2270,20 @@
                   ],
                   "type": "alias"
                 }
+              ],
+              [
+                {
+                  "params": [
+                    "lastrain"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    "lastrain"
+                  ],
+                  "type": "alias"
+                }
               ]
             ],
             "tags": []
@@ -2091,6 +2292,102 @@
         "title": "Weer geschiedenis",
         "transform": "table",
         "type": "table-old"
+      },
+      {
+        "aliasColors": {
+          "W.mean": "#cca300",
+          "W/m2.mean": "#ba43a9"
+        },
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Sun and Moon",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 8,
+          "x": 8,
+          "y": 26
+        },
+        "hiddenSeries": false,
+        "id": 214,
+        "interval": "60s",
+        "legend": {
+          "avg": false,
+          "current": true,
+          "max": true,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 2,
+        "links": [],
+        "nullPointMode": "null",
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.1.4",
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "refId": "A",
+            "target": "sun_azimuth"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Zonnestraling",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "Wm2",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
       }
     ],
     "refresh": "1m",
@@ -2101,7 +2398,7 @@
       "list": []
     },
     "time": {
-      "from": "now-6h",
+      "from": "now-2d",
       "to": "now"
     },
     "timepicker": {
@@ -2132,5 +2429,5 @@
     "timezone": "",
     "title": "Weer",
     "uid": "7wISvn_iz",
-    "version": 1
+    "version": 2
   }

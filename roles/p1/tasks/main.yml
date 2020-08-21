@@ -31,12 +31,12 @@
 
 - name: Copy p1.service with owner and permissions
   copy:
-    src: p1.service
-    dest: /lib/systemd/system/p1.service
+    src: p1-logger.service
+    dest: /lib/systemd/system/p1-logger.service
     mode: '0644'
 
-- name: Make sure p1 is running
+- name: Make sure p1-logger is running
   systemd:
     enabled: yes
     state: started
-    name: p1
+    name: p1-logger
