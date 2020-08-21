@@ -1,7 +1,7 @@
 ---
-- name: image-panel-master.zip into /var/lib/foo
+- name: image-panel-master.zip into /var/lib/grafana/plugins
   unarchive:
-    src: image-panel-master.zip
+    src: files/plugins/image-panel-master.zip
     dest: /var/lib/grafana/plugins
 
 - name: Check which plugins are installed
