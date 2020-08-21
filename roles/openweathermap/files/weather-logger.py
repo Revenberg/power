@@ -12,18 +12,15 @@ config.read("config.ini")
 
 log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = config.getboolean('Logging', 'do_raw_log')
-apikey = config.get('Weather', apikey)
-country = config.get('Weather', country)
-language = config.get('Weather', language)
+apikey = config.get('Weather', 'apikey')
+country = config.get('Weather', 'country')
+language = config.get('Weather', 'language')
 # You MUST provide a valid API key
 
-config_dict = get_default_config()
-config_dict['language'] = language  # your language here
-
-owm = pyowm.OWM(apikey, config_dict)
-
+owm = pyowm.OWM(apikey, language=language)
 # Here put your city and Country ISO 3166 country codes
 observation = owm.weather_at_place(country) 
+
 w = observation.get_weather()
 # Weather details from INTERNET 
 
