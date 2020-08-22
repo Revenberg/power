@@ -1,14 +1,11 @@
 ---
-#- debug:
-#    msg: "{{ item }}"
-#  with_fileglob:
-#    - "{{ plugin_dashboards_dir }}/*.zip"
-
 - name: Import grafana plugins 1
   unarchive:
     src: "{{ item }}"
     dest: "{{ grafana_data_dir }}/plugins/"
     mode: 0640
+    owner: grafana
+    group: grafana
   with_fileglob:
     - "{{ plugin_dashboards_dir }}/*.zip"
   
