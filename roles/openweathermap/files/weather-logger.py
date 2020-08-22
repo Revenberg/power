@@ -83,16 +83,20 @@ try:
         if len(rain) == 0:
             values['lastrain'] = 0
         else:
-            print(rain)
-            values['lastrain'] = rain["3h"]
-
+            if "3h" in rain:
+               values['lastrain'] = rain["3h"]
+            if "1h" in rain:
+               values['lastrain'] = rain["1h"]
+            
         snow = w.get_snow()
         #If there is no data recorded from rain then return 0, otherwise #return the actual data
         if len(snow) == 0:
             values['lastsnow'] = 0
         else:
-            print(lastsnow)
-            values['lastsnow'] = rain["3h"]
+            if "3h" in snow:
+               values['lastsnow'] = snow["3h"]
+            if "1h" in snow:
+               values['lastsnow'] = snow["1h"]            
         
         # Print the data
         if __debug__:
