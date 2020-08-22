@@ -11,15 +11,16 @@
     mode: 0640
   with_fileglob:
     - "{{ plugin_dashboards_dir }}/*.zip"
-  register: not_installed_plugins
-
+  
 - debug:
     msg: "{{ item }}"
-  with_items: "{{ not_installed_plugins }}"
-
+  with_fileglob:
+    - "{{ plugin_dashboards_dir }}/*.zip"
+  
 - name: Manually install plugins
   command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install {{ item | basename }}"
-  with_items: "{{ not_installed_plugins }}"
+  with_fileglob:
+    - "{{ plugin_dashboards_dir }}/*.zip"
   notify:
     - restart grafana
 
