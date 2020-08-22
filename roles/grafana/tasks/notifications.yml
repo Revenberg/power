@@ -1,5 +1,5 @@
 ---
-- include_vars: slack.yaml
+- include_vars: "slack.yaml"
 
 - name: Check alert notifications list
   uri:
