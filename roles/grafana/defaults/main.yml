@@ -189,6 +189,7 @@ grafana_image_storage: {}
 # Plugins from https://grafana.com/plugins
 grafana_plugins: 
   - fetzerch-sunandmoon-datasource
+  - grafana-image-renderer
   
 #  - raintank-worldping-app
 
@@ -211,9 +212,16 @@ plugin_dashboards_dir: "plugins"
 grafana_alert_notifications: 
    - name: "Email Alert"
      type: "email"
-     isDefault: true
+     isDefault: false
      settings:
        addresses: "{{ email }}"
+   - name: "Slack Alert"
+     type: "Slack"
+     isDefault: true
+     settings:
+       url: "{{ slack_url }}"
+       token: "{{ slack_token }}"
+       username: "{{ username }}"
 
 # Datasources to configure
 grafana_datasources: 
