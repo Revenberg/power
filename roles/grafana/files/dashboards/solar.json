@@ -224,7 +224,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -337,7 +337,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -456,7 +456,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -570,7 +570,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -819,7 +819,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -920,7 +920,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1034,7 +1034,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1073,7 +1073,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -1187,7 +1187,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1301,7 +1301,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1416,7 +1416,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1655,7 +1655,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1680,7 +1680,7 @@
       "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Solar PV",
+      "title": "Solar",
       "type": "singlestat",
       "valueFontSize": "150%",
       "valueMaps": [
@@ -1991,7 +1991,7 @@
     },
     {
       "aliasColors": {
-        "PV.mean": "dark-yellow",
+        "solar.mean": "dark-yellow",
         "W.mean": "#cca300"
       },
       "bars": false,
@@ -2045,7 +2045,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2112,7 +2112,7 @@
       "aliasColors": {
         "DC1": "green",
         "DC2": "red",
-        "PV.mean": "red",
+        "solar.mean": "red",
         "W.mean": "#cca300"
       },
       "bars": false,
@@ -2178,7 +2178,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2215,7 +2215,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -2441,8 +2441,8 @@
     {
       "aliasColors": {
         "Day": "orange",
-        "PV.last": "orange",
-        "PV.mean": "semi-dark-orange"
+        "solar.last": "orange",
+        "solar.mean": "semi-dark-orange"
       },
       "bars": true,
       "dashLength": 10,
@@ -2501,7 +2501,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2570,7 +2570,7 @@
       "aliasColors": {
         "DC1": "green",
         "DC2": "red",
-        "PV.mean": "red",
+        "solar.mean": "red",
         "W.mean": "#cca300"
       },
       "bars": false,
@@ -2636,7 +2636,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2673,7 +2673,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -2742,7 +2742,7 @@
         "AC Voltage": "blue",
         "DC1": "green",
         "DC2": "red",
-        "PV.mean": "red",
+        "solar.mean": "red",
         "W.mean": "#cca300"
       },
       "bars": false,
@@ -2804,7 +2804,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2841,7 +2841,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -2913,7 +2913,7 @@
         "AC Voltage": "blue",
         "DC1": "green",
         "DC2": "red",
-        "PV.mean": "red",
+        "solar.mean": "red",
         "W.mean": "#cca300"
       },
       "bars": false,
@@ -2972,7 +2972,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -3162,7 +3162,7 @@
         "DC1": "green",
         "DC2": "red",
         "Inverter": "orange",
-        "PV.mean": "red",
+        "solar.mean": "red",
         "W.mean": "#cca300"
       },
       "bars": false,
@@ -3226,7 +3226,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "Solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
