@@ -3,7 +3,7 @@
   unarchive:
     src: "{{ item }}"
     dest: "{{ grafana_data_dir }}/plugins/"
-    mode: 0640
+    mode: 0755
     owner: grafana
     group: grafana
   with_fileglob:
