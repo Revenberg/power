@@ -14,7 +14,8 @@
   register: not_installed_plugins
 
 - debug:
-    msg: "{{ not_installed_plugins }}"
+    msg: "{{ item }}"
+  with_items: "{{ not_installed_plugins }}"
 
 - name: Manually install plugins
   command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install {{ item | basename }}"
