@@ -189,7 +189,6 @@ grafana_image_storage: {}
 # Plugins from https://grafana.com/plugins
 grafana_plugins: 
   - fetzerch-sunandmoon-datasource
-  - grafana-image-renderer
   
 #  - raintank-worldping-app
 
