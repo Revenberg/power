@@ -1,6 +1,4 @@
 ---
-- include_vars: "slack.yaml"
-
 - name: Check alert notifications list
   uri:
     url: "{{ grafana_api_url }}/api/alert-notifications"

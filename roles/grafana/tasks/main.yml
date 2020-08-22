@@ -1,4 +1,7 @@
 ---
+- name: Include slack info
+  include_vars: "slack.yaml"
+
 - name: Gather variables for each operating system
   include_vars: "{{ item }}"
   with_first_found:
