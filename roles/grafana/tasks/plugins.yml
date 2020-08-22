@@ -8,22 +8,13 @@
     group: grafana
   with_fileglob:
     - "{{ plugin_dashboards_dir }}/*.zip"
-  
-- debug:
-    msg: "{{ item }}"
-  with_fileglob:
-    - "{{ plugin_dashboards_dir }}/*.zip"
-  
+
 - name: Manually install plugins
   command: "grafana-cli --pluginsDir {{ grafana_data_dir }}/plugins plugins install {{ (( item | basename | splitext)[:-1] | join('.')) }}"
   with_fileglob:
     - "{{ plugin_dashboards_dir }}/*.zip"
   notify:
     - restart grafana
-
-
-
-
 
 - name: Check which plugins are installed
   find:
