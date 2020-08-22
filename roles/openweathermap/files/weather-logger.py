@@ -83,6 +83,7 @@ try:
         if len(rain) == 0:
             values['lastrain'] = 0
         else:
+            print(rain)
             values['lastrain'] = rain["3h"]
 
         snow = w.get_snow()
@@ -90,6 +91,7 @@ try:
         if len(snow) == 0:
             values['lastsnow'] = 0
         else:
+            print(lastsnow)
             values['lastsnow'] = rain["3h"]
         
         # Print the data
