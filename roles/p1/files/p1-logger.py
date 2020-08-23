@@ -184,10 +184,9 @@ def check_db_status(options):
         if not(db_found):
             print('Database ' + options.influx_database + ' not found, trying to create it')
             dbclient.create_database(options.influx_database)
-            dbclient.create_retention_policy('30_days', '30d', 1, default=True)
-            dbclient.create_retention_policy('6_months', '26wd', 1, default=False)
-            dbclient.create_retention_policy('infinite', 'INF', 1, default=False)
-
+            dbclient.create_retention_policy('30_days', '30d', 1, influx_database, default=True)
+            dbclient.create_retention_policy('6_months', '26wd', 1, influx_database, default=False)
+            dbclient.create_retention_policy('infinite', 'INF', 1, influx_database, default=False)
         return True
     except Exception as e:
         print('Error querying opening database')
