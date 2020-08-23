@@ -42,11 +42,19 @@ try:
             db_found = True
     if not(db_found):
         print('Database ' + influx_database + ' not found, trying to create it')
-        dbclient.create_database(influx_database)
-        dbclient.create_retention_policy('30_days', '30d', 1, influx_database, default=True)
-        dbclient.create_retention_policy('6_months', '26wd', 1, influx_database, default=False)
-        dbclient.create_retention_policy('infinite', 'INF', 1, influx_database, default=False)
+        print( dbclient.get_list_continuous_queries())
 
+#select_clause = 'SELECT mean("value") INTO "cpu_mean" ' \
+#                'FROM "weather" GROUP BY time(1m)'
+#client.create_continuous_query(
+#     'cpu_mean', select_clause, 'influx_database', 'EVERY 10s FOR 2m'
+
+#CREATE CONTINUOUS QUERY "cq_30m" ON "food_data" BEGIN
+# SELECT mean("website") AS "mean_website",mean("phone") AS "mean_phone"
+#  INTO "a_year"."downsampled_orders"
+#  FROM "orders"
+#  GROUP BY time(30m)
+#END
 
 except Exception as e:
     print('Error querying open database: ' )

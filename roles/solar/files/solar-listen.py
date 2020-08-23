@@ -50,12 +50,7 @@ try:
             db_found = True
     if not(db_found):
         print('Database ' + influx_database + ' not found, trying to create it')
-        dbclient.create_database(influx_database)
-        dbclient.create_retention_policy('30_days', '30d', 1, influx_database, default=True)
-        dbclient.create_retention_policy('6_months', '26wd', 1, influx_database, default=False)
-        dbclient.create_retention_policy('infinite', 'INF', 1, influx_database, default=False)
-
-    
+            
 except Exception as e:
     print('Error querying open database: ')
     print( e )

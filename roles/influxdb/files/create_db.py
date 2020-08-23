@@ -43,11 +43,11 @@ try:
         print('Database ' + influx_database + ' not found, trying to create it')
         dbclient.create_database(influx_database)
 
-    dbclient.create_retention_policy('30_days', '5d', 1, influx_database, default=True)
+    dbclient.create_retention_policy('10_days', '10d', 1, influx_database, default=True)
     dbclient.create_retention_policy('30_days', '30d', 1, influx_database, default=False)
     dbclient.create_retention_policy('6_months', '26w', 1, influx_database, default=False)
-    .dbclient.create_retention_policy('infinite', 'INF', 1, influx_database, default=False)
-    
+    dbclient.create_retention_policy('infinite', 'INF', 1, influx_database, default=False)
+
 except Exception as e:
     print('Error querying open database: ' + influx_database)
     print(e)
