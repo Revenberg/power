@@ -5,7 +5,7 @@ After=multi-user.target
 [Service]
 Type=idle
 WorkingDirectory=/var/p1
-ExecStart=/usr/bin/python /var/p1/p1-logger.py
+ExecStart=/usr/bin/python -O /var/p1/p1-logger.py
 
 [Install]
 WantedBy=multi-user.target
