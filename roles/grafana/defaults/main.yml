@@ -211,11 +211,11 @@ plugin_dashboards_dir: "plugins"
 grafana_alert_notifications:
   - name: "Email Alert"
     type: "email"
-    isDefault: false
+    isDefault: true
     settings:
       addresses: "{{ email }}"
   - name: "Slack Alert"
-    type: "Slack"
+    type: "slack"
     isDefault: true
     settings:
       autoResolve: true
@@ -242,8 +242,7 @@ grafana_alert_notifications:
           35383562636135383732633530336330333931343866643739323064633733316133393365393961
           61393739363262363661653835343530383234386265366431656565393231336565303438666664
           32343366353830383037363337646666373566386238313865373535393035646233376365633462
-          62653064303630353534
-      username: ""
+          62653064303630353534      
 
 # Datasources to configure
 grafana_datasources:
