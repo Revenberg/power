@@ -48,7 +48,7 @@ grafana_security:
 #  cookie_username: grafana_user
 #  cookie_remember_name: grafana_remember
 #  disable_gravatar: true
-#  data_source_proxy_whitelist:    
+#  data_source_proxy_whitelist:
 
 # Database setup
 grafana_database:
@@ -187,9 +187,9 @@ grafana_image_storage: {}
 
 #######
 # Plugins from https://grafana.com/plugins
-grafana_plugins: 
+grafana_plugins:
   - fetzerch-sunandmoon-datasource
-  
+
 #  - raintank-worldping-app
 
 # Dashboards from https://grafana.com/dashboards
@@ -208,7 +208,7 @@ grafana_dashboards_dir: "dashboards"
 plugin_dashboards_dir: "plugins"
 
 # Alert notification channels to configure
-grafana_alert_notifications: 
+grafana_alert_notifications:
   - name: "Email Alert"
     type: "email"
     isDefault: false
@@ -217,7 +217,7 @@ grafana_alert_notifications:
   - name: "Slack Alert"
     type: "Slack"
     isDefault: true
-    settings:       
+    settings:
       autoResolve: true
       httpMethod: "POST"
       mentionChannel: "here"
@@ -245,13 +245,13 @@ grafana_alert_notifications:
           62653064303630353534      username: ""
 
 # Datasources to configure
-grafana_datasources: 
+grafana_datasources:
   - name: power
     type: influxdb
     access: proxy
-    database: power    
-    url: http://localhost:8086  
-    editable: true  
+    database: power
+    url: http://localhost:8086
+    editable: true
   - name: sunandmoon
     type: fetzerch-sunandmoon-datasource
     jsonData:
@@ -263,7 +263,7 @@ grafana_datasources:
     jsonData:
       latitude: 53.179851
       longitude: 6.1682691
-    editable: true    
+    editable: true
 
 
 #  - name: "Prometheus"
@@ -290,7 +290,7 @@ grafana_datasources:
     editable: true
 
 # API keys to configure
-grafana_api_keys: 
+grafana_api_keys:
   - name: "adm"
     role: "Admin"
   - name: "viewer"
