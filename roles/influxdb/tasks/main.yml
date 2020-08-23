@@ -49,6 +49,7 @@
     - create_db.py
 
 - name: execute create_db.py script
-  script:
-    cmd: "/var/var/influxdb/scripts/create_db.py"
+  command:
+    cmd: "python /var/var/influxdb/scripts/create_db.py"
+  args:
     chdir: "/var/var/influxdb/scripts"
