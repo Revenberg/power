@@ -52,5 +52,5 @@ try:
     print("3")
     
 except Exception as e:
-    print('Error querying open database: ')
+    print('Error querying open database: ' + influx_database)
     print(e)
