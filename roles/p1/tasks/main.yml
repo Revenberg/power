@@ -40,3 +40,10 @@
     enabled: yes
     state: started
     name: p1-logger
+
+- name: restart service p1-logger"
+  cron:
+    name: "restart service p1-logger"
+    minute: "0,15,30,45"
+    job: "service p1-logger restart"
+    user: root

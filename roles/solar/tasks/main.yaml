@@ -27,7 +27,7 @@
   with_items:
     - config.ini
     - solar-listen.py
-    
+
 - name: solar-listen.service with owner and permissions
   copy:
     src: solar-listen.service
@@ -40,3 +40,10 @@
     state: started
     daemon_reload: true
     name: solar-listen
+
+- name: restart service solar-listen"
+  cron:
+    name: "restart service solar-listen"
+    minute: "0,15,30,45"
+    job: "service solar-listen restart"
+    user: root

@@ -48,7 +48,8 @@ try:
         dbclient.create_retention_policy('infinite', 'INF', 1, default=False)
 
 except Exception as e:
-    print('Error querying open database: ' + e)
+    print('Error querying open database: ' )
+    print(e)
 
 try:
     while True:
