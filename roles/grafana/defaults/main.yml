@@ -209,18 +209,40 @@ plugin_dashboards_dir: "plugins"
 
 # Alert notification channels to configure
 grafana_alert_notifications: 
-   - name: "Email Alert"
-     type: "email"
-     isDefault: false
-     settings:
-       addresses: "{{ email }}"
-   - name: "Slack Alert"
-     type: "Slack"
-     isDefault: true
-     settings:
-       url: "{{ slack_url }}"
-       token: "{{ slack_token }}"
-       username: "{{ username }}"
+  - name: "Email Alert"
+    type: "email"
+    isDefault: false
+    settings:
+      addresses: "{{ email }}"
+  - name: "Slack Alert"
+    type: "Slack"
+    isDefault: true
+    settings:       
+      autoResolve: true
+      httpMethod: "POST"
+      mentionChannel: "here"
+      severity: "critical"
+# ansible-vault encrypt_string --vault-password-file  /home/pi/.pswrd '      token' --name ""
+      token: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          63393033343131646262313833363530653162623262633565636538663333663562306364636236
+          3264363638316534326433393939633838396131666165630a396266376636353131383063656562
+          38393938316437353062333332656365346235373232613538363832623031333134616338623938
+          3732383661353932320a393537326531313563663234333139353863653666663961653031343363
+          38306537316265323262353037326635666161616464373833353030303533643961333361326366
+          6466613833643666626664306263366233323764636332306339
+      uploadImage: false
+# ansible-vault encrypt_string --vault-password-file  /home/pi/.pswrd --name '      url' ""
+      url: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          31373063353865633036613063323465356136306137363935373133393064333564383135393162
+          6334626637643038343336376433316661366265636434340a633334663466363137636563666632
+          34333536636330343135613764623230626432366165666636636665366630363431353332613662
+          3436613639336561360a303265626236366233363336373438393634353636353166666233376365
+          35383562636135383732633530336330333931343866643739323064633733316133393365393961
+          61393739363262363661653835343530383234386265366431656565393231336565303438666664
+          32343366353830383037363337646666373566386238313865373535393035646233376365633462
+          62653064303630353534      username: ""
 
 # Datasources to configure
 grafana_datasources: 
