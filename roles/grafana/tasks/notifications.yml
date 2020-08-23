@@ -19,5 +19,5 @@
     body_format: json
     body: "{{ item | to_json }}"
   with_items: "{{ grafana_alert_notifications }}"
-#  no_log: true
+  no_log: true
   when: ((alert_notifications['json'] | selectattr("name", "equalto", item['name'])) | list) | length == 0
