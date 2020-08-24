@@ -255,7 +255,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -459,7 +459,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -498,7 +498,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -619,7 +619,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -736,7 +736,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -951,7 +951,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1144,7 +1144,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT sum(\"ac_output_amps_1\"), sum(\"ac_output_amps_2\"), sum(\"ac_output_amps_3\") FROM \"PV\" WHERE $timeFilter GROUP BY time(5m) fill(none)",
@@ -1282,7 +1282,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1399,7 +1399,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1442,7 +1442,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -1479,7 +1479,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
@@ -1628,7 +1628,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1665,7 +1665,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -1702,7 +1702,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
@@ -1830,7 +1830,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT sum(\"ac_output_amps_1\"), sum(\"ac_output_amps_2\"), sum(\"ac_output_amps_3\") FROM \"PV\" WHERE $timeFilter GROUP BY time(5m) fill(none)",
@@ -2119,7 +2119,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2156,7 +2156,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -2193,7 +2193,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
@@ -2330,7 +2330,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2887,7 +2887,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -2924,7 +2924,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -2961,7 +2961,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
@@ -3267,7 +3267,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -3414,7 +3414,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "PV",
+          "measurement": "solar",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
