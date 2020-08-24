@@ -67,7 +67,8 @@ while True:
     if __debug__:
         print('waiting for a connection')
     try:
-        print('connection from', addr)
+        if __debug__:
+             print('connection from', addr)
 
         # Read in a chunk of data
         rawdata = conn.recv(512).strip()
@@ -90,12 +91,11 @@ while True:
         if len(hexdata) >= 185:
 
             values = dict()
-            print(str(hexdata[30:60]))
+            if __debug__:
+              print(str(hexdata[30:60]))
             # Serial number is used as InfluxDB tag,
             # allowing multiple inverters to connect to a single instance
 #            serial = binascii.unhexlify(hexdata[30:60])
-            print("====================")
-            print(binascii.unhexlify(hexdata[30:60]))
 #            serial = str(hexdata[30:60])
             serial = 1
             values['temperature'] = float(int(hexdata[62:66], 16))/10   # temperature
