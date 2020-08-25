@@ -15,5 +15,5 @@
   apt: 
     name: [ "wolfram-engine", "libreoffice*", "oracle-java*", "scratch2", "scratch" ]
     state: absent
-  
+  ignore_errors: yes
     
