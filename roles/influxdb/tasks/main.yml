@@ -29,9 +29,16 @@
     state: started
     name: influxdb
 
-- name: Ensure weather directory exists
+- name: Ensure influxdb log directory exists
   file:
-    path: "/var/var/influxdb/scripts"
+    path: "/var/log/influxdb"
+    state: directory
+    owner: pi
+    group: pi
+
+- name: Ensure influxdb directory exists
+  file:
+    path: "/var/influxdb/scripts"
     recurse: yes
     state: directory
     owner: pi
@@ -40,7 +47,7 @@
 - name: Copy files
   copy:
     src: "{{ item }}"
-    dest: "/var/var/influxdb/scripts/{{ item }}"
+    dest: "/var/influxdb/scripts/{{ item }}"
     owner: pi
     group: pi
     mode: 0775
@@ -50,6 +57,6 @@
 
 - name: execute create_db.py script
   command:
-    cmd: "python /var/var/influxdb/scripts/create_db.py"
+    cmd: "python /var/influxdb/scripts/create_db.py"
   args:
-    chdir: "/var/var/influxdb/scripts"
+    chdir: "/var/influxdb/scripts"

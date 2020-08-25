@@ -48,6 +48,14 @@ try:
     dbclient.create_retention_policy('6_months', '26w', 1, influx_database, default=False)
     dbclient.create_retention_policy('infinite', 'INF', 1, influx_database, default=False)
 
+print( dbclient.get_list_continuous_queries() )
+
+select_clause = 'SELECT mean("+P") as "+P",mean("+P1") as "+P1",mean("+P2") as "+P2",mean("+P3" as "+P3"),mean("+T") as "+T",mean("+T1") as "+T1",mean("+T2") as "+T2",mean("-P") as "-P",mean("-P1") as "-P1",mean("-P2") as "-P2",mean("-P3") as "-P3",mean("-T") as "-T",mean("-T1") as "-T1",mean("-T2") as "-T2",mean("G") as "G",mean("P") as "P" FROM "p1" GROUP BY time(5m)'
+
+client.create_continuous_query('30_days'.'p1_mean', select_clause, '" + influx_database + "')
+
+print( dbclient.get_list_continuous_queries() )
+
 except Exception as e:
     print('Error querying open database: ' + influx_database)
     print(e)
