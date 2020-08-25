@@ -11,14 +11,13 @@
   timezone:
     name: Europe/Amsterdam
     
-- name: wolfram-engine
+- name: Remove not used applications
   apt: 
     name: "{{ item }}"
     state: absent
-  ith_items:
+  with_items:
     - "wolfram-engine"
     - "libreoffice*"
     - "oracle-java*"
     - "scratch2"
     - "scratch"
-    
