@@ -391,8 +391,8 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": 1,
-        "desc": true
+        "col": null,
+        "desc": false
       },
       "styles": [
         {
@@ -407,39 +407,18 @@
           "align": "auto",
           "colorMode": "value",
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
+            "rgba(50, 172, 45, 0.97)",
             "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "rgba(245, 54, 54, 0.9)"
           ],
           "decimals": 3,
           "pattern": "Generated",
           "thresholds": [
-            "10",
-            "20"
+            "1000",
+            "2000"
           ],
           "type": "number",
           "unit": "kwatth"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": "value",
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 3,
-          "mappingType": 1,
-          "pattern": "Efficiency",
-          "preserveFormat": false,
-          "thresholds": [
-            "2",
-            "4"
-          ],
-          "type": "number",
-          "unit": "short"
         }
       ],
       "targets": [
@@ -473,55 +452,8 @@
                 "type": "field"
               },
               {
-                "params": [
-                  "1"
-                ],
-                "type": "top"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Efficiency",
-          "groupBy": [
-            {
-              "params": [
-                "24h"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "solar",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "Daily_Generation"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [
-                  "1"
-                ],
-                "type": "top"
-              },
-              {
-                "params": [
-                  "/ 5.22"
-                ],
-                "type": "math"
+                "params": [],
+                "type": "sum"
               }
             ]
           ],
@@ -751,7 +683,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [],
@@ -763,7 +695,7 @@
         }
       ],
       "thresholds": "-1,1",
-      "timeFrom": null,
+      "timeFrom": "2d",
       "timeShift": null,
       "title": "Today vs Yesterday",
       "type": "singlestat",
@@ -2483,7 +2415,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               }
             ]
           ],
@@ -2520,7 +2452,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               }
             ]
           ],
@@ -2557,7 +2489,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               }
             ]
           ],
@@ -2565,7 +2497,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": "30d",
+      "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
       "title": "Power Usage from Net",
@@ -2610,7 +2542,7 @@
         "W.mean": "#cca300",
         "kW.mean": "#3f6833"
       },
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "power",
@@ -2633,6 +2565,7 @@
       "id": 134,
       "interval": "5m",
       "legend": {
+        "alignAsTable": true,
         "avg": false,
         "current": true,
         "max": true,
@@ -2653,7 +2586,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -2687,7 +2620,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               }
             ]
           ],
@@ -2718,13 +2651,13 @@
             [
               {
                 "params": [
-                  "+P2"
+                  "-P2"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               }
             ]
           ],
@@ -2761,7 +2694,44 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "Totaal",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "p1",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "-P"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
               }
             ]
           ],
@@ -3748,5 +3718,5 @@
   "timezone": "",
   "title": "Solar2",
   "uid": "qpp2ODfiz",
-  "version": 7
+  "version": 9
 }
