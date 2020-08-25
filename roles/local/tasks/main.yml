@@ -13,11 +13,7 @@
     
 - name: Remove not used applications
   apt: 
-    name: "{{ item }}"
+    name: ["wolfram-engine", "libreoffice*", "oracle-java*", "scratch2", "scratch" ]
     state: absent
-  with_items:
-    - "wolfram-engine"
-    - "libreoffice*"
-    - "oracle-java*"
-    - "scratch2"
-    - "scratch"
+  
+    
