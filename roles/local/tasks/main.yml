@@ -13,7 +13,7 @@
     
 - name: Remove not used applications
   apt: 
-    name: ["wolfram-engine", "libreoffice*", "oracle-java*", "scratch2", "scratch" ]
+    name: [ "wolfram-engine", "libreoffice*", "oracle-java*", "scratch2", "scratch" ]
     state: absent
   
     
