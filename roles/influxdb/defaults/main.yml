@@ -1,6 +1,6 @@
 ---
 influxdb_settings:
   - { section: 'continuous_queries', option: 'enabled', value: 'true' }  
-  - { section: 'continuous_queries', option: 'log-enabled', value: 'true' }  
+  - { section: 'continuous_queries', option: 'log-enabled', value: 'false' }  
   - { section: 'continuous_queries', option: 'query-stats-enabled', value: 'false' }  
   - { section: 'continuous_queries', option: 'run-interval', value: '5m' }  
