@@ -1,12 +1,7 @@
 ---
-#- name: reload influxdb
-#  shell:
-#    cmd: "service influxdb force-reload"
-
 - name: reload influxdb
-  service:
-    name: influxdb
-    state: force-reload
+  shell:
+    cmd: "service influxdb force-reload"
 
 - name: restart influxdb
   service:
