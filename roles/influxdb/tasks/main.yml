@@ -38,9 +38,8 @@
     state: present
   with_items: "{{ influxdb_settings }}"
   notify: 
-  - reload influxdb
-  - restart influxdb
-      
+  - reload influxdb  
+
 # Scripting initial create DB    
 - name: Ensure influxdb log directory exists
   file:
