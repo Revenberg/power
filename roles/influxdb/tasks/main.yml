@@ -16,7 +16,7 @@
 
 - name: Update all packages to the latest version
   apt: >
-    upgrade=yes
+    upgrade=yes  
 
 - name: install influxdb
   apt:
@@ -29,6 +29,19 @@
     state: started
     name: influxdb
 
+- name: influxdb conf
+  ini_file:
+    dest: /etc/influxdb/influxdb.conf
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items: "{{ influxdb_settings }}"
+  notify: 
+  - reload influxdb
+  - restart influxdb
+      
+# Scripting initial create DB    
 - name: Ensure influxdb log directory exists
   file:
     path: "/var/log/influxdb"
@@ -54,7 +67,7 @@
   with_items:
     - config.ini
     - create_db.py
-
+   
 - name: execute create_db.py script
   command:
     cmd: "python /var/influxdb/scripts/create_db.py"
