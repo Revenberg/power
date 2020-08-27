@@ -2,7 +2,7 @@
 
 - name: Install required packages
   package:
-    name: [ 'unzip', ''man-db' ]
+    name: [ 'unzip', 'man-db' ]
     state: present
   become: true  
 
