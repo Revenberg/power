@@ -40,6 +40,29 @@
   notify: 
   - reload influxdb  
 
+# Crontab backup    
+- name: Ensure influxdb backup directory exists
+  file:
+    path: "/var/influxdb/backup"
+    state: directory
+    owner: pi
+    group: pi
+
+- name: "crontab influxd backup"
+  cron:
+    name: "influxd backup"
+    hour: "0"
+    minute: "0"
+    job: "influxd backup -portable /var/influxdb/backup"  
+
+- name: "crontab influxd clean backups"
+  cron:
+    name: "influxd clean backups"
+    hour: "0"
+    minute: "0"
+    job: "find /var/influxdb/backup/* -mtime +7 -exec rm {} \;"  
+
+
 # Scripting initial create DB    
 - name: Ensure influxdb log directory exists
   file:
