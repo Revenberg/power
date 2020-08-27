@@ -60,7 +60,7 @@
     name: "influxd clean backups"
     hour: "0"
     minute: "0"
-    job: "find /var/influxdb/backup/* -mtime +7 -exec rm {} \;"  
+    job: "find /var/influxdb/backup/* -mtime +7 -exec rm {} \\;"  
 
 
 # Scripting initial create DB    
