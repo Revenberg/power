@@ -57,3 +57,6 @@
     minute: "0,15,30,45"
     job: "service weather-logger  restart"
     user: root
+
+- name: include create continuous queries 
+  include_tasks: init_measurements.yml     

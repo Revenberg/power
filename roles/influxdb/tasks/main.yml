@@ -62,8 +62,6 @@
     minute: "0"
     job: "find /var/influxdb/backup/* -mtime +7 -exec rm {} \\;"  
 
-
-# Scripting initial create DB    
 - name: Ensure influxdb log directory exists
   file:
     path: "/var/log/influxdb"
@@ -71,27 +69,3 @@
     owner: pi
     group: pi
 
-- name: Ensure influxdb directory exists
-  file:
-    path: "/var/influxdb/scripts"
-    recurse: yes
-    state: directory
-    owner: pi
-    group: pi
-
-- name: Copy files
-  copy:
-    src: "{{ item }}"
-    dest: "/var/influxdb/scripts/{{ item }}"
-    owner: pi
-    group: pi
-    mode: 0775
-  with_items:
-    - config.ini
-    - create_db.py
-   
-- name: execute create_db.py script
-  command:
-    cmd: "python /var/influxdb/scripts/create_db.py"
-  args:
-    chdir: "/var/influxdb/scripts"

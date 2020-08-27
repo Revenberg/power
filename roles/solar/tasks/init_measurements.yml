@@ -1,0 +1,24 @@
+- name: Ensure influxdb directory exists
+  file:
+    path: "/var/influxdb/scripts"
+    recurse: yes
+    state: directory
+    owner: pi
+    group: pi
+
+- name: Copy files
+  copy:
+    src: "{{ item }}"
+    dest: "/var/influxdb/scripts/{{ item }}"
+    owner: pi
+    group: pi
+    mode: 0775
+  with_items:
+    - config.ini
+    - init_measurements.py
+   
+- name: execute init_measurements.py script
+  command:
+    cmd: "python /var/influxdb/scripts/init_measurements.py"
+  args:
+    chdir: "/var/influxdb/scripts"
