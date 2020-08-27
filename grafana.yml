@@ -13,4 +13,5 @@
   - role: openweathermap
   - role: prometheus
   - role: grafana
+  - role: rclone
   
