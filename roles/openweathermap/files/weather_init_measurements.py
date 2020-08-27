@@ -14,7 +14,6 @@ config.read("config.ini")
 ###########################
 # Variables
 
-log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = config.getboolean('Logging', 'do_raw_log')
 
 influx_server = config.get('InfluxDB', 'influx_server')
@@ -26,7 +25,6 @@ if __debug__:
     print(influx_server)
     print(influx_port)
     print(influx_database)
-    print(log_path)
     print(do_raw_log)
 else:
     print("running without debug")
@@ -49,9 +47,10 @@ try:
 
     print( dbclient.get_list_continuous_queries() )
 
-    solar_select_clause = 'SELECT mean("ac_frequency") as "ac_frequency",mean("ac_output_amps_1") as "ac_output_amps_1",mean("ac_output_amps_2") as "ac_output_amps_2",mean("ac_output_amps_3") as "ac_output_amps_3",mean("ac_output_volts_1") as "ac_output_volts_1",mean("ac_output_volts_2") as "ac_output_volts_2",mean("ac_output_volts_3") as "ac_output_volts_3",mean("current_generation_watts_1") as "current_generation_watts_1",mean("current_generation_watts_2") as "current_generation_watts_2",mean("current_generation_watts_3") as "current_generation_watts_3",mean("dc_amps_chain_1") as "dc_amps_chain_1",mean("dc_amps_chain_2") as "dc_amps_chain_2",mean("dc_amps_chain_3") as "dc_amps_chain_3",mean("dc_volts_chain_1") as "dc_volts_chain_1",mean("dc_volts_chain_2") as "dc_volts_chain_2",mean("dc_volts_chain_3") as "dc_volts_chain_3",mean("inverter_daily") as "inverter_daily",mean("inverter_last_month") as "inverter_last_month",mean("inverter_month") as "inverter_month",mean("inverter_total") as "inverter_total",mean("inverter_yesterday") as "inverter_yesterday",mean("temperature") as "temperature"'
-    dbclient.create_continuous_query("solar_mean60", solar_select_clause + ' INTO "60_days"."solar" FROM "solar" GROUP BY time(15m)', influx_database )
-    dbclient.create_continuous_query("solar_meaninf", solar_select_clause + ' INTO "infinite"."solar" FROM "solar" GROUP BY time(30m)', influx_database )
+    weather_select_clause = 'SELECT mean("clouds") as "clouds",mean("detailed_status") as "detailed_status",mean("humidity") as "humidity",mean("lastrain") as "lastrain",mean("lastsnow") as "lastsnow",mean("location") as "location",mean("pressure") as "pressure",mean("status") as "status",mean("sunrise") as "sunrise",mean("sunset") as "sunset",mean("temp") as "temp",mean("weather_code") as "weather_code",mean("weather_icon") as "weather_icon",mean("wind_direction_deg") as "wind_direction_deg",mean("wind_speed") as "wind_speed"'
+    dbclient.create_continuous_query("weather_mean60", weather_select_clause + ' INTO "60_days"."weather" FROM "weather" GROUP BY time(15m)', influx_database )
+    dbclient.create_continuous_query("weather_meaninf", weather_select_clause + ' INTO "infinite"."weather" FROM "weather" GROUP BY time(30m)', influx_database )
+
 
     print( dbclient.get_list_continuous_queries() )
 

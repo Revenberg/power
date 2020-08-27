@@ -14,7 +14,6 @@ config.read("config.ini")
 ###########################
 # Variables
 
-log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = config.getboolean('Logging', 'do_raw_log')
 
 influx_server = config.get('InfluxDB', 'influx_server')
@@ -26,7 +25,6 @@ if __debug__:
     print(influx_server)
     print(influx_port)
     print(influx_database)
-    print(log_path)
     print(do_raw_log)
 else:
     print("running without debug")
@@ -49,11 +47,10 @@ try:
 
     print( dbclient.get_list_continuous_queries() )
 
-    weather_select_clause = 'SELECT mean("clouds") as "clouds",mean("detailed_status") as "detailed_status",mean("humidity") as "humidity",mean("lastrain") as "lastrain",mean("lastsnow") as "lastsnow",mean("location") as "location",mean("pressure") as "pressure",mean("status") as "status",mean("sunrise") as "sunrise",mean("sunset") as "sunset",mean("temp") as "temp",mean("weather_code") as "weather_code",mean("weather_icon") as "weather_icon",mean("wind_direction_deg") as "wind_direction_deg",mean("wind_speed") as "wind_speed"'
-    dbclient.create_continuous_query("weather_mean60", weather_select_clause + ' INTO "60_days"."weather" FROM "weather" GROUP BY time(15m)', influx_database )
-    dbclient.create_continuous_query("weather_meaninf", weather_select_clause + ' INTO "infinite"."weather" FROM "weather" GROUP BY time(30m)', influx_database )
-
-
+    p1_select_clause = 'SELECT mean("+P") as "+P",mean("+P1") as "+P1",mean("+P2") as "+P2",mean("+P3") as "+P3",mean("+T") as "+T",mean("+T1") as "+T1",mean("+T2") as "+T2",mean("-P") as "-P",mean("-P1") as "-P1",mean("-P2") as "-P2",mean("-P3") as "-P3",mean("-T") as "-T",mean("-T1") as "-T1",mean("-T2") as "-T2",mean("G") as "G",mean("P") as "P"'
+    dbclient.create_continuous_query("p1_mean60", p1_select_clause + ' INTO "60_days"."p1" FROM "p1" GROUP BY time(15m)', influx_database )
+    dbclient.create_continuous_query("p1_meaninf", p1_select_clause + ' INTO "infinite"."p1" FROM "p1" GROUP BY time(30m)', influx_database )   
+    
     print( dbclient.get_list_continuous_queries() )
 
 except Exception as e:

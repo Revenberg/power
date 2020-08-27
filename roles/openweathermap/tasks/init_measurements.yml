@@ -15,10 +15,10 @@
     mode: 0775
   with_items:
     - config.ini
-    - init_measurements.py
+    - weather_init_measurements.py
    
-- name: execute init_measurements.py script
+- name: execute weather_init_measurements.yml.py script Weather
   command:
-    cmd: "python /var/influxdb/scripts/init_measurements.py"
+    cmd: "python /var/influxdb/scripts/weather_init_measurements.py"
   args:
     chdir: "/var/influxdb/scripts"
