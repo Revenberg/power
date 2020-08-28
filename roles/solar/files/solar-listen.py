@@ -88,29 +88,36 @@ while True:
             logfile.write(timestamp + ' ' + hexdata.decode() + '\n')
             logfile.close()
 
-        if len(hexdata) >= 185:
+        if len(hexdata) == 276:
 
             values = dict()
-            if __debug__:
-              print(str(hexdata[30:60]))
             # Serial number is used as InfluxDB tag,
-            # allowing multiple inverters to connect to a single instance
-#            serial = binascii.unhexlify(hexdata[30:60])
-#            serial = str(hexdata[30:60])
-            serial = 1
+            # allowing multiple inverters to connect to a single instance             
+            serial = ""
+            for i in range( 15 ):
+                serial = serial + chr(int(hexdata[30:60][(i * 2):((i * 2) + 2)], 16 ) )      
             values['temperature'] = float(int(hexdata[62:66], 16))/10   # temperature
+            
             values['dc_volts_chain_1'] = float(int(hexdata[66:70], 16))/10   # DC volts chain 1
             values['dc_volts_chain_2'] = float(int(hexdata[70:74], 16))/10   # DC volts chain 2
             values['dc_volts_chain_3'] = float(int(hexdata[74:78], 16))/10   # DC volts chain 3
+
             values['dc_amps_chain_1'] = float(int(hexdata[78:82], 16))/10   # DC amps chain 1
             values['dc_amps_chain_2'] = float(int(hexdata[82:86], 16))/10   # DC amps chain 2
             values['dc_amps_chain_3'] = float(int(hexdata[86:90], 16))/10   # DC amps chain 3
+
+            values['dc_kW_chain_1'] = values['dc_volts_chain_1'] * values['dc_amps_chain_1']  # DC Watts chain 1
+            values['dc_kW_chain_2'] = values['dc_volts_chain_2'] * values['dc_amps_chain_2']  # DC Watts chain 2
+            values['dc_kW_chain_3'] = values['dc_volts_chain_3'] * values['dc_amps_chain_3']  # DC volts chain 3
+            
             values['ac_output_amps_1'] = float(int(hexdata[90:94], 16))/10   # AC output amps 1
             values['ac_output_amps_2'] = float(int(hexdata[94:98], 16))/10   # AC output amps 2
             values['ac_output_amps_3'] = float(int(hexdata[98:102], 16))/10  # AC output amps 3
+
             values['ac_output_volts_1'] = float(int(hexdata[102:106], 16))/10 # AC output volts 1
             values['ac_output_volts_2'] = float(int(hexdata[106:110], 16))/10 # AC output volts 2
             values['ac_output_volts_3'] = float(int(hexdata[110:114], 16))/10 # AC output volts 3
+
             values['ac_frequency'] = float(int(hexdata[114:118], 16))/100 # AC frequency
             values['current_generation_watts_1'] = float(int(hexdata[118:122], 16))    # current generation Watts 1
             values['current_generation_watts_2'] = float(int(hexdata[122:126], 16))    # current generation Watts 2
