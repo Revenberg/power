@@ -73,9 +73,9 @@ class ginlong(object):
     #   Get values from json
         keys = {}
         
-        for info in resultJson['result']['deviceWapper']['realTimeDataPower']:
+        for info in resultJson['result']['deviceWapper']['realTimeDataPower']:                       
            w = yaml.load(info['value'], Loader=yaml.FullLoader)
-           unit =  info['unit']
+           unit =  info['unit'].replace(r'[^\x00-\x7F]+', '')
            if 'k' in unit:
                unit = unit.replace("k", "")
                w = w * 1000
