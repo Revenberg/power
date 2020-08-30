@@ -1,8 +1,22 @@
 ---
+- name: Ensure ginlong directory exists
+  file:
+    path: "/var/ginlong/"
+    state: directory
+    owner: pi
+    group: pi
+    
+- name: Ensure ginlong directory exists
+  file:
+    path: "/var/log/ginlong"
+    state: directory
+    owner: pi
+    group: pi
+
 - name: Copy ginlong.scraper.py with owner and permissions
   copy:
     src: ginlong.scraper.py
-    dest: /home/pi/ginlong.scraper.py
+    dest: /var/ginlong/ginlong.scraper.py
     mode: '0766'
 
 - name: template ginlong.scraper.service with owner and permissions
@@ -28,3 +42,6 @@
     minute: "0,15,30,45"
     job: "service ginlong.scraper restart"
     user: root
+
+- name: include create continuous queries 
+  include_tasks: init_measurements.yml     

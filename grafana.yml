@@ -9,6 +9,7 @@
   - role: influxdb
   - role: p1
   - role: solar
+  - role: ginlong
   - role: node-exporter
   - role: openweathermap
   - role: prometheus

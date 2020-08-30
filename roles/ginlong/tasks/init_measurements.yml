@@ -1,0 +1,24 @@
+- name: Ensure influxdb directory exists
+  file:
+    path: "/var/influxdb/scripts"
+    recurse: yes
+    state: directory
+    owner: pi
+    group: pi
+
+- name: Copy files
+  copy:
+    src: "{{ item }}"
+    dest: "/var/influxdb/scripts/{{ item }}"
+    owner: pi
+    group: pi
+    mode: 0775
+  with_items:
+    - config.ini
+    - ginglong_init_measurements.py
+   
+- name: execute ginlong_init_measurements.yml.py script ginlong
+  command:
+    cmd: "python /var/influxdb/scripts/ginlong_init_measurements.py"
+  args:
+    chdir: "/var/influxdb/scripts"
