@@ -9,7 +9,7 @@ import configparser
 from influxdb import InfluxDBClient
 
 config = configparser.RawConfigParser(allow_no_value=True)
-config.read("config.ini")
+config.read("solar_config.ini")
 
 ###########################
 # Variables

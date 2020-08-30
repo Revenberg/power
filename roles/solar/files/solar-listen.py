@@ -9,7 +9,7 @@ import configparser
 from influxdb import InfluxDBClient
 
 config = configparser.RawConfigParser(allow_no_value=True)
-config.read("config.ini")
+config.read("solar_config.ini")
 
 
 ###########################
@@ -97,7 +97,7 @@ while True:
             for i in range( 15 ):
                 serial = serial + chr(int(hexdata[30:60][(i * 2):((i * 2) + 2)], 16 ) )      
             values['temperature'] = float(int(hexdata[62:66], 16))/10   # temperature
-            
+
             values['dc_volts_chain_1'] = float(int(hexdata[66:70], 16))/10   # DC volts chain 1
             values['dc_volts_chain_2'] = float(int(hexdata[70:74], 16))/10   # DC volts chain 2
             values['dc_volts_chain_3'] = float(int(hexdata[74:78], 16))/10   # DC volts chain 3

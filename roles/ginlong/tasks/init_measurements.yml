@@ -14,8 +14,8 @@
     group: pi
     mode: 0775
   with_items:
-    - config.ini
-    - ginglong_init_measurements.py
+    - ginlong_config.ini
+    - ginlong_init_measurements.py
    
 - name: execute ginlong_init_measurements.yml.py script ginlong
   command:

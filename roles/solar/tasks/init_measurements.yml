@@ -14,7 +14,7 @@
     group: pi
     mode: 0775
   with_items:
-    - config.ini
+    - solar_config.ini
     - solar_init_measurements.py
    
 - name: execute solar_init_measurements.py script Solar

@@ -26,7 +26,7 @@
     group: pi
     mode: 0775
   with_items:
-    - config.ini
+    - p1_config.ini
     - p1-logger.py
 
 - name: Copy p1.service with owner and permissions

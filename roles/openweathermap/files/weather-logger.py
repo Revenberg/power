@@ -8,7 +8,7 @@ import configparser
 from influxdb import InfluxDBClient
 
 config = configparser.RawConfigParser(allow_no_value=True)
-config.read("config.ini")
+config.read("weather_config.ini")
 
 log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = config.getboolean('Logging', 'do_raw_log')

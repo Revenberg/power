@@ -14,7 +14,7 @@
     group: pi
     mode: 0775
   with_items:
-    - config.ini
+    - p1_config.ini
     - p1_init_measurements.py
    
 - name: execute p1_init_measurements.py script P1

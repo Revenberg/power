@@ -32,8 +32,8 @@
 
 - name: template config.ini with owner and permissions
   template:
-    src: config.ini.j2
-    dest: "/var/weather/config.ini"
+    src: weather_config.ini.j2
+    dest: "/var/weather/weather_config.ini"
     owner: pi
     group: pi
     mode: '0644'

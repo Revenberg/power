@@ -25,7 +25,7 @@
     group: pi
     mode: 0775
   with_items:
-    - config.ini
+    - solar_config.ini
     - solar-listen.py
 
 - name: solar-listen.service with owner and permissions

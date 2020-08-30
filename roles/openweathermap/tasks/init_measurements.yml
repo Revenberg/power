@@ -14,7 +14,7 @@
     group: pi
     mode: 0775
   with_items:
-    - config.ini
+    - weather_config.ini
     - weather_init_measurements.py
    
 - name: execute weather_init_measurements.yml.py script Weather
