@@ -17,7 +17,7 @@
     - solar_config.ini
     - solar_init_measurements.py
     - rs485_config.ini
-    - rs385_init_measurements.py
+    - rs485_init_measurements.py
    
 - name: execute solar_init_measurements.py script Solar
   command:
@@ -27,6 +27,6 @@
 
 - name: execute solar_init_measurements.py script Solar
   command:
-    cmd: "python /var/influxdb/scripts/rs385_init_measurements.py"
+    cmd: "python /var/influxdb/scripts/rs485_init_measurements.py"
   args:
     chdir: "/var/influxdb/scripts"
