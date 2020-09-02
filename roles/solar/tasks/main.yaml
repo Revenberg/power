@@ -28,7 +28,7 @@
     - solar_config.ini
     - solar-listen.py
     - solar_rs485_eth.py
-    - rs485_eth.py
+    - rs485eth.py
 
 - name: solar-listen.service with owner and permissions
   copy:
