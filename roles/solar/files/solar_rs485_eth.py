@@ -17,7 +17,7 @@ log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = config.getboolean('Logging', 'do_raw_log')
 
 server = config.get('rs485', 'server')
-port = config.get('rs485', 'port')
+port = int(config.get('rs485', 'port'))
 
 influx_server = config.get('InfluxDB', 'influx_server')
 influx_port = int(config.get('InfluxDB', 'influx_port'))
@@ -41,6 +41,7 @@ else:
 
 
 def getData():
+    
     instrument = rs485ethpo.Instrument(server, port, 1, debug=False) # port name, slave address
 
     values = dict()
@@ -92,8 +93,7 @@ def getData():
     if __debug__:
         print(values)
 
-    json_body = {'points': [{
-                            'tags': {'location':  location },
+    json_body = {'points': [{                            
                             'fields': {k: v for k, v in values.items()}
                                     }],
                         'measurement': influx_measurement
