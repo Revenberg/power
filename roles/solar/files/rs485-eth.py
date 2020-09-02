@@ -3102,7 +3102,7 @@ _CRC16TABLE = (
     32897,
     16448,
 )
-r"""CRC-16 lookup table with 256 elements.
+"""CRC-16 lookup table with 256 elements.
 
 Built with this code::
 
