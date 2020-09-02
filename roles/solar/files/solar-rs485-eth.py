@@ -129,7 +129,7 @@ def openDatabase():
 try:
     while True:
         getData()
-        time.sleep( 300 )
+        time.sleep( 30 )
 
 except Exception as e:
     print(e)
