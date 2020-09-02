@@ -7,6 +7,7 @@ import binascii
 import time
 import sys
 import configparser
+import json
 from influxdb import InfluxDBClient
 
 config = configparser.RawConfigParser(allow_no_value=True)
@@ -14,9 +15,9 @@ config.read("weather_config.ini")
 
 log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = config.getboolean('Logging', 'do_raw_log')
-apikey = config.get('Weather', 'apikey')
-country = config.get('Weather', 'country')
-language = config.get('Weather', 'language')
+
+server = config.get('rs485', 'server')
+port = config.get('rs485', 'port')
 
 influx_server = config.get('InfluxDB', 'influx_server')
 influx_port = int(config.get('InfluxDB', 'influx_port'))
@@ -29,13 +30,17 @@ if __debug__:
     print(influx_port)
     print(influx_database)
     print(influx_measurement)
+    
+    print(server)
+    print(port)
+    
     print(log_path)
     print(do_raw_log)
 else:
     print("running without debug")
 
 
-def getData(server, port):
+def getData():
     instrument = minimalmodbus1.Instrument(server, port, 1, debug=False) # port name, slave address
 
     values['Generated (All time)'] = instrument.read_long(3008, functioncode=4, signed=False) # Read All Time Energy (KWH Total) as Unsigned 32-Bit
@@ -62,14 +67,17 @@ def getData(server, port):
     Realtime_DATA_hh'] = instrument.read_register(3075, functioncode=4, signed=False) #Read Hour
     Realtime_DATA_mi'] = instrument.read_register(3076, functioncode=4, signed=False) #Read Minute
     Realtime_DATA_ss'] = instrument.read_register(3077, functioncode=4, signed=False) #Read Second
-    #print("Date : {:02d}-{:02d}-20{:02d} {:02d}:{:02d}:{:02d}".format(Realtime_DATA_dd, Realtime_DATA_mm, Realtime_DATA_yy, Realtime_DATA_hh, Realtime_DATA_mi, Realtime_DATA_ss) )
-
+    
     values['ac power (A)'] = instrument.read_register(3005, functioncode=4, signed=False) #Read AC Frequency as Unsigned 16-Bit
     values['pv power (V)'] = instrument.read_register(3007, functioncode=4, signed=False) #Read AC Frequency as Unsigned 16-Bit
     values['Total energy (W)'] = instrument.read_register(3009, functioncode=4, signed=False) #Read AC Frequency as Unsigned 16-Bit
     values['Month energy (W)'] = instrument.read_register(3011, functioncode=4, signed=False) #Read AC Frequency as Unsigned 16-Bit
     values['Last month energy (W)'] = instrument.read_register(3013, functioncode=4, signed=False) #Read AC Frequency as Unsigned 16-Bit
     values['Last year energy'] = instrument.read_register(3019, functioncode=4, signed=False) #Read AC Frequency as Unsigned 16-Bit
+
+    if __debug__:
+      print("Date : {:02d}-{:02d}-20{:02d} {:02d}:{:02d}:{:02d}".format(Realtime_DATA_dd, Realtime_DATA_mm, Realtime_DATA_yy, Realtime_DATA_hh, Realtime_DATA_mi, Realtime_DATA_ss) )
+      print( json.dumps(values) )
 
 #found = [ 3004, 3005, 3007, 3008, 3009, 3011, 3013, 3014, 3019, 3021, 3022, 3023, 3024, 3033, 3034, 3035, 3036, 3037, 3038, 3042, 3041, 3072, 3073, 3074, 3075, 3076, 3077]
 
@@ -100,7 +108,7 @@ def getData(server, port):
         print('error writing to database')
 
     client.close()
-    
+
 def openDatabase():
     # if the db is not found, then try to create it
     try:
@@ -113,14 +121,14 @@ def openDatabase():
         if not(db_found):
             print('Database ' + influx_database + ' not found, trying to create it')
             print( dbclient.get_list_continuous_queries())
-    
+
     except Exception as e:
         print('Error querying open database: ' )
         print(e)
 
 try:
     while True:
-        getData('192.168.2.40', 8899)
+        getData()
         time.sleep( 300 )
 
 except Exception as e:
