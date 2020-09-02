@@ -1,4 +1,4 @@
-import rs485eth.py
+import rs485eth
 import socket
 import serial
 import pyowm
@@ -11,7 +11,7 @@ import json
 from influxdb import InfluxDBClient
 
 config = configparser.RawConfigParser(allow_no_value=True)
-config.read("weather_config.ini")
+config.read("solar_config.ini")
 
 log_path = config.get('Logging', 'log_path', fallback='/var/log/solar/')
 do_raw_log = config.getboolean('Logging', 'do_raw_log')
