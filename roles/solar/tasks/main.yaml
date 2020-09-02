@@ -33,22 +33,26 @@
 
 - name: solar-listen.service with owner and permissions
   copy:
-    src: solar-listen.service
-    dest: /lib/systemd/system/solar-listen.service
+    src: "{{ item }}"
+    dest: "/lib/systemd/system/{{ item }}"
     mode: '0644'
+  with_items:  
+    - solar-listen.service
+    - solar-logger.service
 
 - name: Make sure solar.listen is running
   systemd:
     enabled: yes
     state: started
     daemon_reload: true
-    name: solar-listen
+    name: solar-logger
+#    name: solar-listen    
 
-- name: restart service solar-listen"
+- name: restart service solar-logger"
   cron:
-    name: "restart service solar-listen"
+    name: "restart service solar-logger"
     minute: "0,15,30,45"
-    job: "service solar-listen restart"
+    job: "service solar-logger restart"
     user: root
 
 - name: include create continuous queries 
