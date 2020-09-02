@@ -30,10 +30,10 @@ if __debug__:
     print(influx_port)
     print(influx_database)
     print(influx_measurement)
-    
+
     print(server)
     print(port)
-    
+
     print(log_path)
     print(do_raw_log)
 else:
@@ -41,8 +41,9 @@ else:
 
 
 def getData():
-    instrument = minimalmodbus1.Instrument(server, port, 1, debug=False) # port name, slave address
+    instrument = rs485ethpo.Instrument(server, port, 1, debug=False) # port name, slave address
 
+    values = dict()
     values['Generated (All time)'] = instrument.read_long(3008, functioncode=4, signed=False) # Read All Time Energy (KWH Total) as Unsigned 32-Bit
     values['Generated (Today)'] = instrument.read_register(3014, numberOfDecimals=0, functioncode=4, signed=False) # Read Today Energy (KWH Total) as 16-Bit
     values['AC Watts (W)'] = instrument.read_long(3004, functioncode=4, signed=False) #Read AC Watts as Unsigned 32-Bit
@@ -67,7 +68,7 @@ def getData():
     Realtime_DATA_hh = instrument.read_register(3075, functioncode=4, signed=False) #Read Hour
     Realtime_DATA_mi = instrument.read_register(3076, functioncode=4, signed=False) #Read Minute
     Realtime_DATA_ss = instrument.read_register(3077, functioncode=4, signed=False) #Read Second
-    
+
     values['ac power (A)'] = instrument.read_register(3005, functioncode=4, signed=False) #Read AC Frequency as Unsigned 16-Bit
     values['pv power (V)'] = instrument.read_register(3007, functioncode=4, signed=False) #Read AC Frequency as Unsigned 16-Bit
     values['Total energy (W)'] = instrument.read_register(3009, functioncode=4, signed=False) #Read AC Frequency as Unsigned 16-Bit
@@ -126,12 +127,7 @@ def openDatabase():
         print('Error querying open database: ' )
         print(e)
 
-try:
-    while True:
-        openDatabase()
-        getData()
-        time.sleep( 30 )
-
-except Exception as e:
-    print(e)
-    print("Unexpected error:", sys.exc_info()[0])
+openDatabase()
+while True:
+    getData()
+    time.sleep( 30 )
