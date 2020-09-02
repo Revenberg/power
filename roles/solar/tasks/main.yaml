@@ -27,6 +27,7 @@
   with_items:
     - solar_config.ini
     - solar-listen.py
+    - rs485_config.ini
     - solar_rs485_eth.py
     - rs485eth.py
 
