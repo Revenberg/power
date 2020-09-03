@@ -127,7 +127,7 @@ class P1Packet(object):
 
         if do_raw_log:
             logfile = open(os.path.join(log_path, 'raw.log'), 'a')
-            logfile.write(timestamp + ' ' + json.dumps(keys) + '\n')
+            logfile.write(timestamp + " " + keys + "\n" )
             logfile.close()
 
         self._keys = keys
@@ -215,8 +215,8 @@ def send_to_influxdb(options, fields):
 #    reqs.append(req)
 
 #    client = InfluxDBClient(options.influx_hostname, options.influx_port, options.influx_username, options.influx_password, options.influx_database)
-    client = InfluxDBClient(host=influx_server,
-                            port=influx_port)
+    client = InfluxDBClient(host=options.influx_hostname,
+                            port=options.influx_port)
 
     #client.write_points(reqs, database=options.influx_database)
     success = client.write(json_body,
