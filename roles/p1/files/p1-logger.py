@@ -195,7 +195,7 @@ def check_db_status(options):
 
 def send_to_influxdb(options, fields):
 
-    req = {
+    json_body = {
         "measurement": options.influx_measurement,
         "tags": {},
 #        "time": int(time.ctime((updateDate) / 1000)),
@@ -205,17 +205,26 @@ def send_to_influxdb(options, fields):
     if options.influx_tags is not None:
         for tag in options.influx_tags:
             tag_kv = tag.split('=')
-            req['tags'][tag_kv[0]] = tag_kv[1]
+            json_body['tags'][tag_kv[0]] = tag_kv[1]
 
     for field_k, field_v in fields.iteritems():
         if field_v is not None:
-            req['fields'][field_k] = field_v
+            json_body['fields'][field_k] = field_v
 
-    reqs = []
-    reqs.append(req)
+#    reqs = []
+#    reqs.append(req)
 
-    client = InfluxDBClient(options.influx_hostname, options.influx_port, options.influx_username, options.influx_password, options.influx_database)
-    client.write_points(reqs, retention_policy=options.influx_retention_policy, database=options.influx_database)
+#    client = InfluxDBClient(options.influx_hostname, options.influx_port, options.influx_username, options.influx_password, options.influx_database)
+    client = InfluxDBClient(host=influx_server,
+                            port=influx_port)
+
+    #client.write_points(reqs, database=options.influx_database)
+    success = client.write(json_body,
+                    # params isneeded, otherwise error 'database is required' happens
+                    params={'db': options.influx_database})
+
+    if not success:
+        print('error writing to database')
 
     json_body = {'points': [{
                                  'fields': {'p1':  '1' }
