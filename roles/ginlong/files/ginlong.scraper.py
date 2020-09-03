@@ -125,27 +125,22 @@ def check_db_status(options):
 
 def send_to_influxdb(options, fields):
 
-    req = {
-        "measurement": options.influx_measurement,
-        "tags": {},
-#        "time": int(time.ctime((self.updateDate) / 1000)),
-        "fields": {}
-    }
+    client = InfluxDBClient(host=influx_server,
+                            port=influx_port)
 
-    if options.influx_tags is not None:
-        for tag in options.influx_tags:
-            tag_kv = tag.split('=')
-            req['tags'][tag_kv[0]] = tag_kv[1]
+    json_body = {'points': [{
+                            'fields': {k: v for k, v in fields.items()}
+                                    }],
+                        'measurement': option.influx_measurement
+                        }
 
-    for field_k, field_v in fields.iteritems():
-        if field_v is not None:
-            req['fields'][field_k] = field_v
+    success = client.write(json_body,
+                        # params isneeded, otherwise error 'database is required' happens
+                        params={'db': options.influx_database})
 
-    reqs = []
-    reqs.append(req)
+    if not success:
+                print('error writing to database')
 
-    client = InfluxDBClient(options.influx_hostname, options.influx_port, options.influx_username, options.influx_password, options.influx_database)
-    client.write_points(reqs, retention_policy=options.influx_retention_policy, database=options.influx_database)
 
     json_body = {'points': [{
                                  'fields': {'ginlong':  '1' }
