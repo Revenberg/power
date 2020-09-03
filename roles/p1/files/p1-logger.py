@@ -109,7 +109,7 @@ class P1Packet(object):
 
         keys['+T'] = keys['+T1'] + keys['+T2']
         keys['-T'] = keys['-T1'] + keys['-T2']
-        
+
         keys['+P1'] = self.get_float(b'^1-0:21\.7\.0\(([0-9]+\.[0-9]+)\*kW\)\r\n')
         keys['-P1'] = self.get_float(b'^1-0:22\.7\.0\(([0-9]+\.[0-9]+)\*kW\)\r\n')
         keys['+P2'] = self.get_float(b'^1-0:41\.7\.0\(([0-9]+\.[0-9]+)\*kW\)\r\n')
@@ -124,7 +124,7 @@ class P1Packet(object):
         keys['G'] = self.get_float(b'^(?:0-1:24\.2\.1(?:\(\d+[SW]\))?)?\(([0-9]{5}\.[0-9]{3})(?:\*m3)?\)\r\n', 0)
 
         keys['DN'] = self.get_float(b'^0-0:96\.14\.0\(([0-9])\\)\r\n')
-        
+
         if do_raw_log:
             logfile = open(os.path.join(log_path, 'raw.log'), 'a')
             logfile.write(timestamp + ' ' + json.dumps(keys) + '\n')
@@ -228,14 +228,14 @@ def send_to_influxdb(options, fields):
                             params={'db': influx_database})
 
     if not success:
-                print('error writing to database')
+        print('error writing to database')
 
 def start_monitor(options):
 
     meter = SmartMeter(options.device, options.baudrate)
 
     while True:
-      try: 
+      try:
             datagram = meter.read_one_packet()
             send_to_influxdb(options, datagram._keys)
             time.sleep(60)
@@ -246,7 +246,7 @@ def start_monitor(options):
 def main(argv=None):
 
     from argparse import ArgumentParser
-   
+
     parser = ArgumentParser(description="Send P1 telegrams to an InfluxDB API")
 
     parser.add_argument("-d", "--device", dest="device", help="serial port to read datagrams from", default='/dev/ttyUSB0')
