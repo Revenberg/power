@@ -553,7 +553,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "solar",
+          "measurement": "rs485",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -562,13 +562,13 @@
             [
               {
                 "params": [
-                  "inverter_daily"
+                  "Generated (Today)"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "sum"
+                "type": "last"
               }
             ]
           ],
@@ -970,7 +970,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "solar",
+          "measurement": "rs485",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -979,7 +979,7 @@
             [
               {
                 "params": [
-                  "inverter_last_month"
+                  "Last month energy (W)"
                 ],
                 "type": "field"
               },
@@ -1046,7 +1046,7 @@
           "calcs": [
             "mean"
           ],
-          "fields": "/^PV\\.sum$/",
+          "fields": "/^rs485\\.sum$/",
           "values": false
         },
         "showThresholdLabels": false,
@@ -1070,7 +1070,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "solar",
+          "measurement": "rs485",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT sum(\"ac_output_amps_1\"), sum(\"ac_output_amps_2\"), sum(\"ac_output_amps_3\") FROM \"PV\" WHERE $timeFilter GROUP BY time(5m) fill(none)",
@@ -1081,37 +1081,13 @@
             [
               {
                 "params": [
-                  "ac_output_amps_1"
+                  "AC Watts (W)"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "sum"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "ac_output_amps_2"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "ac_output_amps_3"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
+                "type": "last"
               }
             ]
           ],
@@ -1208,7 +1184,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "solar",
+          "measurement": "rs485",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1217,13 +1193,13 @@
             [
               {
                 "params": [
-                  "inverter_daily"
+                  "Generated (Today)"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "max"
               }
             ]
           ],
@@ -1327,7 +1303,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "solar",
+          "measurement": "rs485",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1336,13 +1312,13 @@
             [
               {
                 "params": [
-                  "inverter_daily"
+                  "Generated (Today)"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "sum"
+                "type": "last"
               },
               {
                 "params": [],
@@ -1991,14 +1967,28 @@
         "PV.mean": "red",
         "W.mean": "#cca300"
       },
-      "bars": false,
+      "bars": true,
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
       "datasource": "power",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
         },
         "overrides": []
       },
@@ -2024,10 +2014,10 @@
         "total": false,
         "values": true
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 2,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null as zero",
       "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.1.5",
@@ -2166,7 +2156,7 @@
         "PV.mean": "red",
         "W.mean": "#cca300"
       },
-      "bars": false,
+      "bars": true,
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
@@ -2200,10 +2190,10 @@
         "total": false,
         "values": true
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 2,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.1.5",
@@ -2651,7 +2641,7 @@
     },
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": "power",
@@ -2681,7 +2671,7 @@
         "total": false,
         "values": true
       },
-      "lines": true,
+      "lines": false,
       "linewidth": 1,
       "nullPointMode": "connected",
       "percentage": false,
@@ -2805,8 +2795,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 8,
-        "x": 16,
+        "w": 6,
+        "x": 18,
         "y": 21
       },
       "hiddenSeries": false,
@@ -2838,7 +2828,7 @@
       "targets": [
         {
           "aggregation": "Last",
-          "alias": "Day",
+          "alias": "Dag",
           "decimals": 2,
           "displayAliasType": "Warning / Critical",
           "displayType": "Regular",
@@ -2857,22 +2847,26 @@
               "type": "fill"
             }
           ],
-          "measurement": "solar",
+          "measurement": "rs485",
           "orderByTime": "ASC",
-          "policy": "default",
+          "policy": "10_days",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "inverter_daily"
+                  "Generated (Today)"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
                 "type": "last"
+              },
+              {
+                "params": [],
+                "type": "cumulative_sum"
               }
             ]
           ],
@@ -3028,7 +3022,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -3276,7 +3270,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
