@@ -41,7 +41,7 @@ else:
 
 
 def getData():
-    
+
     instrument = rs485eth.Instrument(server, port, 1, debug=False) # port name, slave address
 
     values = dict()
@@ -81,19 +81,7 @@ def getData():
       print("Date : {:02d}-{:02d}-20{:02d} {:02d}:{:02d}:{:02d}".format(Realtime_DATA_dd, Realtime_DATA_mm, Realtime_DATA_yy, Realtime_DATA_hh, Realtime_DATA_mi, Realtime_DATA_ss) )
       print( json.dumps(values) )
 
-#found = [ 3004, 3005, 3007, 3008, 3009, 3011, 3013, 3014, 3019, 3021, 3022, 3023, 3024, 3033, 3034, 3035, 3036, 3037, 3038, 3042, 3041, 3072, 3073, 3074, 3075, 3076, 3077]
-
-#for i in range(2999, 3510, 1):
-#  if not i in found:
-#    value = instrument.read_register(i, functioncode=4, signed=False) #Read AC Volts as Unsigned 16-Bit
-#    if value > 0:
-#      print("address: {}; result: {}".format(i, value) )
-
-    # Print the data
-    if __debug__:
-        print(values)
-
-    json_body = {'points': [{                            
+    json_body = {'points': [{
                             'fields': {k: v for k, v in values.items()}
                                     }],
                         'measurement': influx_measurement
@@ -107,6 +95,36 @@ def getData():
 
     if not success:
         print('error writing to database')
+
+################## TEST TEST ###################################################
+#found = [ 3004, 3005, 3007, 3008, 3009, 3011, 3013, 3014, 3019, 3021, 3022, 3023, 3024, 3033, 3034, 3035, 3036, 3037, 3038, 3042, 3041, 3072, 3073, 3074, 3075, 3076, 3077]
+
+    values1 = dict()
+    for i in range(2999, 3510, 1):
+#    if not i in found:
+        values1[i] = instrument.read_register(i, functioncode=4, signed=False) #Read AC Volts as Unsigned 16-Bit
+
+    if __debug__:
+      print("Date : {:02d}-{:02d}-20{:02d} {:02d}:{:02d}:{:02d}".format(Realtime_DATA_dd, Realtime_DATA_mm, Realtime_DATA_yy, Realtime_DATA_hh, Realtime_DATA_mi, Realtime_DATA_ss) )
+      print( json.dumps(values1) )
+
+    json_body = {'points': [{
+                            'fields': {k: v for k, v in values1.items()}
+                                    }],
+                        'measurement': "test"
+                        }
+
+    client = InfluxDBClient(host=influx_server,
+                            port=influx_port)
+    success = client.write(json_body,
+                        # params isneeded, otherwise error 'database is required' happens
+                        params={'db': influx_database})
+
+    if not success:
+        print('error writing to database')
+
+
+################## TEST TEST ###################################################
 
     client.close()
 
