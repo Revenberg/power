@@ -147,6 +147,10 @@ def openDatabase():
         print(e)
 
 openDatabase()
+
 while True:
-    getData()
-    time.sleep( 30 )
+    try: 
+        getData()
+        time.sleep(60)
+    except:
+        pass
