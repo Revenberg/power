@@ -89,12 +89,23 @@ def getData():
 
     client = InfluxDBClient(host=influx_server,
                             port=influx_port)
+
     success = client.write(json_body,
                         # params isneeded, otherwise error 'database is required' happens
                         params={'db': influx_database})
 
     if not success:
         print('error writing to database')
+
+    json_body = {'points': [{
+                                 'fields': {'rs485':  '1' }
+                                        }],
+                            'measurement': 'keepalive'
+                            }
+
+    success = client.write(json_body,
+                            # params isneeded, otherwise error 'database is required' happens
+                        params={'db': influx_database})
 
 ################## TEST TEST ###################################################
 #found = [ 3004, 3005, 3007, 3008, 3009, 3011, 3013, 3014, 3019, 3021, 3022, 3023, 3024, 3033, 3034, 3035, 3036, 3037, 3038, 3042, 3041, 3072, 3073, 3074, 3075, 3076, 3077]

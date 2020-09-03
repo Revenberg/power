@@ -217,6 +217,19 @@ def send_to_influxdb(options, fields):
     client = InfluxDBClient(options.influx_hostname, options.influx_port, options.influx_username, options.influx_password, options.influx_database)
     client.write_points(reqs, retention_policy=options.influx_retention_policy, database=options.influx_database)
 
+    json_body = {'points': [{
+                                 'fields': {'p1':  '1' }
+                                        }],
+                            'measurement': 'keepalive'
+                            }
+
+    success = client.write(json_body,
+                            # params isneeded, otherwise error 'database is required' happens
+                            params={'db': influx_database})
+
+    if not success:
+                print('error writing to database')
+
 def start_monitor(options):
 
     meter = SmartMeter(options.device, options.baudrate)

@@ -149,6 +149,19 @@ while True:
             if not success:
                 print('error writing to database')
 
+            json_body = {'points': [{
+                                 'fields': {'solar':  '1' }
+                                        }],
+                            'measurement': 'keepalive'
+                            }
+
+            success = client.write(json_body,
+                            # params isneeded, otherwise error 'database is required' happens
+                            params={'db': influx_database})
+
+            if not success:
+                print('error writing to database')
+
             client.close()
 
     except Exception as e:
