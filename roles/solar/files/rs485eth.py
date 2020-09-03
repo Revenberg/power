@@ -230,12 +230,21 @@ class Instrument:
 
         """
         _check_functioncode(functioncode, [1, 2])
-        return self._generic_command(
-            functioncode,
-            registeraddress,
-            number_of_bits=1,
-            payloadformat=_PAYLOADFORMAT_BIT,
-        )
+        rc = None
+        retry = 3
+        while retry > 0:
+            try:
+                rc = self._generic_command(
+                    functioncode,
+                    registeraddress,
+                    number_of_bits=1,
+                    payloadformat=_PAYLOADFORMAT_BIT,
+                )
+                retry = 0
+            except Exception:            
+                retry = retry - 1
+
+        return rc
 
     def write_bit(self, registeraddress, value, functioncode=5):
         """Write one bit to the slave (instrument).
