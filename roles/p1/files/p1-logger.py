@@ -195,8 +195,8 @@ def check_db_status(options):
 
 def send_to_influxdb(options, fields):
 
-    client = InfluxDBClient(host=influx_server,
-                            port=influx_port)
+    client = InfluxDBClient(host=option.influx_server,
+                            port=option.influx_port)
 
     json_body = {'points': [{
                             'fields': {k: v for k, v in fields.items()}
@@ -219,7 +219,7 @@ def send_to_influxdb(options, fields):
 
     success = client.write(json_body,
                             # params isneeded, otherwise error 'database is required' happens
-                            params={'db': influx_database})
+                            params={'db': option.influx_database})
 
     if not success:
         print('error writing to database')
