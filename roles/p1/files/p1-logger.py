@@ -195,7 +195,7 @@ def check_db_status(options):
 
 def send_to_influxdb(options, fields):
 
-    client = InfluxDBClient(host=options.influx_server,
+    client = InfluxDBClient(host=options.influx_hostname,
                             port=options.influx_port)
 
     json_body = {'points': [{
