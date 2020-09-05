@@ -1273,7 +1273,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "1h"
               ],
               "type": "time"
             }
@@ -1300,15 +1300,9 @@
               },
               {
                 "params": [
-                  "5m"
+                  "1h"
                 ],
                 "type": "derivative"
-              },
-              {
-                "params": [
-                  "*1000"
-                ],
-                "type": "math"
               }
             ]
           ],
@@ -2786,12 +2780,6 @@
                   "5m"
                 ],
                 "type": "derivative"
-              },
-              {
-                "params": [
-                  "*1000"
-                ],
-                "type": "math"
               }
             ]
           ],
@@ -3566,5 +3554,5 @@
   "timezone": "",
   "title": "Solar2",
   "uid": "qpp2ODfiz",
-  "version": 12
+  "version": 13
 }
