@@ -193,7 +193,7 @@ def check_db_status(options):
         print (e)
         return False
 
-def send_to_influxdb(options, fields):.
+def send_to_influxdb(options, fields):
 
     client = InfluxDBClient(host=options.influx_server,
                             port=options.influx_port)
