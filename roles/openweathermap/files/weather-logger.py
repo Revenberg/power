@@ -84,7 +84,9 @@ try:
         values["sunrise"] = w.get_sunrise_time() #Sunrise time (GMT UNIXtime or ISO 8601)
         values["sunset"] = w.get_sunset_time() #Sunset time (GMT UNIXtime or ISO 8601)
         values["weather_code"] =  w.get_weather_code()
-        values["weather_icon"] = w.get_weather_icon_name()
+        values["weather_icon"] = w.get_weather_icon_name()       
+        values["visibility_distance"] = w.get_visibility_distance()      
+
         location = observation.get_location().get_name()
         values["location"] = location
 
@@ -107,7 +109,15 @@ try:
                values['lastsnow'] = snow["3h"]
             if "1h" in snow:
                values['lastsnow'] = snow["1h"]            
+
+#       UV index
+        s = country.split(",")
+        reg = owm.city_id_registry()
+        list_of_locations = reg.locations_for(s[0], country=s[1])
+        myLocation = list_of_locations[0]
         
+        values['uvi'] = owm.uvindex_around_coords(myLocation.get_lat(), myLocation.get_lon()).get_value()  
+
         # Print the data
         if __debug__:
             print(values)
