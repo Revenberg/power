@@ -44,8 +44,8 @@
 - name: restart service p1-logger"
   cron:
     name: "restart service p1-logger"
-    minute: "0,15,30,45"
-    job: "service p1-logger restart"
+    minute: "*/15"
+    job: "/usr/sbin/service p1-logger restart"
     user: root
 
 - name: include create continuous queries 

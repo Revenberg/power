@@ -39,8 +39,8 @@
 - name: restart service ginlong.scraper"
   cron:
     name: "restart service ginlong.scraper"
-    minute: "0,15,30,45"
-    job: "service ginlong.scraper restart"
+    minute: "*/15"
+    job: "/usr/sbin/service ginlong.scraper restart"
     user: root
 
 - name: include create continuous queries 
