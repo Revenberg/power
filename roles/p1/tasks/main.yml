@@ -44,7 +44,7 @@
 - name: restart service p1-logger"
   cron:
     name: "restart service p1-logger"
-    minute: "*/15"
+    minute: "0"
     job: "/usr/sbin/service p1-logger restart"
     user: root
 

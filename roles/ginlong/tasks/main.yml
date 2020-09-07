@@ -39,7 +39,7 @@
 - name: restart service ginlong.scraper"
   cron:
     name: "restart service ginlong.scraper"
-    minute: "*/15"
+    minute: "0"
     job: "/usr/sbin/service ginlong.scraper restart"
     user: root
 

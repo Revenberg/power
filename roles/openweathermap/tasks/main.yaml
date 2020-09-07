@@ -54,7 +54,7 @@
 - name: restart service weather-logger "
   cron:
     name: "restart service weather-logger "
-    minute: "*/15"
+    minute: "0"
     job: "/usr/sbin/service weather-logger  restart"
     user: root
 
