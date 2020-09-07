@@ -346,7 +346,7 @@
         "1d"
       ]
     },
-    "timezone": "",
+    "timezone": "browser",
     "title": "Gas",
     "uid": "zKdV7Pkgz",
     "version": 2

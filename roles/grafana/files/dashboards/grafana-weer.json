@@ -2330,7 +2330,7 @@
       "30d"
     ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "Weer",
   "uid": "7wISvn_iz",
   "version": 5

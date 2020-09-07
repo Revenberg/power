@@ -1739,7 +1739,7 @@
         "30d"
       ]
     },
-    "timezone": "",
+    "timezone": "browser",
     "title": "Verbruik",
     "uid": "Or36XdRgk",
     "version": 2
