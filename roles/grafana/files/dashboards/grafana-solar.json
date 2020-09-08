@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 6,
+  "id": 5,
   "links": [],
   "panels": [
     {
@@ -437,8 +437,8 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": null,
-        "desc": false
+        "col": 1,
+        "desc": true
       },
       "styles": [
         {
@@ -3787,7 +3787,7 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {
@@ -3817,6 +3817,6 @@
   },
   "timezone": "browser",
   "title": "Solar",
-  "uid": "qpp2ODfiz",
-  "version": 16
+  "uid": "4GuKIgRgz",
+  "version": 10628
 }
