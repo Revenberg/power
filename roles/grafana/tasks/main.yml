@@ -40,3 +40,7 @@
   when: grafana_alert_notifications | length > 0
 
 - include: dashboards.yml
+
+- name: grafana-server force-reload
+  command:
+    cmd: "service grafana-server force-reload"
