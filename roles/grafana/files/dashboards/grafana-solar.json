@@ -2750,7 +2750,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Sun and Moon",
+      "datasource": "power",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -2770,12 +2770,12 @@
       "interval": "60s",
       "legend": {
         "avg": false,
-        "current": true,
-        "max": true,
+        "current": false,
+        "max": false,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 2,
@@ -2793,8 +2793,40 @@
       "steppedLine": false,
       "targets": [
         {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "weather",
+          "orderByTime": "ASC",
+          "policy": "default",
           "refId": "A",
-          "target": "sun_azimuth"
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "humidity"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
       "thresholds": [],
@@ -2817,7 +2849,7 @@
       },
       "yaxes": [
         {
-          "format": "Wm2",
+          "format": "degree",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -3389,7 +3421,7 @@
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mode"
               }
             ]
           ],
@@ -3787,7 +3819,7 @@
     "list": []
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
@@ -3817,6 +3849,6 @@
   },
   "timezone": "browser",
   "title": "Solar",
-  "uid": "4GuKIgRgz",
-  "version": 10628
+  "uid": "3GuKIgRgz",
+  "version": 14050
 }
