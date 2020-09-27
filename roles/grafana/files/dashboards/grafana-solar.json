@@ -3024,41 +3024,6 @@
       }
     },
     {
-      "alert": {
-        "conditions": [
-          {
-            "evaluator": {
-              "params": [
-                60
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "and"
-            },
-            "query": {
-              "params": [
-                "A",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          }
-        ],
-        "executionErrorState": "alerting",
-        "for": "5m",
-        "frequency": "1m",
-        "handler": 1,
-        "message": "High inverter temperature",
-        "name": "Temparature Inverter alert",
-        "noDataState": "keep_state",
-        "notifications": []
-      },
       "aliasColors": {
         "AC Current": "red",
         "AC Frequency": "purple",
@@ -3115,7 +3080,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "Inverter",
+          "alias": "Tempratuur",
           "yaxis": 1
         }
       ],
@@ -3124,7 +3089,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Inverter",
+          "alias": "Tempratuur",
           "groupBy": [
             {
               "params": [
@@ -3139,7 +3104,7 @@
               "type": "fill"
             }
           ],
-          "measurement": "rs485",
+          "measurement": "weather",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -3148,7 +3113,7 @@
             [
               {
                 "params": [
-                  "Inverter Temperature (c)"
+                  "temp"
                 ],
                 "type": "field"
               },
@@ -3161,20 +3126,11 @@
           "tags": []
         }
       ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "value": 60,
-          "yaxis": "left"
-        }
-      ],
+      "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Tempratuur Inverter",
+      "title": "Tempratuur",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -3612,6 +3568,152 @@
     },
     {
       "aliasColors": {
+        "AC Current": "red",
+        "AC Frequency": "purple",
+        "AC Voltage": "blue",
+        "DC1": "green",
+        "DC2": "red",
+        "Inverter": "orange",
+        "PV.mean": "red",
+        "W.mean": "#cca300"
+      },
+      "bars": true,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "power",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 18,
+        "y": 30
+      },
+      "hiddenSeries": false,
+      "id": 157,
+      "interval": "5m",
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "7.1.5",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Inverter",
+          "yaxis": 1
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Inverter",
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "rs485",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Inverter Temperature (c)"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Tempratuur Inverter",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 2,
+          "format": "celsius",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": 1,
+          "format": "amp",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
         "Day": "orange",
         "PV.last": "orange",
         "PV.mean": "semi-dark-orange"
@@ -3632,7 +3734,7 @@
         "h": 9,
         "w": 6,
         "x": 18,
-        "y": 30
+        "y": 39
       },
       "hiddenSeries": false,
       "hideTimeOverride": true,
@@ -3819,7 +3921,7 @@
     "list": []
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
@@ -3850,5 +3952,5 @@
   "timezone": "browser",
   "title": "Solar",
   "uid": "3GuKIgRgz",
-  "version": 14050
+  "version": 14254
 }
